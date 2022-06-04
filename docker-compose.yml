@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - USERNAME=${USERNAME:-user}
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./nvim:/home/${USERNAME:-user}/.config/nvim
+    user: ${USERNAME:-user}
