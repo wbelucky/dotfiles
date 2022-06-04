@@ -36,7 +36,7 @@ tzdata: upgraded-apt
 	sudo sh -c 'add-apt-repository -y ppa:git-core/ppa \
 	  && apt-get update -y \
 	  && apt-get install -y git'
-	if [ -f $(DOTFILES)/private/.gitconfig ]; then ln -snfv $(DOTFILES)/private/.gitconfig ${HOME}/.gitconfig; fi
+	ln -snfv $(DOTFILES)/private/.gitconfig ${HOME}/.gitconfig
 
 .PHONY: upgraded-apt
 upgraded-apt:

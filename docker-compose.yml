@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-  dev:
+  base:
     build:
       context: .
       dockerfile: base.Dockerfile
@@ -11,3 +11,11 @@ services:
     volumes:
       - .:/home/${USERNAME:-user}/dotfiles
     user: ${USERNAME:-user}
+  dev:
+    image: ghcr.io/wbelucky/dotfiles-with-docker:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/home/${USERNAME:-user}/dotfiles
+    user: ${USERNAME:-user}
+
