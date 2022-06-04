@@ -21,6 +21,10 @@ set cmdheight=2
 " delays and poor user experience.
 set updatetime=300
 
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
