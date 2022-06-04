@@ -9,5 +9,5 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./nvim:/home/${USERNAME:-user}/.config/nvim
+      - .:/home/${USERNAME:-user}/dotfiles
     user: ${USERNAME:-user}
