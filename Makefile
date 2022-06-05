@@ -8,7 +8,7 @@ all: coc-pyright /usr/bin/fish
 	  && sudo apt update -y \
 	  && sudo apt install -y fish \
 	  && sudo chsh -s /usr/bin/fish' \
-	  && ln -snfv $(DOTFILES)/fish ${HOME}/.config/fish
+	  && ln -snfv $(DOTFILES)/.config/fish ${HOME}/.config/fish
 	  
 
 .PHONY: coc-pyright
@@ -23,7 +23,7 @@ vim-plug: /usr/bin/nvim /usr/bin/curl /usr/bin/git
 
 /usr/bin/nvim: upgraded-apt ${HOME}/.config
 	sudo apt-get install -y neovim
-	ln -snfv $(DOTFILES)/nvim ${HOME}/.config/nvim
+	ln -snfv $(DOTFILES)/.config/nvim ${HOME}/.config/nvim
 
 /usr/bin/curl: upgraded-apt
 	sudo apt-get install -y curl
