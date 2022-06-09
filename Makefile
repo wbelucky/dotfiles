@@ -20,7 +20,7 @@ ts-lsp: nodejs
 	sudo npm i --location=global typescript diagnostic-languageserver typescript-language-server
 
 fish: apt-add-repository tzdata
-	sudo sh -c ' sudo apt-add-repository -y ppa:fish-shell/release-3 \
+	command -v fish || sudo sh -c ' sudo apt-add-repository -y ppa:fish-shell/release-3 \
 	  && sudo $(UPDATE) \
 	  && sudo $(INSTALL) fish \
 	  && sudo chsh -s fish'
@@ -32,26 +32,30 @@ vim-plug: nvim curl git build-essential
 	  && nvim --headless +'PlugInstall --sync' +qall
 
 nvim: apt-add-repository
-	sudo sh -c 'add-apt-repository -y ppa:neovim-ppa/unstable \
+	command -v nvim || sudo sh -c 'add-apt-repository -y ppa:neovim-ppa/unstable \
 	  && $(UPDATE) \
 	  && $(INSTALL) neovim'
 
 curl: updated-apt
-	sudo $(INSTALL) curl
+	command -v curl || sudo $(INSTALL) curl
 
 .PHONY: ghq
 ghq: go
 	go install github.com/x-motemen/ghq@latest
+
+.PHONY: go
+go:
+	command -v go || echo "TODO:"
 
 .PHONY: tzdata
 tzdata:
 	sudo DEBIAN_FRONTEND=noninteractive $(INSTALL) --no-install-recommends tzdata
 
 tmux: updated-apt
-	sudo $(INSTALL) tmux
+	command -v tmux || sudo $(INSTALL) tmux
 
 git: upgraded-apt tzdata apt-add-repository
-	sudo sh -c 'add-apt-repository -y ppa:git-core/ppa \
+	command -v git || sudo sh -c 'add-apt-repository -y ppa:git-core/ppa \
 	  && $(UPDATE) \
 	  && $(INSTALL) git'
 
@@ -67,10 +71,10 @@ upgraded-apt:
 
 .PHONY: nodejs
 nodejs: curl
-	sudo sh -c 'curl -sL https://deb.nodesource.com/setup_16.x | bash && $(INSTALL) nodejs'	
+	command -v node || sudo sh -c 'curl -sL https://deb.nodesource.com/setup_16.x | bash && $(INSTALL) nodejs'
 
 apt-add-repository: updated-apt
-	sudo $(INSTALL) software-properties-common
+	command -v apt-add-repository || sudo $(INSTALL) software-properties-common
 
 .PHONY: build-essential
 build-essential: updated-apt
