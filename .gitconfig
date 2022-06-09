@@ -1,3 +1,5 @@
+[core]
+	editor = nvim
 [user]
 	email = 39439193+WBelucky@users.noreply.github.com
 	name = wbelucky
@@ -5,3 +7,14 @@
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 
+[github]
+	user = wbelucky
+[difftool "nvimdiff"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "nvimdiff"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[ghq]
+	vcs = git
+	root = ~/ghq

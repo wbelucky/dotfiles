@@ -2,9 +2,6 @@ DOTFILES := $(shell echo $${DOTFILES:-${HOME}/dotfiles})
 INSTALL := apt-get install -y
 UPDATE := apt-get update -y
 
-.PHONY: all
-all: vim-plug fish ts-lsp links tmux
-
 .PHONY: links
 links: ${HOME}/.config
 	ln -snfv $(DOTFILES)/.config/fish ${HOME}/.config/fish
@@ -12,6 +9,8 @@ links: ${HOME}/.config
 	ln -snfv $(DOTFILES)/.tmux.conf ${HOME}/.tmux.conf
 	ln -snfv $(DOTFILES)/.gitconfig ${HOME}/.gitconfig
 
+.PHONY: all
+all: vim-plug fish ts-lsp links tmux
 
 ${HOME}/.config:
 	mkdir -p ${HOME}/.config
@@ -25,7 +24,6 @@ fish: apt-add-repository tzdata
 	  && sudo $(UPDATE) \
 	  && sudo $(INSTALL) fish \
 	  && sudo chsh -s fish'
-	  
 
 .PHONY: vim-plug
 vim-plug: nvim curl git build-essential

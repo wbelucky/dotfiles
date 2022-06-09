@@ -1,37 +1,78 @@
-" Fish
-au BufNewFile,BufRead *.fish set filetype=fish
+autocmd!
+scriptencoding utf-8
 
-call plug#begin()
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-call plug#end()
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
 
+set shell=fish
+
+" editor view
+set number relativenumber
+syntax enable
+set nowrap "no wrap lines
+set cursorline
+
+" file
+set fileencodings=utf-8,sjis
 set encoding=utf-8
-
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Some servers have issues with backup files, see #649.
 set nobackup
-set nowritebackup
+set noswapfile
+set autoread " autoread if the file edited out of the vim.
+set hidden " can open another file if the buffer is not saved
 
-" Give more space for displaying messages.
-set cmdheight=2
 
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
+" space by tab
+set tabstop=2
+set expandtab "insert [softtabstop] spaces by tab key
+set softtabstop=-1 " spaces to insert or delete by tab or delete, -1 means same with tabstop
 
-set expandtab
-set shiftwidth=2
-set softtabstop=2
+" replace special charactor
+set list
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gt <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gh :<C-u>call CocAction('doHover')<cr>
-nmap <silent> <C-p> :<C-u>CocList<cr>
-nmap <silent> <F2> <Plug>(coc-rename)
+" indent
+" set
+
+set smarttab "insert indent with tab at the begining of line
+set shiftwidth=0 "自動インデントでずれる値 0 means same as tabstop
+set autoindent "indent following previous line
+set smartindent "indent by line break
+filetype plugin indent on
+
+" search
+set hlsearch "add highlight to search result
+set incsearch "search string before confirm
+
+" status and command line
+set laststatus=2 "print some status
+set cmdheight=1
+set wildmenu "print candidates of :command line
+
+" clipboards
+set clipboard=unnamedplus
+if system('uname -a | grep -i microsoft') != ''
+  let g:netrw_browsex_viewer="cmd.exe /C start" 
+  let g:clipboard = {
+        \ 'name': 'win32yank',
+        \ 'copy': {
+        \    '+': 'win32yank.exe -i --crlf',
+        \    '*': 'win32yank.exe -i --crlf',
+        \  },
+        \ 'paste': {
+        \    '+': 'win32yank.exe -o --lf',
+        \    '*': 'win32yank.exe -o --lf',
+        \ },
+        \ 'cache_enabled': 1,
+        \ }
+endif
+
+" filetypes
+au BufNewFile,BufRead *.fish set filetype=fish
+au BufNewFile,BufRead *.tsx setf typescriptreact
+au BufNewFile,BufRead *.md set filetype=markdown
+au BufNewFile,BufRead *.mdx set filetype=markdown
+
+runtime ./plug.vim
+runtime ./maps.vim
