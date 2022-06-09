@@ -1,3 +1,5 @@
+" Fish
+au BufNewFile,BufRead *.fish set filetype=fish
 
 call plug#begin()
 
