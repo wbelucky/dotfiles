@@ -3,48 +3,63 @@ INSTALL := apt-get install -y
 UPDATE := apt-get update -y
 
 .PHONY: all
-all: vim-plug /usr/bin/fish ts-lsp
+all: vim-plug fish ts-lsp links tmux
+
+.PHONY: links
+links: ${HOME}/.config
+	ln -snfv $(DOTFILES)/.config/fish ${HOME}/.config/fish
+	ln -snfv $(DOTFILES)/.config/nvim ${HOME}/.config/nvim
+	ln -snfv $(DOTFILES)/.tmux.conf ${HOME}/.tmux.conf
+	ln -snfv $(DOTFILES)/.gitconfig ${HOME}/.gitconfig
+
+
+${HOME}/.config:
+	mkdir -p ${HOME}/.config
 
 .PHONY: lsp
 ts-lsp: nodejs
 	sudo npm i --location=global typescript diagnostic-languageserver typescript-language-server
 
-/usr/bin/fish: upgraded-apt ${HOME}/.config /usr/bin/apt-add-repository tzdata
+fish: apt-add-repository tzdata
 	sudo sh -c ' sudo apt-add-repository -y ppa:fish-shell/release-3 \
 	  && sudo $(UPDATE) \
 	  && sudo $(INSTALL) fish \
-	  && sudo chsh -s /usr/bin/fish' \
-	  && ln -snfv $(DOTFILES)/.config/fish ${HOME}/.config/fish
+	  && sudo chsh -s fish'
 	  
 
 .PHONY: vim-plug
-vim-plug: /usr/bin/nvim /usr/bin/curl /usr/bin/git build-essential
+vim-plug: nvim curl git build-essential
 	sh -c 'curl -fLo "$${XDG_DATA_HOME:-${HOME}/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
 	  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' \
 	  && nvim --headless +'PlugInstall --sync' +qall
 
-/usr/bin/nvim: upgraded-apt ${HOME}/.config /usr/bin/apt-add-repository
+nvim: apt-add-repository
 	sudo sh -c 'add-apt-repository -y ppa:neovim-ppa/unstable \
 	  && $(UPDATE) \
 	  && $(INSTALL) neovim'
-	ln -snfv $(DOTFILES)/.config/nvim ${HOME}/.config/nvim
 
-/usr/bin/curl: upgraded-apt
+curl: updated-apt
 	sudo $(INSTALL) curl
 
 .PHONY: ghq
-ghq: /usr/bin/go
+ghq: go
 	go install github.com/x-motemen/ghq@latest
 
 .PHONY: tzdata
-tzdata: upgraded-apt
+tzdata:
 	sudo DEBIAN_FRONTEND=noninteractive $(INSTALL) --no-install-recommends tzdata
 
-/usr/bin/git: upgraded-apt tzdata /usr/bin/apt-add-repository
+tmux: updated-apt
+	sudo $(INSTALL) tmux
+
+git: upgraded-apt tzdata apt-add-repository
 	sudo sh -c 'add-apt-repository -y ppa:git-core/ppa \
 	  && $(UPDATE) \
 	  && $(INSTALL) git'
-	ln -snfv $(DOTFILES)/private/.gitconfig ${HOME}/.gitconfig
+
+.PHONY: updated-apt
+updated-apt:
+	sudo $(UPDATE)
 
 .PHONY: upgraded-apt
 upgraded-apt:
@@ -53,15 +68,13 @@ upgraded-apt:
 	  && apt-get autoremove -y'
 
 .PHONY: nodejs
-nodejs: /usr/bin/curl
+nodejs: curl
 	sudo sh -c 'curl -sL https://deb.nodesource.com/setup_16.x | bash && $(INSTALL) nodejs'	
 
-/usr/bin/apt-add-repository:
+apt-add-repository: updated-apt
 	sudo $(INSTALL) software-properties-common
 
 .PHONY: build-essential
-build-essential:
+build-essential: updated-apt
 	sudo $(INSTALL) build-essential
 
-${HOME}/.config:
-	mkdir -p ${HOME}/.config
