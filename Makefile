@@ -15,6 +15,10 @@ all: vim-plug fish ts-lsp links tmux
 ${HOME}/.config:
 	mkdir -p ${HOME}/.config
 
+.PHONY: fzf
+fzf:
+	command -v fzf || sudo $(INSTALL) fzf
+
 .PHONY: lsp
 ts-lsp: nodejs
 	sudo npm i --location=global typescript diagnostic-languageserver typescript-language-server
