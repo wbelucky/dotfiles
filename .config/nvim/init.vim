@@ -38,7 +38,7 @@ set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 set smarttab "insert indent with tab at the begining of line
 set shiftwidth=0 "自動インデントでずれる値 0 means same as tabstop
 set autoindent "indent following previous line
-set smartindent "indent by line break
+" set smartindent "indent by line break
 filetype plugin indent on
 
 " search

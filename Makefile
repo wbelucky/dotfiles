@@ -19,7 +19,7 @@ ${HOME}/.config:
 fzf:
 	command -v fzf || sudo $(INSTALL) fzf
 
-.PHONY: lsp
+.PHONY: ts-lsp
 ts-lsp: nodejs
 	sudo npm i --location=global typescript diagnostic-languageserver typescript-language-server
 

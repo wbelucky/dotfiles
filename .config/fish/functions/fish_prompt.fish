@@ -35,7 +35,7 @@ end
 
 function _prompt_dir
   # Git
-  echo -n (set_color cyan)(prompt_pwd) (set_color normal)(__fish_git_prompt "(%s)") 
+  echo -n (set_color cyan)(prompt_pwd) (set_color normal)(__fish_git_prompt "(%s)")
 end
 
 function fish_prompt
@@ -47,6 +47,6 @@ function fish_prompt
     if [ $last_status -gt 0 ]
       echo -n (set_color red)" [$last_status]"
     end
-    echo -n '> '
+    echo -n ' > '
 end
 

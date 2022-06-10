@@ -1,18 +1,14 @@
 if !exists('g:loaded_defx') | finish | endif
 
+
+" autocmd VimEnter * execute 'Defx'
+nnoremap <silent> <Leader>t :<C-u> Defx -buffer-name=tab`tabpagenr()`
+  \ `expand('%:p:h')` -search=`expand('%:p')`<CR>
+
 " defx
 autocmd FileType defx call s:defx_my_settings()
 
 function! s:defx_my_settings() abort
-  call defx#custom#option('_', {
-      \ 'winwidth': 40,
-      \ 'split': 'vertical',
-      \ 'direction': 'topleft',
-      \ 'show_ignored_files': 1,
-      \ 'buffer_name': 'exlorer',
-      \ 'toggle': 1,
-      \ 'resume': 1,
-      \ })
   nnoremap <silent><buffer><expr> <CR>
   \ defx#is_directory() ?
   \ defx#do_action('open_or_close_tree') :
@@ -81,25 +77,34 @@ function! s:defx_my_settings() abort
 
 endfunction
 
-" autocmd VimEnter * execute 'Defx'
-nnoremap <silent> <Leader>t :<C-u> Defx <CR>
 
-augroup hook_for_defx
-  autocmd!
-  autocmd BufEnter,VimEnter,BufNew,BufWinEnter,BufRead,BufCreate
-        \ * if isdirectory(expand('<amatch>'))
-        \   | call s:browse_check(expand('<amatch>')) | endif
-augroup END
+call defx#custom#option('_', {
+    \ 'winwidth': 40,
+    \ 'split': 'vertical',
+    \ 'direction': 'topleft',
+    \ 'show_ignored_files': 1,
+    \ 'buffer_name': 'exlorer',
+    \ 'toggle': 1,
+    \ 'resume': 1,
+    \ })
 
-function! s:browse_check(path) abort
-  if bufnr('%') != expand('<abuf>')
-    return
-  endif
 
-  " Disable netrw.
-  " augroup FileExplorer
-  "   autocmd!
-  " augroup END
-
-  execute 'Defx' a:path
-endfunction
+" augroup hook_for_defx
+"   autocmd!
+"   autocmd BufEnter,VimEnter,BufNew,BufWinEnter,BufRead,BufCreate
+"         \ * if isdirectory(expand('<amatch>'))
+"         \   | call s:browse_check(expand('<amatch>')) | endif
+" augroup END
+" 
+" function! s:browse_check(path) abort
+"   if bufnr('%') != expand('<abuf>')
+"     return
+"   endif
+" 
+"   " Disable netrw.
+"   " augroup FileExplorer
+"   "   autocmd!
+"   " augroup END
+" 
+"   execute 'Defx' a:path
+" endfunction
