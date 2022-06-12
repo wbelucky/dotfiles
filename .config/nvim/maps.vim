@@ -12,6 +12,7 @@ if has('nvim')
   command! -nargs=* Term split | terminal <args>
   command! -nargs=* Termv vsplit | terminal <args>
 endif
+
 if has('nvim')
   augroup vimrc_term
     autocmd!

@@ -7,9 +7,17 @@ lua << EOF
 EOF
 
 lua << EOF
+require("nvim-lsp-installer").setup {}
+
 local nvim_lsp = require('lspconfig')
 local util = require('lspconfig/util')
 local protocol = require'vim.lsp.protocol'
+
+local global_opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', global_opts)
+vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', global_opts)
+vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', global_opts)
+vim.keymap.set('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', global_opts)
 
 -- Use an on_attach function to only map the following keys 
 -- after the language server attaches to the current buffer
@@ -169,6 +177,12 @@ nvim_lsp.gopls.setup {
       },
       staticcheck = true,
     }
+  }
+}
+
+nvim_lsp.clangd.setup {
+  on_attach = on_attach,
+  settings = {
   }
 }
 
