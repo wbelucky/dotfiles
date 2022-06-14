@@ -20,13 +20,3 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           dockerfile: base.Dockerfile
           tags: latest
-
-      - name: Build and Publish to Github Packages Registry
-        uses: elgohr/Publish-Docker-Github-Action@master
-        with:
-          name: ${{ github.repository }}
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          dockerfile: Dockerfile
-          tags: latest
