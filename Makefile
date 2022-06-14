@@ -26,30 +26,35 @@ ts-lsp: nodejs
 
 fish: apt-add-repository tzdata
 	command -v fish || sudo sh -c ' sudo apt-add-repository -y ppa:fish-shell/release-3 \
-	  && sudo $(UPDATE) \
-	  && sudo $(INSTALL) fish \
-	  && sudo chsh -s fish'
+		&& sudo $(UPDATE) \
+		&& sudo $(INSTALL) fish \
+		&& sudo chsh -s fish'
 
 .PHONY: vim-plug
 vim-plug: nvim curl git build-essential
 	sh -c 'curl -fLo "$${XDG_DATA_HOME:-${HOME}/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-	  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' \
-	  && nvim --headless +'PlugInstall --sync' +qall
+		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' \
+		&& nvim --headless +'PlugInstall --sync' +qall;
 
 nvim: apt-add-repository
 	command -v nvim || sudo sh -c 'add-apt-repository -y ppa:neovim-ppa/unstable \
-	  && $(UPDATE) \
-	  && $(INSTALL) neovim'
+		&& $(UPDATE) \
+		&& $(INSTALL) neovim'
 
+.PHONY: curl
 curl: updated-apt
 	command -v curl || sudo $(INSTALL) curl
+
+.PHONY: wget
+wget: updated-apt
+	command -v wget || sudo $(INSTALL) wget
 
 .PHONY: ghq
 ghq: go
 	go install github.com/x-motemen/ghq@latest
 
 .PHONY: go
-go:
+go: wget
 	command -v go || wget https://dl.google.com/go/go$(GO_VERSION).linux-amd64.tar.gz \
 		&& rm -rf /usr/local/go && tar -C /usr/local -xzf go$(GO_VERSION).linux-amd64.tar.gz \
 		&& go version
@@ -63,8 +68,8 @@ tmux: updated-apt
 
 git: upgraded-apt tzdata apt-add-repository
 	command -v git || sudo sh -c 'add-apt-repository -y ppa:git-core/ppa \
-	  && $(UPDATE) \
-	  && $(INSTALL) git'
+		&& $(UPDATE) \
+		&& $(INSTALL) git'
 
 .PHONY: updated-apt
 updated-apt:
@@ -73,8 +78,8 @@ updated-apt:
 .PHONY: upgraded-apt
 upgraded-apt:
 	sudo sh -c '$(UPDATE) \
-	  && apt-get upgrade -y \
-	  && apt-get autoremove -y'
+		&& apt-get upgrade -y \
+		&& apt-get autoremove -y'
 
 .PHONY: nodejs
 nodejs: curl
