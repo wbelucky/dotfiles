@@ -1,6 +1,7 @@
 DOTFILES := $(shell echo $${DOTFILES:-${HOME}/dotfiles})
 INSTALL := apt-get install -y
 UPDATE := apt-get update -y
+GO_VERSION := 1.18.3
 
 .PHONY: links
 links: ${HOME}/.config
@@ -10,7 +11,7 @@ links: ${HOME}/.config
 	ln -snfv $(DOTFILES)/.gitconfig ${HOME}/.gitconfig
 
 .PHONY: all
-all: vim-plug fish ts-lsp links tmux
+all: vim-plug fish tmux links ghq
 
 ${HOME}/.config:
 	mkdir -p ${HOME}/.config
@@ -49,7 +50,9 @@ ghq: go
 
 .PHONY: go
 go:
-	command -v go || echo "TODO:"
+	command -v go || wget https://dl.google.com/go/go$(GO_VERSION).linux-amd64.tar.gz \
+		&& rm -rf /usr/local/go && tar -C /usr/local -xzf go$(GO_VERSION).linux-amd64.tar.gz \
+		&& go version
 
 .PHONY: tzdata
 tzdata:

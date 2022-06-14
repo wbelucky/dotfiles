@@ -26,4 +26,4 @@ ENV USERNAME=$USERNAME
 ENV TZ="Asia/Tokyo"
 ENV HOME=/home/$USERNAME
 ENV DOTFILES=$HOME/dotfiles
-
+ENV PATH $PATH:/usr/local/go/bin
