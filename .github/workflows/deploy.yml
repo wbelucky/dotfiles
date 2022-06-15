@@ -34,6 +34,6 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
           script: |
-            docker rmi ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest
-            docker pull ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest
+            docker rmi ghcr.io/${{ github.repository }}:latest
+            docker pull ghcr.io/${{ github.repository }}:latest
 
