@@ -11,12 +11,12 @@ links: ${HOME}/.config
 	ln -snfv $(DOTFILES)/.gitconfig ${HOME}/.gitconfig
 
 .PHONY: all
-all: vim-plug fish tmux ghq defx links build-essential
+all: vim-plug defx fish tmux ghq links
 
 .PHONY: defx
 defx: pip3 vim-plug
 	pip3 install neovim \
-		&& nvim --headless +UpdateRemotePlugins +qa
+		&& nvim +'UpdateRemotePlugins' +qall
 
 ${HOME}/.config:
 	mkdir -p ${HOME}/.config
