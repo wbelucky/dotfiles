@@ -11,7 +11,7 @@ links: ${HOME}/.config
 	ln -snfv $(DOTFILES)/.gitconfig ${HOME}/.gitconfig
 
 .PHONY: all
-all: vim-plug fish tmux links ghq
+all: vim-plug fish tmux links ghq pip3
 
 ${HOME}/.config:
 	mkdir -p ${HOME}/.config
@@ -23,6 +23,7 @@ fzf:
 .PHONY: ts-lsp
 ts-lsp: nodejs
 	sudo npm i --location=global typescript diagnostic-languageserver typescript-language-server
+
 
 fish: apt-add-repository tzdata
 	command -v fish || sudo sh -c ' sudo apt-add-repository -y ppa:fish-shell/release-3 \
@@ -85,6 +86,10 @@ upgraded-apt:
 .PHONY: nodejs
 nodejs: curl
 	command -v node || sudo sh -c 'curl -sL https://deb.nodesource.com/setup_16.x | bash && $(INSTALL) nodejs'
+
+.PHONY: pip3
+pip3: updated-apt
+	sudo $(INSTALL) python3-pip
 
 apt-add-repository: updated-apt
 	command -v apt-add-repository || sudo $(INSTALL) software-properties-common
