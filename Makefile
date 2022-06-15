@@ -11,7 +11,7 @@ links: ${HOME}/.config
 	ln -snfv $(DOTFILES)/.gitconfig ${HOME}/.gitconfig
 
 .PHONY: all
-all: vim-plug fish tmux links ghq pip3
+all: vim-plug fish tmux ghq pip3 links build-essential
 
 ${HOME}/.config:
 	mkdir -p ${HOME}/.config
@@ -32,10 +32,10 @@ fish: apt-add-repository tzdata
 		&& sudo chsh -s fish'
 
 .PHONY: vim-plug
-vim-plug: nvim curl git build-essential links
+vim-plug: nvim curl git ${HOME}/.config
 	sh -c 'curl -fLo "$${XDG_DATA_HOME:-${HOME}/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' \
-		&& nvim --headless +'PlugInstall --sync' +qall;
+		&& nvim --headless -S ${DOTFILES}/.config/nvim/init.vim +'PlugInstall --sync' +qall ;
 
 nvim: apt-add-repository
 	command -v nvim || sudo sh -c 'add-apt-repository -y ppa:neovim-ppa/unstable \
