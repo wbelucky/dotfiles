@@ -19,7 +19,7 @@ abbr -a 'clip' 'xclip -selection c'
 abbr -a 'dc' 'docker-compose'
 abbr -a 'dlmv' 'mv (ls -td $HOME/Downloads/* | head -n 1) .'
 abbr -a 'g' 'git'
-abbr -a 'gcd' 'cd (ghq list -p | fzf)'
+abbr -a 'gcd' 'ghq_change_directory'
 abbr -a 'open' 'xdg-open'
 
 command -qv nvim && alias vim nvim
