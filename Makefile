@@ -16,7 +16,7 @@ all: vim-plug defx fish tmux ghq links
 .PHONY: defx
 defx: pip3 vim-plug
 	pip3 install neovim \
-		&& nvim +'UpdateRemotePlugins' +qall
+		&& nvim --headless -S ${DOTFILES}/.config/nvim/plug.vim +UpdateRemotePlugins +qall
 
 ${HOME}/.config:
 	mkdir -p ${HOME}/.config
@@ -40,7 +40,7 @@ fish: apt-add-repository tzdata
 vim-plug: nvim curl git ${HOME}/.config
 	sh -c 'curl -fLo "$${XDG_DATA_HOME:-${HOME}/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' \
-		&& nvim --headless -S ${DOTFILES}/.config/nvim/init.vim +'PlugInstall --sync' +qall ;
+		&& nvim --headless -S ${DOTFILES}/.config/nvim/plug.vim +'PlugInstall --sync' +qall ;
 
 nvim: apt-add-repository
 	command -v nvim || sudo sh -c 'add-apt-repository -y ppa:neovim-ppa/unstable \
