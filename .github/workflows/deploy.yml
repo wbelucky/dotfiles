@@ -20,3 +20,20 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           dockerfile: Dockerfile
           tags: latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build_and_push
+
+    steps:
+      - name: Deploy with docker-compose via SSH action
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 22
+          script: |
+            docker rmi ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest
+            docker pull ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest
+
