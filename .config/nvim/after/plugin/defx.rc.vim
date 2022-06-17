@@ -89,22 +89,19 @@ call defx#custom#option('_', {
     \ })
 
 
-" augroup hook_for_defx
-"   autocmd!
-"   autocmd BufEnter,VimEnter,BufNew,BufWinEnter,BufRead,BufCreate
-"         \ * if isdirectory(expand('<amatch>'))
-"         \   | call s:browse_check(expand('<amatch>')) | endif
-" augroup END
-" 
-" function! s:browse_check(path) abort
-"   if bufnr('%') != expand('<abuf>')
-"     return
-"   endif
-" 
-"   " Disable netrw.
-"   " augroup FileExplorer
-"   "   autocmd!
-"   " augroup END
-" 
-"   execute 'Defx' a:path
-" endfunction
+autocmd BufEnter,VimEnter,BufNew,BufWinEnter,BufRead,BufCreate
+      \ * if isdirectory(expand('<amatch>'))
+      \   | call s:browse_check(expand('<amatch>')) | endif
+
+fun! s:browse_check(path) abort
+  if bufnr('%') != expand('<abuf>')
+    return
+  endif
+
+  " Disable netrw.
+  augroup FileExplorer
+    autocmd!
+  augroup END
+
+  execute 'Defx' a:path
+endfun
