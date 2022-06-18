@@ -5,6 +5,7 @@ scriptencoding utf-8
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
+set termguicolors
 
 set shell=fish
 
