@@ -34,22 +34,25 @@ set list
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
 " indent
-" set
 
-set smarttab "insert indent with tab at the begining of line
+set smarttab "insert indent with tab key at the begining of line
 set shiftwidth=0 "自動インデントでずれる値 0 means same as tabstop
 set autoindent "indent following previous line
 " set smartindent "indent by line break
 filetype plugin indent on
 
 " search
+set ignorecase "大文字や小文字の区別なく検索
+set smartcase "大文字が含まれていた場合は区別する
 set hlsearch "add highlight to search result
 set incsearch "search string before confirm
+set inccommand=split
 
 " status and command line
 set laststatus=2 "print some status
 set cmdheight=1
 set wildmenu "print candidates of :command line
+set infercase "補完時に大文字小文字を区別しない
 
 " clipboards
 set clipboard=unnamedplus
