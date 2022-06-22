@@ -35,3 +35,8 @@ abbr -a 'di' 'docker images'
 command -qv nvim && alias vim nvim
 
 fish_vi_key_bindings
+
+set PRIVATE_CONFIG (dirname (status --current-filename))/config-private.fish
+if test -f $PRIVATE_CONFIG
+  source $PRIVATE_CONFIG
+end

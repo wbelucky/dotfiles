@@ -2,7 +2,6 @@ autocmd!
 scriptencoding utf-8
 
 
-
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 set termguicolors
@@ -56,6 +55,14 @@ set infercase "補完時に大文字小文字を区別しない
 
 " clipboards
 set clipboard=unnamedplus
+" Suppress appending <PasteStart> and <PasteEnd> when pasting
+set t_BE=
+
+set nosc noru nosm
+
+" Turn off paste mode when leaivng inser
+autocmd InsertLeave * set nopaste
+
 if system('uname -a | grep -i microsoft') != ''
   let g:netrw_browsex_viewer="cmd.exe /C start" 
   let g:clipboard = {
