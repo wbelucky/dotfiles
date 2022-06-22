@@ -34,6 +34,8 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
           script: |
-            docker rmi ghcr.io/${{ github.repository }}:latest
-            docker pull ghcr.io/${{ github.repository }}:latest
+            docker-compose stop
+            docker-compose rm -f
+            docker-compose pull
+            docker-compose up -d
 
