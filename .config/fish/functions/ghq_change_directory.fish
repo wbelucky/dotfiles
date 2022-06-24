@@ -1,3 +1,6 @@
 function ghq_change_directory
-  cd (ghq list -p | fzf -q "$argv")
+  set -l dist (ghq list -p | fzf -q "$argv")
+  if test -n "$dist"
+    cd $dist
+  end
 end
