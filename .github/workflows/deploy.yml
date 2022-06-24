@@ -34,8 +34,6 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
           script: |
-            docker-compose stop
-            docker-compose rm -f
-            docker-compose pull
+            docker-compose down --rmi all --volumes --remove-orphans
             docker-compose up -d
 
