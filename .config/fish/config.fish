@@ -8,14 +8,19 @@ end
 
 set -gx EDITOR nvim
 set -gx GOPATH $HOME/go
+
+set -gx DOTFILES $HOME/ghq/github.com/wbelucky/dotfiles-with-docker
+set -gx AQUA_GLOBAL_CONFIG $DOTFILES/aqua.yaml
+
+set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
+set -q AQUA_ROOT_DIR || set -gx AQUA_ROOT_DIR $XDG_DATA_HOME/aquaproj-aqua
+
 fish_add_path bin
 fish_add_path ~/.bin
 fish_add_path ~/.local/bin
 fish_add_path $GOPATH/bin
 fish_add_path node_modules/.bin
 
-set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
-set -q AQUA_ROOT_DIR || set -gx AQUA_ROOT_DIR $XDG_DATA_HOME/aquaproj-aqua
 fish_add_path $AQUA_ROOT_DIR/bin
 
 abbr -a 'clip' 'xclip -selection c'
