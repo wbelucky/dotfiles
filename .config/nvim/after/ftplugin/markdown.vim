@@ -26,7 +26,7 @@ endfunction
 
 function! s:date_format() abort
   let res = strftime("%Y-%m-%d")
-  call append(line("."), "## " . res)
+  call append(line("."), "# " . res)
 endfunction
 
 
