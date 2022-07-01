@@ -1,4 +1,4 @@
-DOTFILES := $(shell echo $${DOTFILES:-${HOME}/dotfiles})
+DOTFILES := $(shell echo $${DOTFILES:-`pwd`})
 INSTALL := apt-get install -y
 UPDATE := apt-get update -y
 GO_VERSION := 1.18.3
@@ -11,7 +11,13 @@ links: ${HOME}/.config
 	ln -snfv $(DOTFILES)/.gitconfig ${HOME}/.gitconfig
 
 .PHONY: all
-all: vim-plug defx fish tmux ghq links
+all: aqua vim-plug defx fish tmux links
+
+.PHONY: aqua
+aqua: curl
+	command -v aqua \
+		|| curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v1.0.0/aqua-installer | bash \
+		&& ${HOME}/.local/share/aquaproj-aqua/bin/aqua i
 
 .PHONY: defx
 defx: pip3 vim-plug
@@ -37,7 +43,7 @@ fish: apt-add-repository tzdata
 		&& sudo chsh -s fish'
 
 .PHONY: vim-plug
-vim-plug: nvim curl git ${HOME}/.config
+vim-plug: aqua curl git ${HOME}/.config
 	sh -c 'curl -fLo "$${XDG_DATA_HOME:-${HOME}/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' \
 		&& nvim --headless -S ${DOTFILES}/.config/nvim/plug.vim +'PlugInstall --sync' +qall ;
