@@ -9,7 +9,7 @@ end
 set -gx EDITOR nvim
 set -gx GOPATH $HOME/go
 
-set -gx DOTFILES $HOME/ghq/github.com/wbelucky/dotfiles-with-docker
+set -q DOTFILES || set -gx DOTFILES $HOME/ghq/github.com/wbelucky/dotfiles-with-docker
 set -gx AQUA_GLOBAL_CONFIG $DOTFILES/aqua.yaml
 
 set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
