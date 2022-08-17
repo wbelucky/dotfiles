@@ -11,6 +11,7 @@ if has('nvim')
   Plug 'hrsh7th/cmp-buffer'
   Plug 'onsails/lspkind-nvim'
   Plug 'ruifm/gitlinker.nvim'
+  Plug 'buoto/gotests-vim'
 endif
 
 call plug#end()

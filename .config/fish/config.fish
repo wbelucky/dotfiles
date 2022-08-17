@@ -13,6 +13,9 @@ set -gx AQUA_GLOBAL_CONFIG $DOTFILES/aqua.yaml
 set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
 set -q AQUA_ROOT_DIR || set -gx AQUA_ROOT_DIR $XDG_DATA_HOME/aquaproj-aqua
 
+# for gopls
+set -gx AQUA_EXPERIMENTAL_X_SYS_EXEC true
+
 fish_add_path bin
 fish_add_path ~/.bin
 fish_add_path ~/.local/bin

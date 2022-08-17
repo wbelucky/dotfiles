@@ -25,6 +25,8 @@ export XDG_CONFIG_HOME=$HOME/.config/
 export DOTFILES="$HOME/ghq/github.com/wbelucky/dotfiles-with-docker"
 export MYVIMRC=$HOME/.config/nvim/init.vim
 export AQUA_GLOBAL_CONFIG="$DOTFILES/aqua.yaml"
+# for gopls
+export AQUA_EXPERIMENTAL_X_SYS_EXEC=true
 
 export PATH=$PATH:$HOME/.local/bin/
 export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
