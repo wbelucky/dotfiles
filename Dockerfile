@@ -18,7 +18,7 @@ ENV USERNAME=$USERNAME TZ="Asia/Tokyo" HOME=/home/$USERNAME DOTFILES=$HOME/dotfi
 ENV PATH="$HOME/.local/share/aquaproj-aqua/bin:$PATH" AQUA_GLOBAL_CONFIG=$DOTFILES/aqua.yaml
 WORKDIR $DOTFILES
 COPY . $DOTFILES
-RUN sudo ./install.sh
+RUN sudo -E ./install.sh
 
 WORKDIR /workspace
 CMD ["fish"]
