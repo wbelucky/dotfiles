@@ -3,6 +3,12 @@ on:
     #    branches:
     #  - master
 
+env:
+  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+  SLACK_USERNAME: DeployBot
+  SLACK_CHANNEL: bot
+  SLACK_ICON: https://example.com/image/icon_bot.png
+
 jobs:
   build_and_push:
     name: Build, push, and deploy Docker image to ghcr.io
@@ -37,3 +43,9 @@ jobs:
             docker-compose down --rmi all --volumes --remove-orphans
             docker-compose up -d
 
+      - name: Slack Notification on Success
+        if: ${{ success() }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_TITLE: Deploy Success
+          SLACK_COLOR: good

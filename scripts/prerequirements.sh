@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -eu
 # install prerequirements
 
 # curl wget tmux git aqua ${HOME}/.config

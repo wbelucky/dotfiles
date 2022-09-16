@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -eu
 
 mkdir -p ${HOME}/.config
 ln -snfv $(DOTFILES)/.config/fish ${HOME}/.config/fish
