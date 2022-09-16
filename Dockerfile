@@ -19,7 +19,7 @@ COPY . $DOTFILES
 RUN chown -R $USERNAME:$USERNAME $DOTFILES
 
 ENV PATH="$HOME/.local/share/aquaproj-aqua/bin:$PATH" AQUA_GLOBAL_CONFIG=$DOTFILES/aqua.yaml
-RUN ./installer/install.sh
+RUN ./install.sh
 
 
 USER $USERNAME
