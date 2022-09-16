@@ -22,4 +22,4 @@ lua <<EOF
   end
 EOF
 
-autocmd BufWritePre *.go lua OrgImports(1000)
+autocmd BufWritePre *.go lua OrgImports()
