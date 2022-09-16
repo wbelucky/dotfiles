@@ -20,6 +20,3 @@ command -v git || add-apt-repository -y ppa:git-core/ppa \
   && apt-get install -y git
 
 
-command -v aqua \
-  || curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v1.0.0/aqua-installer | bash
-
