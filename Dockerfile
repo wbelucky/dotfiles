@@ -13,15 +13,12 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
+USER $USERNAME
+ENV PATH="$HOME/.local/share/aquaproj-aqua/bin:$PATH" AQUA_GLOBAL_CONFIG=$DOTFILES/aqua.yaml
 ENV USERNAME=$USERNAME TZ="Asia/Tokyo" HOME=/home/$USERNAME DOTFILES=$HOME/dotfiles
 WORKDIR $DOTFILES
 COPY . $DOTFILES
-RUN chown -R $USERNAME:$USERNAME $DOTFILES
-
-USER $USERNAME
-ENV PATH="$HOME/.local/share/aquaproj-aqua/bin:$PATH" AQUA_GLOBAL_CONFIG=$DOTFILES/aqua.yaml
 RUN sudo ./install.sh
-
 
 WORKDIR /workspace
 CMD ["fish"]
