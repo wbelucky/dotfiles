@@ -14,8 +14,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
 USER $USERNAME
-ENV PATH="$HOME/.local/share/aquaproj-aqua/bin:$PATH" AQUA_GLOBAL_CONFIG=$DOTFILES/aqua.yaml
 ENV USERNAME=$USERNAME TZ="Asia/Tokyo" HOME=/home/$USERNAME DOTFILES=$HOME/dotfiles
+ENV PATH="$HOME/.local/share/aquaproj-aqua/bin:$PATH" AQUA_GLOBAL_CONFIG=$DOTFILES/aqua.yaml
 WORKDIR $DOTFILES
 COPY . $DOTFILES
 RUN sudo ./install.sh
