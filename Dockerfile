@@ -14,7 +14,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
 USER $USERNAME
-ENV USERNAME=$USERNAME TZ="Asia/Tokyo" HOME=/home/$USERNAME DOTFILES=$HOME/dotfiles
+ENV TZ="Asia/Tokyo" HOME=/home/$USERNAME DOTFILES=/home/$USERNAME/dotfiles
 ENV PATH="$HOME/.local/share/aquaproj-aqua/bin:$PATH" AQUA_GLOBAL_CONFIG=$DOTFILES/aqua.yaml
 WORKDIR $DOTFILES
 COPY . $DOTFILES
