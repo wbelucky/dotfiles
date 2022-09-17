@@ -7,3 +7,8 @@ ln -snfv ${DOTFILES}/.tmux.conf ${HOME}/.tmux.conf
 ln -snfv ${DOTFILES}/.gitconfig ${HOME}/.gitconfig
 ln -snfv ${DOTFILES}/.myconf.bashrc ${HOME}/.myconf.bashrc
 
+# TODO: bashrcにmyconfをロードするスクリプトが読み込まれていなければ追加.
+# load private configs
+# if [ -f "$HOME/.myconf.bashrc" ]; then
+#     . "$HOME/.myconf.bashrc"
+# fi
