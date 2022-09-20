@@ -4,7 +4,7 @@ USER=${USERNAME:-user}
 USER_ID=${LOCAL_UID:-9001}
 GROUP_ID=${LOCAL_GID:-9001}
 
-usermod -u $USER_ID -o $USER
-groupmod -g $GROUP_ID user
+sudo usermod -u $USER_ID -o $USER
+sudo groupmod -g $GROUP_ID $USER
 
-exec /usr/sbin/gosu $USER "$@"
+# exec /usr/sbin/gosu $USER "$@"

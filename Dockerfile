@@ -9,7 +9,8 @@ ARG USER_GID=$USER_UID
 # curl wget tmux git pip3 fish
 
 COPY scripts/prerequirements.sh /usr/local/bin/prerequirements.sh
-RUN /usr/local/bin/prerequirements.sh
+# RUN /usr/local/bin/prerequirements.sh
+RUN apt-get update -y && apt-get install -y sudo gosu
 # Create the user
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
@@ -23,7 +24,6 @@ WORKDIR $DOTFILES
 COPY --chown=$USERNAME:$USERNAME . $DOTFILES
 RUN ./install.sh
 
-USER root
 WORKDIR /workspace
 COPY docker-entrypoint.sh /usr/local/bin/entrypoint.sh
 ENV USERNAME=$USERNAME
