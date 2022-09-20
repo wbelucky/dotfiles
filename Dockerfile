@@ -10,7 +10,7 @@ ARG USER_GID=$USER_UID
 
 COPY scripts/prerequirements.sh /usr/local/bin/prerequirements.sh
 RUN /usr/local/bin/prerequirements.sh
-RUN apt-get install -y sudo gosu
+RUN apt-get -y update && apt-get install -y sudo gosu
 # Create the user
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
@@ -25,9 +25,9 @@ COPY --chown=$USERNAME:$USERNAME . $DOTFILES
 RUN ./install.sh
 
 WORKDIR /workspace
+USER root
 COPY docker-entrypoint.sh /usr/local/bin/entrypoint.sh
 ENV USERNAME=$USERNAME
+
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-
 CMD ["fish"]
-
