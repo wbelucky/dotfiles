@@ -7,15 +7,9 @@ ARG USER_GID=$USER_UID
 # install prerequirements
 
 # curl wget tmux git pip3 fish
-RUN apt-get update -y \
-  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    curl wget tmux software-properties-common python3-pip tzdata sudo gosu \
-  && add-apt-repository -y ppa:git-core/ppa \
-  && add-apt-repository -y ppa:fish-shell/release-3 \
-  && apt-get update -y \
-  && apt-get install -y --no-install-recommends fish git
-  # && chsh -s fish
 
+COPY scripts/prerequirements.sh /usr/local/bin/prerequirements.sh
+RUN /usr/local/bin/prerequirements.sh
 # Create the user
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
