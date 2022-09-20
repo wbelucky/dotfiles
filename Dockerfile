@@ -10,7 +10,8 @@ ARG USER_GID=$USER_UID
 RUN apt-get update -y \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     curl wget tmux software-properties-common python3-pip tzdata sudo gosu \
-  && add-apt-repository -y ppa:git-core/ppa ppa:fish-shell/release-3 \
+  && add-apt-repository -y ppa:git-core/ppa \
+  && add-apt-repository -y ppa:fish-shell/release-3 \
   && apt-get update -y \
   && apt-get install -y --no-install-recommends fish git
   # && chsh -s fish
