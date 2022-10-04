@@ -16,6 +16,7 @@ if has('nvim')
   Plug 'buoto/gotests-vim'
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/cmp-vsnip'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 
 call plug#end()
