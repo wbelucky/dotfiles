@@ -19,7 +19,6 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 USER $USERNAME
 ENV TZ="Asia/Tokyo" HOME=/home/$USERNAME DOTFILES=/home/$USERNAME/dotfiles
-ENV PATH="$HOME/.local/share/aquaproj-aqua/bin:$PATH" AQUA_GLOBAL_CONFIG=$DOTFILES/aqua.yaml
 WORKDIR $DOTFILES
 COPY --chown=$USERNAME:$USERNAME . $DOTFILES
 RUN ./install.sh
