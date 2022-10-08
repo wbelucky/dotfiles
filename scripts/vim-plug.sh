@@ -1,5 +1,7 @@
 #!/bin/bash -eu
 
+. ./env.sh
+
 # requirements: pip3
 
 # installs vim-plug
