@@ -1,4 +1,5 @@
 # please load this in ~/.bashrc
+export WB_MYCONF_LOADED=1
 
 # use vi key bindings
 set -o vi
@@ -22,7 +23,6 @@ export GOPATH=$HOME/go
 export TERM=xterm-256color
 export XDG_CONFIG_HOME=$HOME/.config/
 
-export DOTFILES="$HOME/dotfiles-with-docker"
 export MYVIMRC=$HOME/.config/nvim/init.vim
 export AQUA_GLOBAL_CONFIG="$DOTFILES/aqua.yaml"
 # for gopls

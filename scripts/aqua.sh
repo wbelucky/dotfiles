@@ -1,4 +1,5 @@
 #!/bin/bash -eu
+. ./env.sh
 
 # requirements: curl
 command -v aqua \
