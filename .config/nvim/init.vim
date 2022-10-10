@@ -80,10 +80,10 @@ if system('uname -a | grep -i microsoft') != ''
 endif
 
 " filetypes
-au BufNewFile,BufRead *.fish set filetype=fish
-au BufNewFile,BufRead *.tsx setf typescriptreact
-au BufNewFile,BufRead *.md set filetype=markdown
-au BufNewFile,BufRead *.mdx set filetype=markdown
+au BufNewFile,BufRead *.fish setl filetype=fish
+au BufNewFile,BufRead *.tsx setl filetype= typescriptreact
+au BufNewFile,BufRead *.md setl filetype=markdown
+au BufNewFile,BufRead *.mdx setl filetype=markdown
 
 
 runtime ./maps.vim
