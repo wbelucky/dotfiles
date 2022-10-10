@@ -1,4 +1,7 @@
 #!/bin/bash -eu
+pushd $(dirname ${BASH_SOURCE:-$0})
+
+
 . ./env.sh
 
 mkdir -p ${HOME}/.config
@@ -20,3 +23,4 @@ HERE
 
 fi
 
+popd

@@ -1,4 +1,5 @@
 #!/bin/bash -eu
+pushd $(dirname ${BASH_SOURCE:-$0})
 
 . ./env.sh
 
@@ -12,3 +13,5 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-${HOME}/.local/share}"/nvim/site/autoload/plu
 # install python driver for neovim and install plugins
 pip3 install neovim \
   && nvim --headless -S ${DOTFILES}/.config/nvim/plug.vim +UpdateRemotePlugins +qall
+
+popd
