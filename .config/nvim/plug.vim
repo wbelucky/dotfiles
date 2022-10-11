@@ -17,6 +17,7 @@ if has('nvim')
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'tpope/vim-surround'
 endif
 
 call plug#end()
