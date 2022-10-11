@@ -1,4 +1,6 @@
 #!/bin/bash -eu
+pushd $(dirname ${BASH_SOURCE:-$0})
+
 . ./env.sh
 
 # requirements: curl
@@ -8,3 +10,4 @@ command -v aqua \
 AQUA_GLOBAL_CONFIG=$DOTFILES/aqua.yaml
 aqua i
 
+popd

@@ -1,3 +1,9 @@
+" ref: https://zenn.dev/skanehira/articles/2021-12-04-vim-markdown-fold-details
+setlocal foldmethod=marker
+setlocal foldmarker=<details>,</details>
+" TODO: fold-foldtext
+setlocal foldtext=v:folddashes.substitute(getline(v:foldstart+1),'<summary>\\\|</summary>','','g')
+
 function! s:put_markdown_link() abort
   let line = getline(".")
   let edited = substitute(line, '\v(.*)\s+(\S+)$', '[\1](\2)', "")
@@ -27,6 +33,7 @@ endfunction
 function! s:date_format() abort
   let res = strftime("%Y-%m-%d")
   call append(line("."), "# " . res)
+  normal dd
 endfunction
 
 

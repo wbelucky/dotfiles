@@ -1,4 +1,8 @@
 #!/bin/bash -eu
 
-DOTFILES=$(cd $(dirname ${BASH_SOURCE:-$0})/..; pwd)
+pushd $(dirname ${BASH_SOURCE:-$0})/..
+
+DOTFILES=$(pwd)
 PATH="$HOME/.local/share/aquaproj-aqua/bin:$PATH"
+
+popd
