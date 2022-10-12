@@ -6,6 +6,7 @@ scriptencoding utf-8
 set lazyredraw
 set termguicolors
 
+
 set shell=fish
 
 " editor view
