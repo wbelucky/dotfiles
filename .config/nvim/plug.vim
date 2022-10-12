@@ -18,7 +18,8 @@ if has('nvim')
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'tpope/vim-surround'
-  Plug 'overcache/NeoSolarized'
+  Plug 'svrana/neosolarized.nvim'
+  Plug 'tjdevries/colorbuddy.nvim'
 endif
 
 call plug#end()
