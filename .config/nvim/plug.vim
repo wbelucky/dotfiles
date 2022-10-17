@@ -5,7 +5,8 @@ if has('nvim')
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'neovim/nvim-lspconfig'
-  Plug 'williamboman/nvim-lsp-installer'
+  Plug 'williamboman/mason.nvim'
+  Plug 'williamboman/mason-lspconfig.nvim'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-buffer'
@@ -20,6 +21,7 @@ if has('nvim')
   Plug 'tpope/vim-surround'
   Plug 'svrana/neosolarized.nvim'
   Plug 'tjdevries/colorbuddy.nvim'
+  Plug 'jose-elias-alvarez/null-ls.nvim'
 endif
 
 call plug#end()

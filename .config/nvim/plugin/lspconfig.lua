@@ -1,35 +1,60 @@
-if !exists('g:lspconfig')
-  finish
-endif
-
-lua << EOF
 --vim.lsp.set_log_level("debug")
-EOF
 
-lua << EOF
-require("nvim-lsp-installer").setup {}
 
-local nvim_lsp = require('lspconfig')
+local status1, mason = pcall(require, 'mason')
+
+if (not status1) then return end
+local status2, mason_lspconfig = pcall(require, "mason-lspconfig")
+if (not status2) then return end
+
+local status, nvim_lsp = pcall(require, "lspconfig")
+if (not status) then return end
+
 local util = require('lspconfig/util')
-local protocol = require'vim.lsp.protocol'
+local protocol = require 'vim.lsp.protocol'
 
-local global_opts = { noremap=true, silent=true }
+
+mason.setup {}
+mason_lspconfig.setup {
+  automatic_installation = true,
+  ensure_installed = {
+    "prettierd",
+    "eslint_d",
+  }
+}
+
+local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
+local enable_format_on_save = function(client, bufnr)
+  -- if client.server_capabilities.documentFormattingProvider then
+  vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = augroup_format,
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.format({ bufnr = bufnr })
+    end,
+  })
+  -- end
+end
+
+local global_opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', global_opts)
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', global_opts)
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', global_opts)
 vim.keymap.set('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', global_opts)
 
--- Use an on_attach function to only map the following keys 
+-- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   --Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap = true, silent = true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -42,44 +67,38 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>a', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   -- buf_set_keymap('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
-  -- formatting
-  if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_command [[augroup Format]]
-    vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-    vim.api.nvim_command [[augroup END]]
-  end
 
-  --protocol.SymbolKind = { }
-  protocol.CompletionItemKind = {
-    '', -- Text
-    '', -- Method
-    '', -- Function
-    '', -- Constructor
-    '', -- Field
-    '', -- Variable
-    '', -- Class
-    'ﰮ', -- Interface
-    '', -- Module
-    '', -- Property
-    '', -- Unit
-    '', -- Value
-    '', -- Enum
-    '', -- Keyword
-    '﬌', -- Snippet
-    '', -- Color
-    '', -- File
-    '', -- Reference
-    '', -- Folder
-    '', -- EnumMember
-    '', -- Constant
-    '', -- Struct
-    '', -- Event
-    'ﬦ', -- Operator
-    '', -- TypeParameter
-  }
 end
 
+
+--protocol.SymbolKind = { }
+protocol.CompletionItemKind = {
+  '', -- Text
+  '', -- Method
+  '', -- Function
+  '', -- Constructor
+  '', -- Field
+  '', -- Variable
+  '', -- Class
+  'ﰮ', -- Interface
+  '', -- Module
+  '', -- Property
+  '', -- Unit
+  '', -- Value
+  '', -- Enum
+  '', -- Keyword
+  '﬌', -- Snippet
+  '', -- Color
+  '', -- File
+  '', -- Reference
+  '', -- Folder
+  '', -- EnumMember
+  '', -- Constant
+  '', -- Struct
+  '', -- Event
+  'ﬦ', -- Operator
+  '', -- TypeParameter
+}
 
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require('cmp_nvim_lsp').update_capabilities(
@@ -102,10 +121,33 @@ nvim_lsp.flow.setup {
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" },
   capabilities = capabilities
 }
 
-nvim_lsp.diagnosticls.setup {
+nvim_lsp.sumneko_lua.setup {
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    enable_format_on_save(client, bufnr)
+  end,
+  settings = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { 'vim' },
+      },
+
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false
+      },
+    },
+  },
+}
+
+--[[ nvim_lsp.diagnosticls.setup {
   on_attach = on_attach,
   filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'pandoc' },
   init_options = {
@@ -164,10 +206,11 @@ nvim_lsp.diagnosticls.setup {
     }
   }
 }
+]]
 
 nvim_lsp.gopls.setup {
   on_attach = on_attach,
-  cmd = {"gopls", "serve"},
+  cmd = { "gopls", "serve" },
   filetypes = { "go", "gomod" },
   root_dir = util.root_pattern("go.work", "go.mod", ".git"),
   settings = {
@@ -190,14 +233,11 @@ nvim_lsp.clangd.setup {
 -- icon
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    -- This sets the spacing and the prefix, obviously.
-    virtual_text = {
-      spacing = 4,
-      prefix = ''
-    }
+  underline = true,
+  -- This sets the spacing and the prefix, obviously.
+  virtual_text = {
+    spacing = 4,
+    prefix = ''
   }
+}
 )
-
-
-EOF
