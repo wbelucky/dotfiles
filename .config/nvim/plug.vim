@@ -22,6 +22,7 @@ if has('nvim')
   Plug 'svrana/neosolarized.nvim'
   Plug 'tjdevries/colorbuddy.nvim'
   Plug 'jose-elias-alvarez/null-ls.nvim'
+  Plug 'b0o/schemastore.nvim'
 endif
 
 call plug#end()
