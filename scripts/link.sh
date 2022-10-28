@@ -23,7 +23,7 @@ ln -snfv ${DOTFILES}/.myconf.bashrc ${HOME}/.myconf.bashrc
 
 WBCONFIG="$HOME/.wbconfig"
 touch "$WBCONFIG"
-yq -i '.environment.DOTFILES=strenv(DOTFILES)' "$WBCONFIG"
+yq -i ".environment.DOTFILES=\"$DOTFILES\"" "$WBCONFIG"
 
 if [[ ! -v "WB_MYCONF_LOADED" ]]; then
   echo "fix ~/.bashrc to load ~/.myconf.bashrc"

@@ -53,8 +53,8 @@ export AQUA_GLOBAL_CONFIG="$DOTFILES/aqua.yaml"
 
 
 # load private configs
-if [ -f "$HOME/.private.bashrc" ]; then
-    . "$HOME/.private.bashrc"
+if [[ -v "PRIVATE_CONFIGS" ]]; then 
+  . "$PRIVATE_CONFINGS/private.bashrc"
 fi
 
 # automatically start up tmux
