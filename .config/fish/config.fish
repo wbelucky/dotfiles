@@ -10,7 +10,10 @@ set -gx EDITOR nvim
 set -gx GOPATH $HOME/go
 
 set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
+set -q XDG_CONFIG_HOME || set -gx XDG_CONFIG_HOME  $HOME/.config
+
 set -q AQUA_ROOT_DIR || set -gx AQUA_ROOT_DIR $XDG_DATA_HOME/aquaproj-aqua
+set -q AQUA_GLOBAL_CONFIG || set -gx AQUA_GLOBAL_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua.yaml
 
 # for gopls
 set -gx AQUA_EXPERIMENTAL_X_SYS_EXEC true
@@ -23,14 +26,11 @@ fish_add_path ~/.bin
 fish_add_path ~/.local/bin
 
 # DOTFILES, PRIVATE_CONFIGSなどを.wbconfigから読み込み
-yq -r=false '.environment | to_entries | .[] | [.key, .value] | .[]' ~/.wbconfig |
+yq '.environment | to_entries | .[] | [.key, .value] | .[]' ~/.wbconfig |
 while read -l var
   read -l val
   set -gx $var $val
 end
-
-# set -q DOTFILES || set -gx DOTFILES $HOME/ghq/github.com/wbelucky/dotfiles-with-docker
-set -gx AQUA_GLOBAL_CONFIG $DOTFILES/aqua.yaml
 
 abbr -a 'clip' 'xclip -selection c'
 abbr -a 'd' 'docker'

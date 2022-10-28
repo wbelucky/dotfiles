@@ -14,6 +14,7 @@ if [[ -d fish_config_dir ]]; then
 fi
 
 ln -snfv ${DOTFILES}/.config/fish ${HOME}/.config/fish
+ln -snfv ${DOTFILES}/.config/aquaproj-aqua ${HOME}/.config/aquaproj-aqua
 ln -snfv ${DOTFILES}/.config/nvim ${HOME}/.config/nvim
 ln -snfv ${DOTFILES}/.tmux.conf ${HOME}/.tmux.conf
 ln -snfv ${DOTFILES}/.gitconfig ${HOME}/.gitconfig
