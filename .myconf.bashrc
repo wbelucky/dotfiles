@@ -24,7 +24,6 @@ export TERM=xterm-256color
 export XDG_CONFIG_HOME=$HOME/.config/
 
 export MYVIMRC=$HOME/.config/nvim/init.vim
-export AQUA_GLOBAL_CONFIG="$DOTFILES/aqua.yaml"
 # for gopls
 export AQUA_EXPERIMENTAL_X_SYS_EXEC=true
 
@@ -35,6 +34,19 @@ export PATH=$PATH:$HOME/.config/yarn/global/node_modules/.bin
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
+
+# load DOTFILES and PRIVATE_CONFIGS from .wbconfig
+kvs=$(yq -r=false '.environment | to_entries | .[] | [.key, .value] | .[]' $HOME/.wbconfig)
+while read var
+do
+  read val
+  export "${var}=${val}"
+done <<HERE
+$kvs
+HERE
+
+
+export AQUA_GLOBAL_CONFIG="$DOTFILES/aqua.yaml"
 
 # for fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

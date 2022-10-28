@@ -239,6 +239,18 @@ nvim_lsp.jsonls.setup {
   }
 }
 
+-- https://www.reddit.com/r/neovim/comments/pta1ka/unable_to_configure_yamllanguageserver/
+nvim_lsp.yamlls.setup {
+  settings = {
+    yaml = {
+      schemaStore = {
+        url = "https://www.schemastore.org/api/json/catalog.json",
+        enable = true,
+      }
+    }
+  }
+}
+
 
 -- icon
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

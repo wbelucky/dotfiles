@@ -14,3 +14,4 @@ packages:
   - name: ogham/exa@v0.10.1
   - name: BurntSushi/ripgrep@13.0.0
   - name: golangci/golangci-lint@v1.46.2
+  - name: mikefarah/yq@v4.28.2
