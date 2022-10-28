@@ -231,6 +231,7 @@ nvim_lsp.clangd.setup {
 
 -- https://github.com/b0o/schemastore.nvim
 nvim_lsp.jsonls.setup {
+  on_attach = on_attach,
   settings = {
     json = {
       schemas = require('schemastore').json.schemas(),
@@ -241,11 +242,18 @@ nvim_lsp.jsonls.setup {
 
 -- https://www.reddit.com/r/neovim/comments/pta1ka/unable_to_configure_yamllanguageserver/
 nvim_lsp.yamlls.setup {
+  on_attach = on_attach,
   settings = {
     yaml = {
       schemaStore = {
         url = "https://www.schemastore.org/api/json/catalog.json",
         enable = true,
+      },
+      hover = true,
+      completion = true,
+      validate = true,
+      format = {
+        enable = true
       }
     }
   }
