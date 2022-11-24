@@ -47,6 +47,6 @@ fi
 
 # automatically start up tmux
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux -2u new-session -A -s fish
+  # exec tmux -2u new-session -A -s fish
 fi
 
