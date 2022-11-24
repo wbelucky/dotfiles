@@ -13,11 +13,14 @@
 	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
 	path =
 
+# https://www.grzegorowski.com/using-vim-or-neovim-nvim-as-a-git-mergetool
 [merge]
-  tool = nvimdiff
-[mergetool "nvimdiff"]
-	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	tool = vimfugitive
+[mergetool "vimfugitive"]
+	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 	trustExitCode = true
+[mergetool]
+	prompt = false
 [ghq]
 	vcs = git
 	root = ~/ghq
