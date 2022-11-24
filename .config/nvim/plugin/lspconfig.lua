@@ -17,10 +17,10 @@ local protocol = require 'vim.lsp.protocol'
 mason.setup {}
 mason_lspconfig.setup {
   automatic_installation = true,
-  ensure_installed = {
-    "prettierd",
-    "eslint_d",
-  }
+  -- ensure_installed = {
+  --   "prettierd",
+  --   "eslint_d",
+  -- }
 }
 
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
@@ -101,7 +101,7 @@ protocol.CompletionItemKind = {
 }
 
 -- Set up completion using nvim_cmp with LSP source
-local capabilities = require('cmp_nvim_lsp').update_capabilities(
+local capabilities = require('cmp_nvim_lsp').default_capabilities(
   vim.lsp.protocol.make_client_capabilities()
 )
 
