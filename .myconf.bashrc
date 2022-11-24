@@ -22,9 +22,9 @@ export EDITOR=vim
 export GOPATH=$HOME/go
 export TERM=xterm-256color
 export XDG_CONFIG_HOME=$HOME/.config/
+export AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml
 
 export MYVIMRC=$HOME/.config/nvim/init.vim
-export AQUA_GLOBAL_CONFIG="$DOTFILES/aqua.yaml"
 # for gopls
 export AQUA_EXPERIMENTAL_X_SYS_EXEC=true
 
@@ -36,13 +36,25 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 
+# load DOTFILES and PRIVATE_CONFIGS from .wbconfig
+kvs=$(yq '.environment | to_entries | .[] | [.key, .value] | .[]' $HOME/.wbconfig)
+while read var
+do
+  read val
+  export "${var}=${val}"
+done <<HERE
+$kvs
+HERE
+
+
+
 # for fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 
 # load private configs
-if [ -f "$HOME/.private.bashrc" ]; then
-    . "$HOME/.private.bashrc"
+if [[ -v "PRIVATE_CONFIGS" ]]; then 
+  . "$PRIVATE_CONFINGS/private.bashrc"
 fi
 
 # automatically start up tmux

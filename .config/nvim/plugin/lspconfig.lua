@@ -31,7 +31,7 @@ local enable_format_on_save = function(client, bufnr)
     group = augroup_format,
     buffer = bufnr,
     callback = function()
-      vim.lsp.buf.format({ bufnr = bufnr })
+      vim.lsp.buf.formatting({ bufnr = bufnr })
     end,
   })
   -- end
@@ -226,6 +226,36 @@ nvim_lsp.gopls.setup {
 nvim_lsp.clangd.setup {
   on_attach = on_attach,
   settings = {
+  }
+}
+
+-- https://github.com/b0o/schemastore.nvim
+nvim_lsp.jsonls.setup {
+  on_attach = on_attach,
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+      validate = { enable = true },
+    }
+  }
+}
+
+-- https://www.reddit.com/r/neovim/comments/pta1ka/unable_to_configure_yamllanguageserver/
+nvim_lsp.yamlls.setup {
+  on_attach = on_attach,
+  settings = {
+    yaml = {
+      schemaStore = {
+        url = "https://www.schemastore.org/api/json/catalog.json",
+        enable = true,
+      },
+      hover = true,
+      completion = true,
+      validate = true,
+      format = {
+        enable = true
+      }
+    }
   }
 }
 
