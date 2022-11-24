@@ -4,7 +4,7 @@
 
 ```bash
 # installs all dependencies, creates symlinks, and install vim plugins
-make all
+git clone https://github.com/dotfiles-with-docker && cd dotfiles-with-docker && install.sh
 ```
 
 ## use docker image
