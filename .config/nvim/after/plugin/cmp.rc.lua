@@ -50,11 +50,14 @@ cmp.setup.cmdline(':', {
   }, {
     { name = 'cmdline',
       option = {
-        ignore_cmds = { 'Man', '!' }
+        ignore_cmds = { 'Man', '!', "\'<,\'>!" }
       },
-      keyword_length = 3 }
+      keyword_length = 4 }
   })
 })
+
+
+
 
 vim.cmd [[
   set completeopt=menuone,noinsert,noselect

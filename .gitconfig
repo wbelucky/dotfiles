@@ -12,6 +12,9 @@
 [difftool "nvimdiff"]
 	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
 	path =
+
+[merge]
+  tool = nvimdiff
 [mergetool "nvimdiff"]
 	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -20,9 +23,9 @@
 	root = ~/ghq
 [credential "https://github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [pull]
 	rebase = false
