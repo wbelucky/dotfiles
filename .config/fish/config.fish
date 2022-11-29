@@ -3,6 +3,7 @@ set fish_greeting ""
 if status is-interactive
     set -gx TERM xterm-256color
     command -qv gh && eval (gh completion -s fish| source)
+    source ~/.asdf/asdf.fish
 end
 
 
