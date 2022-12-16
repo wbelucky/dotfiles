@@ -1,5 +1,6 @@
 [core]
 	editor = nvim
+	pager = LESSCHARSET=utf-8 less
 [user]
 	email = 39439193+WBelucky@users.noreply.github.com
 	name = wbelucky
