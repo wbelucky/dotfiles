@@ -82,7 +82,7 @@ endif
 
 " filetypes
 au BufNewFile,BufRead *.fish setl filetype=fish
-au BufNewFile,BufRead *.tsx setl filetype= typescriptreact
+au BufNewFile,BufRead *.tsx setl filetype=typescriptreact
 au BufNewFile,BufRead *.md setl filetype=markdown
 au BufNewFile,BufRead *.mdx setl filetype=markdown
 

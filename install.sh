@@ -1,8 +1,8 @@
 #!/bin/bash -eu
 
-# . ./scripts/prerequirements.sh
-
 . ./scripts/aqua.sh
 . ./scripts/vim-plug.sh
+. ./scripts/asdf.sh
+
 . ./scripts/link.sh
 

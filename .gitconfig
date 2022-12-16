@@ -1,8 +1,11 @@
 [core]
 	editor = nvim
+	pager = LESSCHARSET=utf-8 less
 [user]
 	email = 39439193+WBelucky@users.noreply.github.com
 	name = wbelucky
+[color]
+  ui = true
 
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
@@ -12,17 +15,25 @@
 [difftool "nvimdiff"]
 	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
 	path =
-[mergetool "nvimdiff"]
-	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+
+# https://www.grzegorowski.com/using-vim-or-neovim-nvim-as-a-git-mergetool
+[merge]
+	tool = vimfugitive
+[mergetool "vimfugitive"]
+	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 	trustExitCode = true
+[mergetool]
+	prompt = false
 [ghq]
 	vcs = git
 	root = ~/ghq
 [credential "https://github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main

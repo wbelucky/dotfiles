@@ -10,4 +10,3 @@ services:
       - SSH_TTY
       - LOCAL_UID=1000
       - LOCAL_GID=1000
-
