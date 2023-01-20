@@ -26,6 +26,8 @@ if has('nvim')
   Plug 'tpope/vim-fugitive'
   Plug 'makerj/vim-pdf'
   Plug 'voldikss/vim-translator'
+  Plug 'jose-elias-alvarez/typescript.nvim'
+  Plug 'windwp/nvim-ts-autotag'
 endif
 
 call plug#end()

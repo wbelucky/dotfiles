@@ -5,6 +5,11 @@ noremap <silent> <C-S> :update<cR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
 
+noremap <C-w>H :vertical resize -5<CR>
+noremap <C-w>J :resize -5<CR>
+noremap <C-w>K :resize +5<CR>
+noremap <C-w>L :vertical resize +5<CR>
+
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
 " :TermでTerminalが新しいwindowで開く

@@ -20,14 +20,14 @@ mason_lspconfig.setup {
 }
 
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
-local enable_format_on_save = function(client, bufnr)
+local enable_format_on_save = function(_, bufnr)
   -- if client.server_capabilities.documentFormattingProvider then
   vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = augroup_format,
     buffer = bufnr,
     callback = function()
-      vim.lsp.buf.formatting({ bufnr = bufnr })
+      vim.lsp.buf.format({ bufnr = bufnr })
     end,
   })
   -- end
@@ -114,12 +114,28 @@ nvim_lsp.flow.setup {
   capabilities = capabilities
 }
 
+require("typescript").setup({
+  disable_commands = false, -- prevent the plugin from creating Vim commands
+  debug = false, -- enable debug logging for commands
+  go_to_source_definition = {
+    fallback = true, -- fall back to standard LSP definition on failure
+  },
+  server = { -- pass options to lspconfig's setup method
+    on_attach = on_attach,
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+    cmd = { "typescript-language-server", "--stdio" },
+    capabilities = capabilities
+  },
+})
+
+--[[
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" },
   capabilities = capabilities
 }
+]]
 
 nvim_lsp.sumneko_lua.setup {
   capabilities = capabilities,
