@@ -24,11 +24,18 @@ cmp.setup({
     }),
   }),
   sources = cmp.config.sources({
-    { name = 'vsnip' },
-    { name = 'nvim_lsp' },
-    { name = 'cmp_tabnine' },
+    {
+      name = 'vsnip',
+      keyword_length = 3
+    }, {
+      name = 'nvim_lsp',
+      keyword_length = 3
+    } -- { name = 'cmp_tabnine' },
   }, {
-    { name = 'buffer' },
+    {
+      name = 'buffer',
+      keyword_length = 3
+    },
   }),
   formatting = {
     format = lspkind.cmp_format({ with_text = false, maxwidth = 50 })
