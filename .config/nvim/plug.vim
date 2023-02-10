@@ -1,7 +1,7 @@
 call plug#begin(stdpath('data') . '/plugged')
 
 if has('nvim')
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'neovim/nvim-lspconfig'
@@ -28,6 +28,7 @@ if has('nvim')
   Plug 'voldikss/vim-translator'
   Plug 'jose-elias-alvarez/typescript.nvim'
   Plug 'windwp/nvim-ts-autotag'
+  Plug 'nvim-telescope/telescope-file-browser.nvim'
 endif
 
 call plug#end()

@@ -10,7 +10,7 @@ noremap <C-w>J :resize -5<CR>
 noremap <C-w>K :resize +5<CR>
 noremap <C-w>L :vertical resize +5<CR>
 
-nnoremap <ESC><ESC> :nohlsearch<CR>
+" nnoremap <ESC><ESC> :nohlsearch<CR>
 
 " :TermでTerminalが新しいwindowで開く
 if has('nvim')
