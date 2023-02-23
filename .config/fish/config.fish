@@ -9,6 +9,7 @@ end
 
 set -gx EDITOR nvim
 set -gx GOPATH $HOME/go
+set -gx RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 
 set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
 set -q XDG_CONFIG_HOME || set -gx XDG_CONFIG_HOME  $HOME/.config

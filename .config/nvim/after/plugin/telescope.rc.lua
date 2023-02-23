@@ -6,6 +6,7 @@ local builtin = require("telescope.builtin")
 local actions = require('telescope.actions')
 local wb_actions = require('wbelucky.telescope_actions')
 local fb_actions = require("telescope._extensions.file_browser.actions")
+local themes = require('telescope.themes')
 
 telescope.setup {
   defaults = {
@@ -15,12 +16,18 @@ telescope.setup {
         ["s"] = actions.select_vertical,
         ["t"] = actions.select_tab,
       },
-    }
+    },
   },
   pickers = {
     find_files = {
       hidden = true,
     },
+    live_grep = {
+      -- args of ripgrep. ref: .ripgreprc in $RIPGREP_CONFIT_PATH
+      additional_args = function(_)
+        return { "--hidden" }
+      end
+    }
   },
   extensions = {
     file_browser = {
@@ -48,11 +55,19 @@ telescope.setup {
 
 telescope.load_extension("file_browser")
 
-vim.keymap.set('n', '<C-p>', builtin.find_files, {})
-vim.keymap.set('n', '<C-g>', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<space>d', builtin.diagnostics, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+local ivy = function(f, opt)
+  opt = opt or {}
+  opt.theme = "ivy"
+  return function()
+    f(themes.get_ivy(opt))
+  end
+end
+
+vim.keymap.set('n', '<C-p>', ivy(builtin.find_files), {})
+vim.keymap.set('n', '<C-g>', ivy(builtin.live_grep), {})
+vim.keymap.set('n', '<leader>fb', ivy(builtin.buffers), {})
+vim.keymap.set('n', '<space>d', ivy(builtin.diagnostics), {})
+vim.keymap.set('n', '<leader>fh', ivy(builtin.help_tags), {})
 
 vim.keymap.set(
   "n",
