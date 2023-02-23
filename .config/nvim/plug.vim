@@ -29,6 +29,8 @@ if has('nvim')
   Plug 'jose-elias-alvarez/typescript.nvim'
   Plug 'windwp/nvim-ts-autotag'
   Plug 'nvim-telescope/telescope-file-browser.nvim'
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'pwntester/octo.nvim'
 endif
 
 call plug#end()
