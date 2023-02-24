@@ -33,11 +33,12 @@ telescope.setup {
     file_browser = {
       theme = "dropdown",
       hijack_netrw = true,
+      select_buffer = true,
       mappings = {
         n = {
           ["a"] = fb_actions.create,
           ["cd"] = fb_actions.change_cwd,
-          ["h"] = fb_actions.goto_parent_dir,
+          ["h"] = wb_actions.goto_parent_dir_with_select_cb,
           ["t"] = actions.select_tab,
           ["z"] = wb_actions.find_files_from_fb,
           ["/"] = function()
@@ -56,10 +57,8 @@ telescope.setup {
 telescope.load_extension("file_browser")
 
 local ivy = function(f, opt)
-  opt = opt or {}
-  opt.theme = "ivy"
   return function()
-    f(themes.get_ivy(opt))
+    f(themes.get_ivy(opt or {}))
   end
 end
 
@@ -75,7 +74,6 @@ vim.keymap.set(
   function()
     telescope.extensions.file_browser.file_browser({
       path = "%:p:h",
-      default_selection_index = 2,
       cwd = vim.fn.expand('%:p:h'),
       respect_gitignore = false,
       hidden = true,
