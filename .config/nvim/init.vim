@@ -1,6 +1,7 @@
 autocmd!
 scriptencoding utf-8
 
+let mapleader = "\<space>"
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw

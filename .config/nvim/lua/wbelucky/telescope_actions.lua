@@ -1,5 +1,6 @@
 local builtin = require("telescope.builtin")
 local transform_mod = require("telescope.actions.mt").transform_mod
+local actions = require("telescope.actions")
 local action_state = require('telescope.actions.state')
 local action_set = require "telescope.actions.set"
 local fb_utils = require "telescope._extensions.file_browser.utils"
@@ -32,14 +33,6 @@ wb_actions.select_default = {
   end
 }
 
-wb_actions.find_files_fb = function(prompt_bufnr)
-  local finder = action_state.get_current_picker(prompt_bufnr).finder
-  local dir = get_target_dir(finder)
-  builtin.find_files({
-    search_dirs = { dir }
-  })
-end
-
 -- from pr: selection_callback after going to parent dir https://github.com/nvim-telescope/telescope-file-browser.nvim/pull/193
 -- ref: https://github.com/nvim-telescope/telescope-file-browser.nvim/blob/6eb6bb45b7a9bed94a464a3e1dadfe870459628c/lua/telescope/_extensions/file_browser/actions.lua#L526
 wb_actions.goto_parent_dir_with_select_cb = function(prompt_bufnr, bypass)
@@ -66,5 +59,11 @@ wb_actions.goto_parent_dir_with_select_cb = function(prompt_bufnr, bypass)
 end
 
 wb_actions = transform_mod(wb_actions)
+
+
+wb_actions.get_target_dir = function(prompt_bufnr)
+  local finder = action_state.get_current_picker(prompt_bufnr).finder
+  return get_target_dir(finder)
+end
 
 return wb_actions
