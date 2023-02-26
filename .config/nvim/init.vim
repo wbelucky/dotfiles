@@ -65,7 +65,8 @@ set nosc noru nosm
 " Turn off paste mode when leaivng inser
 autocmd InsertLeave * set nopaste
 
-if system('uname -a | grep -i microsoft') != ''
+" https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
+if has('wsl')
   let g:netrw_browsex_viewer="cmd.exe /C start" 
   let g:clipboard = {
         \ 'name': 'win32yank',
