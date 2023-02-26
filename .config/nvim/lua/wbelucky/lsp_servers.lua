@@ -1,6 +1,3 @@
-local util = require('lspconfig.util')
-local base = require('wbelucky.lsp_base')
-
 local lsp_servers = {
   pyright = {
     filetypes = { "python" }
@@ -9,8 +6,8 @@ local lsp_servers = {
     filetypes = { "javascript", "javascriptreact", "javascript.jsx" },
   },
   lua_ls = {
-
     on_attach = function(client, bufnr)
+      local base = require('wbelucky.lsp_base')
       base.on_attach(client, bufnr)
       base.enable_format_on_save(client, bufnr)
     end,
@@ -32,7 +29,7 @@ local lsp_servers = {
   gopls = {
     cmd = { "gopls", "serve" },
     filetypes = { "go", "gomod" },
-    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+    root_dir = require('lspconfig.util').root_pattern("go.work", "go.mod", ".git"),
     settings = {
       gopls = {
         analyses = {

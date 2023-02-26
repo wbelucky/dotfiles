@@ -26,10 +26,22 @@ local function init()
   }
 
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.1',
-    requires = { { 'nvim-lua/plenary.nvim' } }
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.1',
+    module = { 'telescope' },
+    requires = {
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope-file-browser.nvim', opt = true }
+    },
+    -- wants = { 'nvim-telescope/telescope-file-browser.nvim' },
+    setup = function() require('plugins.telescope_rc').setup() end,
+    config = function() require('plugins.telescope_rc').config() end,
   }
-  use 'nvim-telescope/telescope-file-browser.nvim'
+  -- packer
+  use {
+    "nvim-telescope/telescope-file-browser.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  }
 
 
   use 'neovim/nvim-lspconfig'
@@ -50,7 +62,7 @@ local function init()
 
   use 'tpope/vim-fugitive'
   use 'ruifm/gitlinker.nvim'
-  use 'pwntester/octo.nvim'
+  -- use 'pwntester/octo.nvim'
 
   use 'tpope/vim-surround'
   use {
@@ -72,6 +84,7 @@ local function init()
   use 'makerj/vim-pdf'
   use 'voldikss/vim-translator'
   use 'kyazdani42/nvim-web-devicons'
+  use 'dstein64/vim-startuptime'
 end
 
 local plugins = setmetatable({}, {
