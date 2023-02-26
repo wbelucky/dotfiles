@@ -1,20 +1,10 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local cmd = vim.cmd
-  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-    cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
-end
-
-
+-- ref: https://qiita.com/delphinus/items/8160d884d415d7425fcc#43-packernvim-%E8%87%AA%E4%BD%93%E3%82%92%E9%81%85%E5%BB%B6%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF%E3%81%99%E3%82%8B
+-- ref: https://github.com/wbthomason/dotfiles/blob/063850b4957a55c065f795722163efc88ffb1b42/neovim/.config/nvim/lua/plugins.lua
 local packer = nil
 local function init()
-  local packer_bootstrap = ensure_packer()
   if packer == nil then
+    local cmd = vim.cmd
+    cmd [[packadd packer.nvim]]
     packer = require 'packer'
     packer.init {}
   end
@@ -29,7 +19,10 @@ local function init()
 
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
   }
 
   use {
@@ -69,16 +62,16 @@ local function init()
   use { 'buoto/gotests-vim', opt = true, ft = 'go' }
 
   use 'jose-elias-alvarez/typescript.nvim'
-  use 'windwp/nvim-ts-autotag'
+  use {
+    'windwp/nvim-ts-autotag',
+    requires = { 'nvim-treesitter/nvim-treesitter' }
+  }
 
   use 'b0o/schemastore.nvim'
 
   use 'makerj/vim-pdf'
   use 'voldikss/vim-translator'
   use 'kyazdani42/nvim-web-devicons'
-  if packer_bootstrap then
-    packer.sync()
-  end
 end
 
 local plugins = setmetatable({}, {

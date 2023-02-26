@@ -13,6 +13,8 @@ pushd $(dirname ${BASH_SOURCE:-$0})
 # # install python driver for neovim and install plugins
 # pip3 install neovim \
 #   && nvim --headless -S ${DOTFILES}/.config/nvim/plug.vim +UpdateRemotePlugins +qall
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
+XDG_CONFIG_HOME=${DOTFILES}/.config nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 popd
