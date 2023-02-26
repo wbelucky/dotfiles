@@ -19,33 +19,31 @@ local git_icons = {
 
 telescope.setup {
   defaults = {
+    initial_mode = "normal",
     mappings = {
     },
   },
   pickers = {
     find_files = {
+      initial_mode = "insert",
       hidden = true,
     },
     live_grep = {
+      initial_mode = "insert",
       -- args of ripgrep. ref: .ripgreprc in $RIPGREP_CONFIT_PATH
       additional_args = function(_)
         return { "--hidden" }
       end
     },
     git_status = {
-      initial_mode = "normal",
       git_icons = git_icons,
     },
-    git_branch = {
-      initial_mode = "normal",
-    }
   },
   extensions = {
     file_browser = {
       grouped = true,
       hidden = true,
       hijack_netrw = true,
-      initial_mode = "normal",
       select_buffer = true,
       git_status = true,
       theme = "ivy",
