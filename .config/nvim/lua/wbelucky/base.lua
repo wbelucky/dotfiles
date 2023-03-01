@@ -73,7 +73,7 @@ vim.api.nvim_create_autocmd('InsertLeave', {
 })
 
 -- https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
-if vim.fn.has('wsl') then
+if vim.fn.has('wsl') == 1 then
   vim.g.netrw_browsex_viewer = 'cmd.exe /C start'
   vim.g.clipboard = {
     name = 'win32yank',
