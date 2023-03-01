@@ -24,6 +24,10 @@ cmp.setup({
     }),
   }),
   sources = cmp.config.sources({
+<<<<<<< HEAD
+    -- { name = 'vsnip' },
+    { name = 'nvim_lsp' },
+=======
     {
       name = 'vsnip',
       keyword_length = 3
@@ -31,6 +35,7 @@ cmp.setup({
       name = 'nvim_lsp',
       keyword_length = 3
     } -- { name = 'cmp_tabnine' },
+>>>>>>> 34ba5f13375177e86e12ce7af12a7d957b20916b
   }, {
     {
       name = 'buffer',
