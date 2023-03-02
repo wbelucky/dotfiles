@@ -74,7 +74,8 @@ local function init()
 
   use { 'buoto/gotests-vim', opt = true, ft = 'go' }
 
-  use 'jose-elias-alvarez/typescript.nvim'
+  use { 'jose-elias-alvarez/typescript.nvim' }
+  use { 'akinsho/flutter-tools.nvim' }
   use {
     'windwp/nvim-ts-autotag',
     requires = { 'nvim-treesitter/nvim-treesitter' }
