@@ -31,7 +31,8 @@ local function init()
     module = { 'telescope' },
     requires = {
       { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-file-browser.nvim', opt = true }
+      { 'nvim-telescope/telescope-file-browser.nvim', opt = true },
+      { 'nvim-telescope/telescope-ghq.nvim', opt = true }
     },
     -- wants = { 'nvim-telescope/telescope-file-browser.nvim' },
     setup = function() require('plugins.telescope_rc').setup() end,

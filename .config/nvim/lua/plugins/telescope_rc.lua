@@ -28,11 +28,12 @@ M.setup = function()
   vim.keymap.set('n', '<leader>o', builtin "oldfiles" {})
   vim.keymap.set('n', '<leader>d', builtin "diagnostics" {})
   vim.keymap.set('n', '<leader>th', builtin "help_tags" {})
-  vim.keymap.set('n', '<leader>gs', builtin "git_status" {})
+  vim.keymap.set('n', 'gs', builtin "git_status" {})
   vim.keymap.set('n', '<leader>ggst', builtin "git_stash" {})
   vim.keymap.set('n', '<leader>gc', builtin "git_commits" {})
   vim.keymap.set('n', '<leader>gb', builtin "git_branches" {})
   vim.keymap.set('n', '<leader>tb', builtin "builtin" {})
+  vim.keymap.set('n', 'gq', extensions("ghq", "list") { bin = "~/ghq" })
   local open_fb = function()
 
     extensions("file_browser", "file_browser") {
