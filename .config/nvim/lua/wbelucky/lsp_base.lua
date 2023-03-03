@@ -18,8 +18,9 @@ lsp_base.on_attach = function(_, bufnr)
     ['gh'] = '<Cmd>lua vim.lsp.buf.hover()<CR>',
     ['gr'] = '<Cmd>lua vim.lsp.buf.references()<CR>',
     ['<F2>'] = '<Cmd>lua vim.lsp.buf.rename()<CR>',
-    ['gn'] = '<Cmd>lua vim.lsp.buf.rename()<CR>',
+    ['<leader>n'] = '<Cmd>lua vim.lsp.buf.rename()<CR>',
     ['<leader>a'] = '<Cmd>lua vim.lsp.buf.code_action()<CR>',
+    ['<leader>f'] = '<Cmd>lua vim.lsp.buf.format { async = true }<CR>',
   }
   for k, v in pairs(nmap) do
     vim.api.nvim_buf_set_keymap(bufnr, 'n', k, v, { noremap = true, silent = true })

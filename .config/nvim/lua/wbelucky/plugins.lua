@@ -27,14 +27,13 @@ local function init()
 
   use {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.1',
     module = { 'telescope' },
     requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-file-browser.nvim', opt = true },
       { 'nvim-telescope/telescope-ghq.nvim', opt = true }
     },
-    -- wants = { 'nvim-telescope/telescope-file-browser.nvim' },
+    wants = { 'telescope-file-browser.nvim', 'telescope-ghq.nvim' },
     setup = function() require('plugins.telescope_rc').setup() end,
     config = function() require('plugins.telescope_rc').config() end,
   }
@@ -45,24 +44,63 @@ local function init()
   }
 
 
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
+  use {
+    'neovim/nvim-lspconfig',
+    event = { "BufReadPre" },
+    requires = {
+      { 'williamboman/mason-lspconfig.nvim', module = 'mason-lspconfig' },
+      { 'williamboman/mason.nvim', module = 'mason' },
+    },
+    wants = {
+      "mason.nvim",
+      "mason-lspconfig.nvim",
+      "cmp-nvim-lsp",
+    },
+    config = function() require('plugins.lspconfig').config() end,
+  }
+
+  use 'jose-elias-alvarez/typescript.nvim'
   use 'onsails/lspkind-nvim'
 
-  use 'jose-elias-alvarez/null-ls.nvim'
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    opt = true,
+    config = function() require('plugins.null-ls').config() end,
+    ft = { 'typescript', 'typescriptreact', 'golang' }
+  }
 
   use 'hrsh7th/vim-vsnip'
 
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/cmp-vsnip'
+  use {
+    "hrsh7th/nvim-cmp",
+    module = { "cmp" },
+    requires = {
+      { 'hrsh7th/cmp-nvim-lsp', event = { "InsertEnter" } },
+      { "hrsh7th/cmp-buffer", event = { "InsertEnter" } },
+      { "hrsh7th/cmp-emoji", event = { "InsertEnter" } },
+      { 'hrsh7th/cmp-path', event = { "InsertEnter" } },
+      { 'hrsh7th/cmp-vsnip', event = { "InsertEnter" } },
+      { 'hrsh7th/cmp-cmdline', event = { "CmdlineEnter" } },
+      -- ……以下各種ソースプラグインが続く
+    },
+    config = function()
+      require("plugins.cmp").config()
+    end
+  }
 
-  use 'tpope/vim-fugitive'
-  use 'ruifm/gitlinker.nvim'
+  use {
+    'ruifm/gitlinker.nvim',
+    config = function()
+      require("gitlinker").setup()
+    end
+  }
+
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
   -- use 'pwntester/octo.nvim'
 
   use 'tpope/vim-surround'
@@ -74,8 +112,13 @@ local function init()
 
   use { 'buoto/gotests-vim', opt = true, ft = 'go' }
 
-  use { 'jose-elias-alvarez/typescript.nvim' }
-  use { 'akinsho/flutter-tools.nvim' }
+
+  use {
+    'akinsho/flutter-tools.nvim',
+    opt = true,
+    ft = 'dart',
+    requires = 'nvim-lua/plenary.nvim'
+  }
   use {
     'windwp/nvim-ts-autotag',
     requires = { 'nvim-treesitter/nvim-treesitter' }

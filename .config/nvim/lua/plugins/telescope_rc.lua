@@ -16,7 +16,8 @@ local function extensions(name, prop)
     return function()
       local telescope = require "telescope"
       telescope.load_extension(name)
-      return telescope.extensions[name][prop](opt or {})
+      local ivy = require('telescope.themes').get_ivy
+      return telescope.extensions[name][prop](ivy(opt or {}))
     end
   end
 end
@@ -33,7 +34,7 @@ M.setup = function()
   vim.keymap.set('n', '<leader>gc', builtin "git_commits" {})
   vim.keymap.set('n', '<leader>gb', builtin "git_branches" {})
   vim.keymap.set('n', '<leader>tb', builtin "builtin" {})
-  vim.keymap.set('n', 'gq', extensions("ghq", "list") { bin = "~/ghq" })
+  vim.keymap.set('n', 'gq', extensions("ghq", "list") { initial_mode = "insert" })
   local open_fb = function()
 
     extensions("file_browser", "file_browser") {
@@ -90,18 +91,23 @@ M.config = function()
           return { "--hidden" }
         end
       },
+      git_files = {
+        theme = "ivy",
+        initial_mode = "insert",
+      },
       git_status = {
         git_icons = git_icons,
       },
     },
     extensions = {
+      ghq = {
+      },
       file_browser = {
         grouped = true,
         hidden = true,
         hijack_netrw = true,
         select_buffer = true,
         git_status = true,
-        theme = "ivy",
         respect_gitignore = false,
         -- https://github.com/nvim-telescope/telescope-file-browser.nvim/pull/171
         git_icons = git_icons,
@@ -112,7 +118,7 @@ M.config = function()
             ["ma"] = fb_actions.create,
             -- ["r"] = fb_actions.rename,
             ["r"] = false,
-            ["mr"] = fb_actions.rename,
+            ["mn"] = fb_actions.rename,
             -- ["m"] = fb_actions.move,
             ["m"] = false,
             ["mm"] = fb_actions.move,
@@ -159,9 +165,6 @@ M.config = function()
       }
     }
   }
-
-  -- telescope.load_extension("file_browser")
-
 end
 
 
