@@ -45,6 +45,7 @@ abbr -a 'ga' 'git add'
 abbr -a 'gap' 'git add -p'
 abbr -a 'gc' 'git checkout'
 abbr -a 'gcd' 'ghq_change_directory'
+abbr -a 'gq' 'ghq_change_directory'
 abbr -a 'gcl' 'ghq get'
 abbr -a 'gcm' 'git commit -m "'
 abbr -a 'gd' 'git diff'
@@ -56,6 +57,7 @@ abbr -a 'gs' 'git status'
 abbr -a 'open' 'xdg-open'
 
 command -qv nvim && alias vim nvim
+command -qv nvim && alias v nvim
 
 if command -qv exa
   abbr -a ls 'exa --icons --git'

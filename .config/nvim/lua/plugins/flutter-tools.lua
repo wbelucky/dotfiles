@@ -1,7 +1,7 @@
 local M = {}
 
 M.config = function()
-  local base = require('wbelucky.base')
+  local base = require('wbelucky.lsp_base')
   -- ref: https://github.com/mj-hd/dotfiles/blob/afd71634e800a92ebf8f907ca11075b96475756c/nvim/autoload/plugins/nvim_lsp.vim#L143
   require("flutter-tools").setup {
     ui = {

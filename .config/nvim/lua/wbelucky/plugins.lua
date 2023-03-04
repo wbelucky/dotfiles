@@ -69,8 +69,6 @@ local function init()
     ft = { 'typescript', 'typescriptreact', 'golang' }
   }
 
-  use 'hrsh7th/vim-vsnip'
-
   use {
     "hrsh7th/nvim-cmp",
     module = { "cmp" },
@@ -81,6 +79,7 @@ local function init()
       { 'hrsh7th/cmp-path', event = { "InsertEnter" } },
       { 'hrsh7th/cmp-vsnip', event = { "InsertEnter" } },
       { 'hrsh7th/cmp-cmdline', event = { "CmdlineEnter" } },
+      { 'hrsh7th/vim-vsnip', event = { "InsertEnter" } },
       -- ……以下各種ソースプラグインが続く
     },
     config = function()
@@ -104,9 +103,13 @@ local function init()
   -- use 'pwntester/octo.nvim'
 
   use 'tpope/vim-surround'
+  -- use {
+  --   'svrana/neosolarized.nvim',
+  --   requires = { 'tjdevries/colorbuddy.nvim' }
+  -- }
   use {
-    'svrana/neosolarized.nvim',
-    requires = { 'tjdevries/colorbuddy.nvim' }
+    'folke/tokyonight.nvim',
+    config = function() vim.cmd [[colorscheme tokyonight]] end
   }
 
 
