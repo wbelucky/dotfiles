@@ -69,23 +69,7 @@ local function init()
     ft = { 'typescript', 'typescriptreact', 'golang' }
   }
 
-  use {
-    "hrsh7th/nvim-cmp",
-    module = { "cmp" },
-    requires = {
-      { 'hrsh7th/cmp-nvim-lsp', event = { "InsertEnter" } },
-      { "hrsh7th/cmp-buffer", event = { "InsertEnter" } },
-      { "hrsh7th/cmp-emoji", event = { "InsertEnter" } },
-      { 'hrsh7th/cmp-path', event = { "InsertEnter" } },
-      { 'hrsh7th/cmp-vsnip', event = { "InsertEnter" } },
-      { 'hrsh7th/cmp-cmdline', event = { "CmdlineEnter" } },
-      { 'hrsh7th/vim-vsnip', event = { "InsertEnter" } },
-      -- ……以下各種ソースプラグインが続く
-    },
-    config = function()
-      require("plugins.cmp").config()
-    end
-  }
+  use(require("plugins.cmp"))
 
   use {
     'ruifm/gitlinker.nvim',
@@ -94,12 +78,7 @@ local function init()
     end
   }
 
-  use {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup()
-    end
-  }
+  use(require("plugins.gitsigns"))
   -- use 'pwntester/octo.nvim'
 
   use 'tpope/vim-surround'
