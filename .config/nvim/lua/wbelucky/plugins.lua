@@ -99,7 +99,8 @@ local function init()
     'akinsho/flutter-tools.nvim',
     opt = true,
     ft = 'dart',
-    requires = 'nvim-lua/plenary.nvim'
+    requires = 'nvim-lua/plenary.nvim',
+    config = function () require('plugins.flutter-tools').config() end,
   }
   use {
     'windwp/nvim-ts-autotag',
