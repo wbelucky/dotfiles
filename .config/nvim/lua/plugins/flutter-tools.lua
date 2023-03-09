@@ -1,5 +1,20 @@
 local M = {}
 
+local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
+local enable_format_on_code_actions = function(bufnr)
+  vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = augroup_format,
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.code_action({ apply = true,
+        context = { only = { 'source.fixAll' } },
+      })
+      vim.lsp.buf.format({ bufnr = bufnr })
+    end,
+  })
+end
+
 M.config = function()
   local base = require('wbelucky.lsp_base')
   -- ref: https://github.com/mj-hd/dotfiles/blob/afd71634e800a92ebf8f907ca11075b96475756c/nvim/autoload/plugins/nvim_lsp.vim#L143
@@ -43,6 +58,7 @@ M.config = function()
         vim.cmd [[hi FlutterWidgetGuides ctermfg=237 guifg=#33374c]]
         vim.cmd [[hi ClosingTags ctermfg=244 guifg=#8389a3]]
         base.on_attach(client, bufnr)
+        enable_format_on_code_actions(bufnr)
       end,
       capabilities = base.capabilities,
       settings = {

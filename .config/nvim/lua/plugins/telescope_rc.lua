@@ -23,6 +23,8 @@ local function extensions(name, prop)
 end
 
 M.setup = function()
+
+
   vim.keymap.set('n', '<C-p>', builtin "find_files" {})
   vim.keymap.set('n', '<C-g>', builtin "live_grep" {})
   vim.keymap.set('n', '<leader>b', builtin "buffers" {})
@@ -34,7 +36,7 @@ M.setup = function()
   vim.keymap.set('n', '<leader>gc', builtin "git_commits" {})
   vim.keymap.set('n', '<leader>gb', builtin "git_branches" {})
   vim.keymap.set('n', '<leader>tb', builtin "builtin" {})
-  vim.keymap.set('n', 'gq', extensions("ghq", "list") { initial_mode = "insert" })
+  vim.keymap.set('n', 'gq', extensions("ghq", "list") {})
   local open_fb = function()
 
     extensions("file_browser", "file_browser") {
@@ -57,6 +59,7 @@ end
 
 M.config = function()
   -- local builtin = require("telescope.builtin")
+  local ivy = require('telescope.themes').get_ivy
   local telescope = require "telescope"
   local actions = require('telescope.actions')
   local wb_actions = require('wbelucky.telescope_actions')
@@ -75,17 +78,14 @@ M.config = function()
 
   telescope.setup {
     defaults = {
-      initial_mode = "normal",
       mappings = {
       },
     },
     pickers = {
       find_files = {
-        initial_mode = "insert",
         hidden = true,
       },
       live_grep = {
-        initial_mode = "insert",
         -- args of ripgrep. ref: .ripgreprc in $RIPGREP_CONFIT_PATH
         additional_args = function(_)
           return { "--hidden" }
@@ -93,14 +93,16 @@ M.config = function()
       },
       git_files = {
         theme = "ivy",
-        initial_mode = "insert",
       },
       git_status = {
         git_icons = git_icons,
+        initial_mode = 'normal',
       },
     },
     extensions = {
       ghq = {
+      },
+      ["ui-select"] = ivy {
       },
       file_browser = {
         grouped = true,
@@ -165,6 +167,7 @@ M.config = function()
       }
     }
   }
+  require("telescope").load_extension("ui-select")
 end
 
 

@@ -31,9 +31,10 @@ local function init()
     requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-file-browser.nvim', opt = true },
-      { 'nvim-telescope/telescope-ghq.nvim', opt = true }
+      { 'nvim-telescope/telescope-ghq.nvim', opt = true },
+      { 'nvim-telescope/telescope-ui-select.nvim' },
     },
-    wants = { 'telescope-file-browser.nvim', 'telescope-ghq.nvim' },
+    wants = { 'telescope-file-browser.nvim', 'telescope-ghq.nvim', 'telescope-ui-select.nvim' },
     setup = function() require('plugins.telescope_rc').setup() end,
     config = function() require('plugins.telescope_rc').config() end,
   }
@@ -100,7 +101,7 @@ local function init()
     opt = true,
     ft = 'dart',
     requires = 'nvim-lua/plenary.nvim',
-    config = function () require('plugins.flutter-tools').config() end,
+    config = function() require('plugins.flutter-tools').config() end,
   }
   use {
     'windwp/nvim-ts-autotag',
