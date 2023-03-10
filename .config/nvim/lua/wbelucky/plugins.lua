@@ -20,7 +20,8 @@ local function init()
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function()
-      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      local ts_update = require('nvim-treesitter.install')
+          .update({ with_sync = true })
       ts_update()
     end,
   }
@@ -34,7 +35,11 @@ local function init()
       { 'nvim-telescope/telescope-ghq.nvim', opt = true },
       { 'nvim-telescope/telescope-ui-select.nvim' },
     },
-    wants = { 'telescope-file-browser.nvim', 'telescope-ghq.nvim', 'telescope-ui-select.nvim' },
+    wants = {
+      'telescope-file-browser.nvim',
+      'telescope-ghq.nvim',
+      'telescope-ui-select.nvim',
+    },
     setup = function() require('plugins.telescope_rc').setup() end,
     config = function() require('plugins.telescope_rc').config() end,
   }
@@ -44,7 +49,10 @@ local function init()
     requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
   }
 
-
+  use {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    module = 'lsp_lines',
+  }
   use {
     'neovim/nvim-lspconfig',
     event = { "BufReadPre" },
