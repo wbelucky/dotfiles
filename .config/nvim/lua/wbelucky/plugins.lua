@@ -82,6 +82,8 @@ local function init()
 
   use {
     'ruifm/gitlinker.nvim',
+    opt = true,
+    keys = { { 'n', '<leader>gy' }, { 'v', '<leader>gy' } },
     config = function()
       require("gitlinker").setup()
     end
