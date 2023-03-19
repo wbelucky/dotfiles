@@ -1,6 +1,4 @@
-local builtin = require("telescope.builtin")
 local transform_mod = require("telescope.actions.mt").transform_mod
-local actions = require("telescope.actions")
 local action_state = require('telescope.actions.state')
 local action_set = require "telescope.actions.set"
 local fb_utils = require "telescope._extensions.file_browser.utils"

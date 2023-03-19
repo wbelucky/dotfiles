@@ -13,4 +13,14 @@ util.dump = function(o)
   end
 end
 
+local debug = {}
+
+util.push_debug = function(s)
+  table.insert(debug, s)
+end
+
+util.print_debug = function()
+  print(util.dump(util.debug))
+end
+
 return util

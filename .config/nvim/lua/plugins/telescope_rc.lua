@@ -24,7 +24,6 @@ end
 
 M.setup = function()
 
-
   vim.keymap.set('n', '<C-p>', builtin "find_files" {})
   vim.keymap.set('n', '<C-g>', builtin "live_grep" {})
   vim.keymap.set('n', '<leader>b', builtin "buffers" {})
@@ -37,8 +36,8 @@ M.setup = function()
   vim.keymap.set('n', '<leader>gb', builtin "git_branches" {})
   vim.keymap.set('n', '<leader>tb', builtin "builtin" {})
   vim.keymap.set('n', 'gq', extensions("ghq", "list") {})
-  local open_fb = function()
 
+  local open_fb = function()
     extensions("file_browser", "file_browser") {
       path = "%:p:h",
       cwd = vim.fn.expand('%:p:h'),
@@ -46,7 +45,7 @@ M.setup = function()
       -- layout_config = { height = 40 }
     } ()
   end
-  vim.keymap.set("n", "<leader>t", open_fb)
+  vim.keymap.set("n", "<leader>tt", open_fb)
   vim.keymap.set("n", "\\t", open_fb)
 
   vim.keymap.set("n", "<leader>p.", function()
@@ -91,8 +90,7 @@ M.config = function()
           return { "--hidden" }
         end
       },
-      git_files = {
-        theme = "ivy",
+      git_files = ivy {
       },
       git_status = {
         git_icons = git_icons,
@@ -101,10 +99,17 @@ M.config = function()
     },
     extensions = {
       ghq = {
+        -- TODO: こうしたい
+        -- ref: https://github.com/nvim-telescope/telescope-ghq.nvim/blob/dc1022f91100ca06c9c7bd645f08e2bf985ad283/lua/telescope/_extensions/ghq_builtin.lua#L113-L134
+        -- mappings = {
+        --   i = {
+        --     ["<CR>"] = wb_actions.ghq_select_default,
+        --   }
+        -- }
       },
       ["ui-select"] = ivy {
       },
-      file_browser = {
+      file_browser = ivy {
         grouped = true,
         hidden = true,
         hijack_netrw = true,
@@ -113,6 +118,8 @@ M.config = function()
         respect_gitignore = false,
         -- https://github.com/nvim-telescope/telescope-file-browser.nvim/pull/171
         git_icons = git_icons,
+        initial_mode = "normal",
+        default_selection_index = 2,
         mappings = {
           n = {
             -- ["c"] = fb_actions.create,
