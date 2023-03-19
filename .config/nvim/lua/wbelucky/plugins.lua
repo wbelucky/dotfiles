@@ -114,6 +114,12 @@ local function init()
     config = function() require('plugins.flutter-tools').config() end,
   }
   use {
+    'mfussenegger/nvim-dap',
+    opt = true,
+    module = 'dap',
+  }
+
+  use {
     'windwp/nvim-ts-autotag',
     requires = { 'nvim-treesitter/nvim-treesitter' }
   }

@@ -29,8 +29,14 @@ M.config = function()
       }
     },
     debugger = {
-      enabled = false,
+      enabled = true,
       run_via_dap = false,
+      exception_breakpoints = {},
+      register_configurations = function(_)
+        require("dap").configurations.dart = {
+        }
+        require("dap.ext.vscode").load_launchjs()
+      end,
     },
     fvm = true,
     widget_guides = {
