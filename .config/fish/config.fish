@@ -43,18 +43,23 @@ abbr -a 'dps' 'docker ps'
 abbr -a 'g' 'git'
 abbr -a 'ga' 'git add'
 abbr -a 'gap' 'git add -p'
-abbr -a 'gc' 'git checkout'
+abbr -a 'gc' 'git branch -a | fzf | xargs git checkout'
 abbr -a 'gcd' 'ghq_change_directory'
 abbr -a 'gq' 'ghq_change_directory'
 abbr -a 'gcl' 'ghq get'
 abbr -a 'gcm' 'git commit -m "'
 abbr -a 'gd' 'git diff'
+abbr -a 'gdc' 'git diff --cached'
 abbr -a 'gl' 'git log'
-abbr -a 'gp' 'git push'
-abbr -a 'gpl' 'git pull'
+# ref: https://zenn.dev/takuya/articles/7550d21ddd17f121602e#%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%ABpush%E3%81%99%E3%82%8B
+abbr -a 'gp' 'git push origin (git rev-parse --abbrev-ref HEAD)'
+abbr -a 'gpl' 'git pull origin (git rev-parse --abbrev-ref HEAD)'
 abbr -a 'grs' 'git reset'
 abbr -a 'gs' 'git status'
-abbr -a 'open' 'xdg-open'
+
+if test -e /etc/os-release
+  abbr -a 'open' 'xdg-open'
+end
 
 command -qv nvim && alias vim nvim
 command -qv nvim && alias v nvim
