@@ -42,4 +42,5 @@ command! Pl :call s:on_paste_url_to_md()
 command! -nargs=1 PasteSS :call s:paste_recent_screenshot(<f-args>)
 command! -nargs=1 PasteDL :call s:paste_recent_download(<f-args>)
 command! Date :call s:date_format()
+command! D :.s/\[\s\]/[x]
 
