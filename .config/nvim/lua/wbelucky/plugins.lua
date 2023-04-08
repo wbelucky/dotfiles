@@ -43,6 +43,24 @@ local function init()
     setup = function() require('plugins.telescope_rc').setup() end,
     config = function() require('plugins.telescope_rc').config() end,
   }
+
+  use({
+    "jackMort/ChatGPT.nvim",
+    -- opt = true,
+    -- module = "chatgpt",
+    config = function()
+      require("chatgpt").setup({
+        keymaps = {
+          submit = "<C-t>"
+        }
+      })
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  })
   -- packer
   use {
     "nvim-telescope/telescope-file-browser.nvim",
