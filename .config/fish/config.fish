@@ -6,9 +6,10 @@ if status is-interactive
     source ~/.asdf/asdf.fish
 end
 
-
 set -gx EDITOR nvim
 set -gx GOPATH $HOME/go
+
+set -gx DENO_INSTALL $HOME/.deno
 set -gx RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 
 set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
@@ -22,6 +23,7 @@ set -gx AQUA_EXPERIMENTAL_X_SYS_EXEC true
 
 fish_add_path $AQUA_ROOT_DIR/bin
 fish_add_path $GOPATH/bin
+fish_add_path $DENO_INSTALL/bin
 fish_add_path bin
 fish_add_path node_modules/.bin
 fish_add_path ~/.bin

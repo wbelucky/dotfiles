@@ -14,30 +14,30 @@ M.config = function()
     automatic_installation = true,
   }
 
+
+  local base = require('wbelucky.lsp_base')
+  local servers = require('wbelucky.lsp_servers')
+  local default = {
+    capabilities = base.capabilities,
+    on_attach = base.on_attach,
+  }
+
   mason_lspconfig.setup_handlers({
     function(server)
-      local base = require('wbelucky.lsp_base')
-      local servers = require('wbelucky.lsp_servers')
-      local default = {
-        capabilities = base.capabilities,
-        on_attach = base.on_attach,
-      }
       require("lspconfig")[server].setup(vim.tbl_extend("force", default, servers[server] or {}))
     end,
-    ["tsserver"] = function()
-      local base = require('wbelucky.lsp_base')
+    ["tsserver"] = function(_)
       require("typescript").setup({
         disable_commands = false, -- prevent the plugin from creating Vim commands
         debug = false, -- enable debug logging for commands
         go_to_source_definition = {
           fallback = true, -- fall back to standard LSP definition on failure
         },
-        server = { -- pass options to lspconfig's setup method
-          on_attach = base.on_attach,
-          filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-          cmd = { "typescript-language-server", "--stdio" },
-          capabilities = base.capabilities
-        },
+        server = vim.tbl_extend(
+          "force",
+          default,
+          servers["tsserver"] or {}
+        )
       })
     end,
   })
