@@ -55,7 +55,7 @@ vim.opt.inccommand = 'split'
 
 -- status and command line
 vim.opt.laststatus = 2 -- print some status
-vim.opt.cmdheight = 1
+-- vim.opt.cmdheight = 1
 vim.opt.wildmenu = true --print candidates of :command line
 vim.opt.infercase = true --補完時に大文字小文字を区別しない
 
