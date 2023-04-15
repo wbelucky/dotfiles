@@ -26,7 +26,6 @@
 	prompt = false
 [ghq]
 	vcs = git
-  root = ~/g/ghq
   root = ~/ghq
 [credential "https://github.com"]
 	helper = 

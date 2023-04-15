@@ -51,7 +51,7 @@ M.config = function()
     --     return ("%s (%s: %s)"):format(d.message, d.source, d.code)
     --   end,
     -- },
-    virtual_lines = { only_current_line = true },
+    -- virtual_lines = { only_current_line = true },
   })
 
   --protocol.SymbolKind = { }

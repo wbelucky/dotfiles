@@ -10,6 +10,15 @@ ts.setup {
     enable = true,
     disable = {},
   },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn", -- set to `false` to disable one of the mappings
+      node_incremental = "af",
+      scope_incremental = "as",
+      node_decremental = "if",
+    },
+  },
   ensure_installed = {
     "cpp",
     "markdown",
@@ -24,6 +33,7 @@ ts.setup {
     "html",
     "lua",
     "vim",
+    "dart",
   },
   autotag = {
     enable = true,
