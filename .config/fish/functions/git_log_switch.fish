@@ -2,15 +2,11 @@ function git_branch
   if test "$argv[1]" = "-a"
     git branch -a
   else
-    try
-      set -l default_origin_br (git rev-parse --abbrev-ref origin/HEAD)
-    catch
-      git remote set-head origin -a
-      set -l default_origin_br (git rev-parse --abbrev-ref origin/HEAD)
-    end
+    # git remote set-head origin -a
+    set default_origin_br (git rev-parse -q --abbrev-ref origin/HEAD)
+    set -l default_br (echo $default_origin_br | sed 's/origin\///')
+    git branch -a --no-merged $default_origin_br | sed "1 i\ \ $default_br"
   end
-  set -l default_br (echo $default_origin_br | sed 's/origin\///')
-  git branch -a --no-merged $default_origin_br | sed "1 i\ \ $default_br"
 end
 
 # https://zenn.dev/yamo/articles/5c90852c9c64ab
