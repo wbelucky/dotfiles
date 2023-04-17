@@ -12,7 +12,6 @@ function git_branch
   set -l default_br (echo $default_origin_br | sed 's/origin\///')
   git branch -a --no-merged $default_origin_br | sed "1 i\ \ $default_br"
 end
-end
 
 # https://zenn.dev/yamo/articles/5c90852c9c64ab
 function git_log_switch
