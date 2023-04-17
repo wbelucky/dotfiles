@@ -58,6 +58,7 @@ abbr -a 'gp' 'git push origin (git rev-parse --abbrev-ref HEAD)'
 abbr -a 'gpl' 'git pull origin (git rev-parse --abbrev-ref HEAD)'
 abbr -a 'grs' 'git reset'
 abbr -a 'gs' 'git status'
+abbr -a 'gsw' 'git switch'
 abbr -a 'gw' 'git_log_switch'
 
 if test -e /etc/os-release
