@@ -17,6 +17,9 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wrap = false --no wrap lines
 vim.opt.cursorline = true
+-- 行頭にいるとき以外常にカーソルを水平中央に表示
+vim.opt.scrolloff = 999
+vim.opt.sidescrolloff = 999
 
 -- file
 vim.opt.backup = false
