@@ -48,10 +48,10 @@ M.setup = function()
   vim.keymap.set("n", "<leader>tt", open_fb)
   vim.keymap.set("n", "\\t", open_fb)
 
-  vim.keymap.set("n", "<leader>p.", function()
+  vim.keymap.set("n", "<leader><C-p>", function()
     builtin "find_files" { cwd = vim.fn.expand('%:p:h') } ()
   end)
-  vim.keymap.set("n", "<leader>g.", function()
+  vim.keymap.set("n", "<leader><C-g>", function()
     builtin "live_grep" { cwd = vim.fn.expand('%:p:h') } ()
   end)
 end

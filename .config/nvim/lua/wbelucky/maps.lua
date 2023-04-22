@@ -1,12 +1,21 @@
-local k = vim.keymap
+local k = vim.keymap.set
 
-k.set('n', 'k', 'gk')
-k.set('n', 'j', 'gj')
+k('n', 'k', 'gk')
+k('n', 'j', 'gj')
 
-k.set('n', '<C-w>H', ':vertical resize -5<CR>')
-k.set('n', '<C-w>J', ':resize -5<CR>')
-k.set('n', '<C-w>K', ':resize +5<CR>')
-k.set('n', '<C-w>L', ':vertical resize +5<CR>')
+k('n', '<C-w>H', ':vertical resize -5<CR>')
+k('n', '<C-w>J', ':resize -5<CR>')
+k('n', '<C-w>K', ':resize +5<CR>')
+k('n', '<C-w>L', ':vertical resize +5<CR>')
+
+-- greatest remap ever
+-- レジスタを保持したままreplace
+k("x", "<leader>p", [["_dP]])
+
+-- next greatest remap ever
+k({ "n", "v" }, "<leader>y", [["+y]])
+k("v", "<leader>Y", [["+Y]])
+k("v", "<leader>d", [["_d]])
 
 -- TODO:
 -- " :TermでTerminalが新しいwindowで開く
