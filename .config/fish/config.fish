@@ -1,4 +1,3 @@
-echo "Loading .config/fish/config.fish ..."
 set fish_greeting ""
 
 set -gx EDITOR nvim
@@ -52,5 +51,3 @@ if status is-interactive
     # echo "Finish loading gh completion $(date "+%S%N")"
     source ~/.asdf/asdf.fish
 end
-
-echo "Finish loading .config/fish/config.fish"

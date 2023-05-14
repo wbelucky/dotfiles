@@ -1,4 +1,3 @@
-echo "Loading abbr..."
 abbr -a 'clip' 'xclip -selection c'
 abbr -a 'd' 'docker'
 abbr -a 'dc' 'docker-compose'
@@ -38,5 +37,3 @@ if command -qv exa
   abbr -a lt 'exa -T -L 3 -a -I "node_modules|.git|.cache" --icons'
   abbr -a ltl 'exa -T -L 3 -a -I "node_modules|.git|.cache" -l --icons'
 end
-
-echo "Finish loading abbr"
