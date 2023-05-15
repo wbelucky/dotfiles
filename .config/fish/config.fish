@@ -1,5 +1,18 @@
 set fish_greeting ""
 
+
+# https://github.com/jorgebucaran/fisher/issues/640#issuecomment-1172984768
+set fisher_path ~/.config/fish/fisher
+! set --query fisher_path[1] || test "$fisher_path" = $__fish_config_dir && exit
+
+set fish_complete_path $fish_complete_path[1] $fisher_path/completions $fish_complete_path[2..]
+set fish_function_path $fish_function_path[1] $fisher_path/functions $fish_function_path[2..]
+
+for file in $fisher_path/conf.d/*.fish
+    source $file
+end
+
+
 set -gx EDITOR nvim
 set -gx GOPATH $HOME/go
 
@@ -14,7 +27,6 @@ set -q AQUA_GLOBAL_CONFIG || set -gx AQUA_GLOBAL_CONFIG $XDG_CONFIG_HOME/aquapro
 
 # for gopls
 set -gx AQUA_EXPERIMENTAL_X_SYS_EXEC true
-set -gx fisher_path ~/.config/fish/fisher
 
 fish_add_path $AQUA_ROOT_DIR/bin
 fish_add_path $GOPATH/bin
