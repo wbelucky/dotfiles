@@ -1,9 +1,8 @@
 local M = {}
 
-
 M.config = function()
-  local null_ls = require('null-ls')
-  local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+  local null_ls = require "null-ls"
+  local augroup = vim.api.nvim_create_augroup("FormatOnSave", {})
 
   local formatfunc = function(_, bufnr)
     -- neovim v0.8.0~ it was ng in my env because of bugs of rpc
@@ -11,50 +10,43 @@ M.config = function()
     -- local util = require 'vim.lsp.util'
     -- local params = util.make_formatting_params({})
     -- client.request('textDocument/formatting', params, nil, bufnr)
-
-    vim.lsp.buf.format({
-      filter = function(c)
-        return c.name == "null-ls"
-      end,
-      bufnr = bufnr,
-    })
+    return function()
+      vim.lsp.buf.format {
+        filter = function(c)
+          return c.name == "null-ls"
+        end,
+        bufnr = bufnr,
+      }
+    end
   end
 
   null_ls.setup {
     sources = {
       null_ls.builtins.formatting.prettierd,
-      null_ls.builtins.diagnostics.eslint_d.with({
-        diagnostics_format = '[eslint] #{m}\n(#{c})'
-      }),
+      null_ls.builtins.diagnostics.eslint_d.with {
+        diagnostics_format = "[eslint] #{m}\n(#{c})",
+      },
       null_ls.builtins.formatting.eslint_d,
       null_ls.builtins.code_actions.eslint_d,
       null_ls.builtins.diagnostics.fish,
       null_ls.builtins.formatting.fish_indent,
       null_ls.builtins.diagnostics.golangci_lint,
       null_ls.builtins.formatting.stylua,
-      require("typescript.extensions.null-ls.code-actions"),
+      require "typescript.extensions.null-ls.code-actions",
     },
     on_attach = function(client, bufnr)
-      if client.supports_method("textDocument/formatting") then
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      if client.supports_method "textDocument/formatting" then
+        vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
         vim.api.nvim_create_autocmd("BufWritePre", {
           group = augroup,
           buffer = bufnr,
-          callback = function()
-            formatfunc(client, bufnr)
-          end,
+          callback = formatfunc(client, bufnr),
         })
-      end
-    end
-  }
 
-  vim.api.nvim_create_user_command(
-    'DisableLspFormatting',
-    function()
-      vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
+        vim.keymap.set("n", "<leader>f", formatfunc(client, bufnr), { noremap = true, silent = true, buffer = bufnr })
+      end
     end,
-    { nargs = 0 }
-  )
+  }
 end
 
 return M

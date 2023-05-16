@@ -10,7 +10,7 @@ lsp_base.on_attach = function(_, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local nmap = {
+  local nmappings = {
     ["gD"] = "<Cmd>lua vim.lsp.buf.declaration()<CR>",
     ["gd"] = "<Cmd>lua vim.lsp.buf.definition()<CR>",
     ["gi"] = "<Cmd>lua vim.lsp.buf.implementation()<CR>",
@@ -22,23 +22,21 @@ lsp_base.on_attach = function(_, bufnr)
     ["<leader>a"] = "<Cmd>lua vim.lsp.buf.code_action()<CR>",
     ["<leader>f"] = function()
       vim.lsp.buf.format {
-        filter = function(c)
-          return c.name == "null-ls"
-        end,
         bufnr = bufnr,
         async = true,
       }
     end, -- '<Cmd>lua vim.lsp.buf.format { async = true }<CR>',
   }
-  for k, v in pairs(nmap) do
-    vim.api.nvim_buf_set_keymap(bufnr, "n", k, v, { noremap = true, silent = true })
+  for k, v in pairs(nmappings) do
+    vim.keymap.set("n", k, v, { noremap = true, silent = true, buffer = bufnr })
   end
   -- buf_set_keymap('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 end
+
 -- Set up completion using nvim_cmp with LSP source
 lsp_base.capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
+local augroup_format = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
 lsp_base.enable_format_on_save = function(_, bufnr)
   -- if client.server_capabilities.documentFormattingProvider then
   vim.api.nvim_clear_autocmds { group = augroup_format, buffer = bufnr }
@@ -46,9 +44,15 @@ lsp_base.enable_format_on_save = function(_, bufnr)
     group = augroup_format,
     buffer = bufnr,
     callback = function()
-      vim.lsp.buf.format { bufnr = bufnr }
+      vim.lsp.buf.format {
+        bufnr = bufnr,
+      }
     end,
   })
+
+  vim.api.nvim_create_user_command("DisableLspFormatting", function()
+    vim.api.nvim_clear_autocmds { group = augroup_format, buffer = 0 }
+  end, { nargs = 0 })
   -- end
 end
 

@@ -70,10 +70,10 @@ local function init()
   --   }
   -- })
 
-  use {
-    "tani/hey.vim",
-    requires = { "vim-denops/denops.vim" },
-  }
+  -- use {
+  --   "tani/hey.vim",
+  --   requires = { "vim-denops/denops.vim" },
+  -- }
 
   -- packer
   use {
@@ -91,11 +91,13 @@ local function init()
     requires = {
       { "williamboman/mason-lspconfig.nvim", module = "mason-lspconfig" },
       { "williamboman/mason.nvim", module = "mason" },
+      { "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
     },
     wants = {
       "mason.nvim",
       "mason-lspconfig.nvim",
       "cmp-nvim-lsp",
+      "null-ls.nvim",
     },
     config = function()
       require("plugins.lspconfig").config()
@@ -105,14 +107,14 @@ local function init()
   use "jose-elias-alvarez/typescript.nvim"
   use "onsails/lspkind-nvim"
 
-  use {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = { "BufReadPre" },
-    config = function()
-      require("plugins.null-ls").config()
-    end,
-    -- ft = { 'typescript', 'typescriptreact', 'golang' }
-  }
+  -- use {
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   event = { "BufReadPre" },
+  --   config = function()
+  -- require("plugins.null-ls").config()
+  --   end,
+  --   -- ft = { 'typescript', 'typescriptreact', 'golang' }
+  -- }
 
   use(require "plugins.cmp")
 
