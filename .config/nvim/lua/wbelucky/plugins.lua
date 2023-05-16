@@ -5,7 +5,7 @@ local function init()
   if packer == nil then
     local cmd = vim.cmd
     cmd [[packadd packer.nvim]]
-    packer = require 'packer'
+    packer = require "packer"
     packer.init {}
   end
   packer.reset()
@@ -15,139 +15,159 @@ local function init()
     "wbthomason/packer.nvim",
     opt = true,
   }
-  use 'nvim-lua/plenary.nvim'
+  use "nvim-lua/plenary.nvim"
 
   use {
-    'nvim-treesitter/nvim-treesitter',
+    "nvim-treesitter/nvim-treesitter",
     run = function()
-      local ts_update = require('nvim-treesitter.install')
-          .update({ with_sync = true })
+      local ts_update = require("nvim-treesitter.install").update { with_sync = true }
       ts_update()
     end,
   }
 
   use {
-    'nvim-telescope/telescope.nvim',
-    module = { 'telescope' },
-    requires = {
-      { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-file-browser.nvim', opt = true },
-      { 'nvim-telescope/telescope-ghq.nvim', opt = true },
-      { 'nvim-telescope/telescope-ui-select.nvim' },
-    },
-    wants = {
-      'telescope-file-browser.nvim',
-      'telescope-ghq.nvim',
-      'telescope-ui-select.nvim',
-    },
-    setup = function() require('plugins.telescope_rc').setup() end,
-    config = function() require('plugins.telescope_rc').config() end,
+    "nvim-lualine/lualine.nvim",
+    requires = { "nvim-tree/nvim-web-devicons", opt = true },
   }
 
-  use({
-    "jackMort/ChatGPT.nvim",
-    -- opt = true,
-    -- module = "chatgpt",
-    config = function()
-      require("chatgpt").setup({
-        keymaps = {
-          submit = "<C-t>"
-        }
-      })
-    end,
+  use {
+    "nvim-telescope/telescope.nvim",
+    module = { "telescope" },
     requires = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
-    }
-  })
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope-file-browser.nvim", opt = true },
+      { "nvim-telescope/telescope-ghq.nvim", opt = true },
+      { "nvim-telescope/telescope-ui-select.nvim" },
+    },
+    wants = {
+      "telescope-file-browser.nvim",
+      "telescope-ghq.nvim",
+      "telescope-ui-select.nvim",
+    },
+    setup = function()
+      require("plugins.telescope_rc").setup()
+    end,
+    config = function()
+      require("plugins.telescope_rc").config()
+    end,
+  }
+
+  -- use({
+  --   "jackMort/ChatGPT.nvim",
+  --   -- opt = true,
+  --   -- module = "chatgpt",
+  --   config = function()
+  --     require("chatgpt").setup({
+  --       keymaps = {
+  --         submit = "<C-t>"
+  --       }
+  --     })
+  --   end,
+  --   requires = {
+  --     "MunifTanjim/nui.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-telescope/telescope.nvim"
+  --   }
+  -- })
+
+  use {
+    "tani/hey.vim",
+    requires = { "vim-denops/denops.vim" },
+  }
+
   -- packer
   use {
     "nvim-telescope/telescope-file-browser.nvim",
-    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   }
 
   use {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    module = 'lsp_lines',
+    module = "lsp_lines",
   }
   use {
-    'neovim/nvim-lspconfig',
+    "neovim/nvim-lspconfig",
     event = { "BufReadPre" },
     requires = {
-      { 'williamboman/mason-lspconfig.nvim', module = 'mason-lspconfig' },
-      { 'williamboman/mason.nvim', module = 'mason' },
+      { "williamboman/mason-lspconfig.nvim", module = "mason-lspconfig" },
+      { "williamboman/mason.nvim", module = "mason" },
     },
     wants = {
       "mason.nvim",
       "mason-lspconfig.nvim",
       "cmp-nvim-lsp",
     },
-    config = function() require('plugins.lspconfig').config() end,
+    config = function()
+      require("plugins.lspconfig").config()
+    end,
   }
 
-  use 'jose-elias-alvarez/typescript.nvim'
-  use 'onsails/lspkind-nvim'
+  use "jose-elias-alvarez/typescript.nvim"
+  use "onsails/lspkind-nvim"
 
   use {
-    'jose-elias-alvarez/null-ls.nvim',
-    opt = true,
-    config = function() require('plugins.null-ls').config() end,
-    ft = { 'typescript', 'typescriptreact', 'golang' }
+    "jose-elias-alvarez/null-ls.nvim",
+    event = { "BufReadPre" },
+    config = function()
+      require("plugins.null-ls").config()
+    end,
+    -- ft = { 'typescript', 'typescriptreact', 'golang' }
   }
 
-  use(require("plugins.cmp"))
+  use(require "plugins.cmp")
 
   use {
-    'ruifm/gitlinker.nvim',
+    "ruifm/gitlinker.nvim",
     opt = true,
-    keys = { { 'n', '<leader>gy' }, { 'v', '<leader>gy' } },
+    keys = { { "n", "<leader>gy" }, { "v", "<leader>gy" } },
     config = function()
       require("gitlinker").setup()
-    end
+    end,
   }
 
-  use(require("plugins.gitsigns"))
+  use(require "plugins.gitsigns")
   -- use 'pwntester/octo.nvim'
 
-  use 'tpope/vim-surround'
+  use "tpope/vim-surround"
   -- use {
   --   'svrana/neosolarized.nvim',
   --   requires = { 'tjdevries/colorbuddy.nvim' }
   -- }
   use {
-    'folke/tokyonight.nvim',
-    config = function() vim.cmd [[colorscheme tokyonight]] end
+    "folke/tokyonight.nvim",
+    config = function()
+      vim.cmd [[colorscheme tokyonight]]
+    end,
   }
 
-
-  use { 'buoto/gotests-vim', opt = true, ft = 'go' }
-
+  use { "buoto/gotests-vim", opt = true, ft = "go" }
 
   use {
-    'akinsho/flutter-tools.nvim',
+    "akinsho/flutter-tools.nvim",
     opt = true,
-    ft = 'dart',
-    requires = 'nvim-lua/plenary.nvim',
-    config = function() require('plugins.flutter-tools').config() end,
+    ft = "dart",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("plugins.flutter-tools").config()
+    end,
   }
   use {
-    'mfussenegger/nvim-dap',
+    "mfussenegger/nvim-dap",
     opt = true,
-    module = 'dap',
+    module = "dap",
   }
 
   use {
-    'windwp/nvim-ts-autotag',
-    requires = { 'nvim-treesitter/nvim-treesitter' }
+    "windwp/nvim-ts-autotag",
+    requires = { "nvim-treesitter/nvim-treesitter" },
   }
 
-  use 'b0o/schemastore.nvim'
+  use "b0o/schemastore.nvim"
 
-  use 'makerj/vim-pdf'
-  use 'voldikss/vim-translator'
-  use 'kyazdani42/nvim-web-devicons'
-  use 'dstein64/vim-startuptime'
+  use "makerj/vim-pdf"
+  use "voldikss/vim-translator"
+  use "kyazdani42/nvim-web-devicons"
+  use "dstein64/vim-startuptime"
 end
 
 local plugins = setmetatable({}, {
