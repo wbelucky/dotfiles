@@ -1,5 +1,7 @@
 local k = vim.keymap.set
 
+k('i', 'jj', '<ESC>')
+
 k('n', 'k', 'gk')
 k('n', 'j', 'gj')
 
