@@ -20,7 +20,7 @@ set -gx DENO_INSTALL $HOME/.deno
 set -gx RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 
 set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
-set -q XDG_CONFIG_HOME || set -gx XDG_CONFIG_HOME  $HOME/.config
+set -q XDG_CONFIG_HOME || set -gx XDG_CONFIG_HOME $HOME/.config
 
 set -q AQUA_ROOT_DIR || set -gx AQUA_ROOT_DIR $XDG_DATA_HOME/aquaproj-aqua
 set -q AQUA_GLOBAL_CONFIG || set -gx AQUA_GLOBAL_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua.yaml
@@ -38,20 +38,15 @@ fish_add_path ~/.local/bin
 
 # DOTFILES, PRIVATE_CONFIGSなどを.wbconfigから読み込み
 yq '.environment | to_entries | .[] | [.key, .value] | .[]' ~/.wbconfig |
-while read -l var
-  read -l val
-  set -gx $var $val
-end
-
-
-if set -q PRIVATE_CONFIGS
-  source "$PRIVATE_CONFIGS/config-private.fish"
-end
+    while read -l var
+        read -l val
+        set -gx $var $val
+    end
 
 # for ssh-agent ref: https://zenn.dev/kaityo256/articles/ssh_agent_on_wsl
 if command -qv keychain
-  keychain -q --nogui $HOME/.ssh/id_ed25519
-  source $HOME/.keychain/$hostname-fish
+    keychain -q --nogui $HOME/.ssh/id_ed25519
+    source $HOME/.keychain/$hostname-fish
 end
 
 if status is-interactive
@@ -63,4 +58,8 @@ if status is-interactive
     # command -qv gh && eval (gh completion -s fish | source)
     # echo "Finish loading gh completion $(date "+%S%N")"
     source ~/.asdf/asdf.fish
+end
+
+if set -q PRIVATE_CONFIGS
+    source "$PRIVATE_CONFIGS/config-private.fish"
 end
