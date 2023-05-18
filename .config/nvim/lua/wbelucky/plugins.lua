@@ -87,16 +87,18 @@ local function init()
   }
   use {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre" },
+    event = { "BufReadPre", "BufNewFile" },
     requires = {
       { "williamboman/mason-lspconfig.nvim", module = "mason-lspconfig" },
-      { "williamboman/mason.nvim", module = "mason" },
+      { "williamboman/mason.nvim", module = "mason", run = ":MasonUpdate" },
+      { "jay-babu/mason-null-ls.nvim", module = "mason-null-ls" },
       { "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
     },
     wants = {
       "mason.nvim",
       "mason-lspconfig.nvim",
       "cmp-nvim-lsp",
+      "mason-null-ls.nvim",
       "null-ls.nvim",
     },
     config = function()
