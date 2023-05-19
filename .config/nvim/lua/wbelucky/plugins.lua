@@ -71,9 +71,11 @@ local function init()
   -- })
 
   -- use {
-  --   "tani/hey.vim",
+  --   "wbelucky/hey.vim",
+  --   branch = "refactor",
   --   requires = { "vim-denops/denops.vim" },
   -- }
+  use { "vim-denops/denops.vim" }
 
   -- packer
   use {
