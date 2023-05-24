@@ -39,11 +39,6 @@ M.config = function()
 
   require("plugins.null-ls").config()
 
-  require("mason-null-ls").setup {
-    ensure_installed = nil,
-    automatic_installation = true,
-  }
-
   -- ref: https://github.com/delphinus/dotfiles/blob/2c87826171d4397767e935e8db681aac4a6cff01/.config/nvim/lua/modules/lsp/config.lua#L47-L54
   require("lsp_lines").setup()
   vim.diagnostic.config {
