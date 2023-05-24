@@ -32,6 +32,7 @@ set -q XDG_CONFIG_HOME || set -gx XDG_CONFIG_HOME $HOME/.config
 # fish_add_path $AQUA_ROOT_DIR/bin
 fish_add_path $GOPATH/bin
 fish_add_path $GOROOT/bin
+fish_add_path $HOME/.cargo/bin
 fish_add_path $DENO_INSTALL/bin
 fish_add_path bin
 fish_add_path node_modules/.bin

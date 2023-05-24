@@ -34,4 +34,5 @@ go install github.com/mikefarah/yq/v4@latest
 # jq
 sudo apt install jq
 
-
+# jira cli
+go install github.com/ankitpokhrel/jira-cli/cmd/jira@latest
