@@ -1,5 +1,7 @@
 set fish_greeting ""
 
+set -gx async_prompt_function fish_prompt
+
 
 # https://github.com/jorgebucaran/fisher/issues/640#issuecomment-1172984768
 set fisher_path ~/.config/fish/fisher
