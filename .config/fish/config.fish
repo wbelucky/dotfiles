@@ -23,13 +23,14 @@ set -gx RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
 set -q XDG_CONFIG_HOME || set -gx XDG_CONFIG_HOME $HOME/.config
 
-# set -q AQUA_ROOT_DIR || set -gx AQUA_ROOT_DIR $XDG_DATA_HOME/aquaproj-aqua
-# set -q AQUA_GLOBAL_CONFIG || set -gx AQUA_GLOBAL_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua.yaml
+set -q AQUA_ROOT_DIR || set -gx AQUA_ROOT_DIR $XDG_DATA_HOME/aquaproj-aqua
+set -q AQUA_GLOBAL_CONFIG || set -gx AQUA_GLOBAL_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua.yaml
+set -gx AQUA_POLICY_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua-policy.yaml
 
 # for gopls
-# set -gx AQUA_EXPERIMENTAL_X_SYS_EXEC true
+set -gx AQUA_EXPERIMENTAL_X_SYS_EXEC true
 
-# fish_add_path $AQUA_ROOT_DIR/bin
+fish_add_path $AQUA_ROOT_DIR/bin
 fish_add_path $GOPATH/bin
 fish_add_path $GOROOT/bin
 fish_add_path $HOME/.cargo/bin

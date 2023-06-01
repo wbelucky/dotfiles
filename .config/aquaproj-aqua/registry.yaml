@@ -1,0 +1,24 @@
+packages:
+# init: a
+  - type: go_install
+    path: github.com/x-motemen/ghq
+    description: ghq - Manage remote repository clones
+
+  - type: go_install
+    path: github.com/mikefarah/yq/v4
+    name: github.com/mikefarah/yq
+    description: yq is a portable command-line YAML, JSON, XML, CSV, TOML and properties processor
+    asset: yq
+  - type: go_install
+    path: github.com/ankitpokhrel/jira-cli/cmd/jira
+    description: Feature-rich interactive Jira command line
+  - type: cargo
+    name: crates.io/ripgrep
+    crate: ripgrep
+    files:
+      - name: rg
+  - type: cargo
+    name: crates.io/exa
+    crate: exa
+    files:
+      - name: exa

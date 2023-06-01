@@ -22,17 +22,17 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 # ghq
 go install github.com/x-motemen/ghq@latest
 
+# yq
+go install github.com/mikefarah/yq/v4@latest
+
+# jira cli
+go install github.com/ankitpokhrel/jira-cli/cmd/jira@latest
+
 # exa
 sudo apt install exa
 
 # ripgrep
 sudo apt install ripgrep
 
-# yq
-go install github.com/mikefarah/yq/v4@latest
-
 # jq
 sudo apt install jq
-
-# jira cli
-go install github.com/ankitpokhrel/jira-cli/cmd/jira@latest
