@@ -3,22 +3,23 @@ local M = {
   module = { "cmp" },
   requires = {
     { "hrsh7th/cmp-nvim-lsp", event = { "InsertEnter" } },
-    { "hrsh7th/cmp-buffer", event = { "InsertEnter" } },
-    { "hrsh7th/cmp-emoji", event = { "InsertEnter" } },
-    { "hrsh7th/cmp-path", event = { "InsertEnter" } },
-    { "hrsh7th/cmp-vsnip", event = { "InsertEnter" } },
-    { "hrsh7th/cmp-cmdline", event = { "CmdlineEnter" } },
-    { "hrsh7th/vim-vsnip", event = { "InsertEnter" } },
-    -- ……以下各種ソースプラグインが続く
+    { "hrsh7th/cmp-buffer",   event = { "InsertEnter" } },
+    { "hrsh7th/cmp-emoji",    event = { "InsertEnter" } },
+    { "hrsh7th/cmp-path",     event = { "InsertEnter" } },
+    { "hrsh7th/cmp-vsnip",    event = { "InsertEnter" } },
+    { "hrsh7th/cmp-cmdline",  event = { "CmdlineEnter" } },
+    { "hrsh7th/vim-vsnip",    event = { "InsertEnter" } },
   },
 }
--- set completeopt=menuone,noinsert,noselect
 
 M.config = function()
   local cmp = require "cmp"
   if cmp == nil then
     return
   end
+
+  vim.g.vsnip_snippet_dir = vim.env.VSNIP_DIR
+
   local lspkind = require "lspkind"
   cmp.setup {
     snippet = {
@@ -42,7 +43,6 @@ M.config = function()
     sources = cmp.config.sources({
       {
         name = "vsnip",
-        keyword_length = 3,
       },
       {
         name = "nvim_lsp",
@@ -50,7 +50,9 @@ M.config = function()
       }, -- { name = 'cmp_tabnine' },
       {
         name = "path",
-        keyword_length = 3,
+      },
+      {
+        name = "emoji",
       },
     }, {
       {
