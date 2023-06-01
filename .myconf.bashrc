@@ -55,9 +55,9 @@ HERE
 
 
 # load private configs
-if [[ -v "PRIVATE_CONFIGS" ]]; then 
-  . "$PRIVATE_CONFINGS/private.bashrc"
-fi
+# if [[ -v "PRIVATE_CONFIGS" ]]; then 
+#   . "$PRIVATE_CONFINGS/private.bashrc"
+# fi
 
 # automatically start up tmux
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
