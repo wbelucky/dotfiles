@@ -19,24 +19,22 @@ alias clip='xclip -selection c'
 alias gcd='cd $(ghq list -p | fzf)'
 
 export EDITOR=vim
-export GOROOT=$HOME/.go
 export GOPATH=$HOME/go
 export TERM=xterm-256color
-
 export XDG_CONFIG_HOME=$HOME/.config/
-# export AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml
+export AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml
 
 export MYVIMRC=$HOME/.config/nvim/init.vim
 # for gopls
-# export AQUA_EXPERIMENTAL_X_SYS_EXEC=true
+export AQUA_EXPERIMENTAL_X_SYS_EXEC=true
 
 export PATH=$PATH:$HOME/.local/bin/
-# export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
+export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 export PATH=$PATH:$HOME/.yarn/bin
 export PATH=$PATH:$HOME/.config/yarn/global/node_modules/.bin
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:/usr/local/go/bin
+export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 
 # load DOTFILES and PRIVATE_CONFIGS from .wbconfig
 kvs=$(yq '.environment | to_entries | .[] | [.key, .value] | .[]' $HOME/.wbconfig)
