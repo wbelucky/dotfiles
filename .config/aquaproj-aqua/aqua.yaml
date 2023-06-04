@@ -9,7 +9,6 @@ registries:
     path: registry.yaml
 packages:
   - name: cli/cli@v2.23.0
-  # - name: neovim/neovim@v0.9.0
   - name: junegunn/fzf@0.39.0
   - name: stedolan/jq@jq-1.6
   - name: golang/go
