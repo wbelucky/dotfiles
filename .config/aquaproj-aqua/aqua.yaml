@@ -32,3 +32,4 @@ packages:
   - name: github.com/ankitpokhrel/jira-cli/cmd/jira
     registry: local
     version: eb842e18014303a575fde8e19508b3c7c13982c5
+  - name: hashicorp/terraform@v1.4.6
