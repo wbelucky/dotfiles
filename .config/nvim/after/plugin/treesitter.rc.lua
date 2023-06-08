@@ -37,6 +37,7 @@ ts.setup {
     "lua",
     "vim",
     "dart",
+    "hcl",
   },
   autotag = {
     enable = true,
