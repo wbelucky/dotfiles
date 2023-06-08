@@ -3,11 +3,11 @@ local lsp_servers = {
     filetypes = { "python" },
   },
   lua_ls = {
-    on_attach = function(client, bufnr)
-      local base = require "wbelucky.lsp_base"
-      base.on_attach(client, bufnr)
-      base.enable_format_on_save(client, bufnr)
-    end,
+    -- on_attach = function(client, bufnr)
+    --   local base = require "wbelucky.lsp_base"
+    --   base.on_attach(client, bufnr)
+    --   base.enable_format_on_save(client, bufnr)
+    -- end,
     settings = {
       Lua = {
         diagnostics = {
