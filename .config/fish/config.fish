@@ -36,7 +36,7 @@ fish_add_path $AQUA_ROOT_DIR/bin
 
 set -gx AQUA_GLOBAL_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua.yaml
 if uname -m | not grep -q arm
-    set -gx AQUA_GLOBAL_CONFIG "$XDG_CONFIG_HOME/aquaproj-aqua/neovim-x86_64.yaml:$AQUA_GLOBAL_CONFIG"
+    set -gx AQUA_GLOBAL_CONFIG "$XDG_CONFIG_HOME/aquaproj-aqua/amd64.yaml:$AQUA_GLOBAL_CONFIG"
 end
 
 set -gx AQUA_POLICY_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua-policy.yaml
