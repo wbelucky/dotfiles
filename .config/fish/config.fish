@@ -3,7 +3,7 @@ set fish_greeting ""
 set -gx async_prompt_functions fish_right_prompt
 
 
-# https://github.com/jorgebucaran/fisher/issues/640#issuecomment-1172984768
+# use ./fisher/ https://github.com/jorgebucaran/fisher/issues/640#issuecomment-1172984768
 set fisher_path ~/.config/fish/fisher
 ! set --query fisher_path[1] || test "$fisher_path" = $__fish_config_dir && exit
 
@@ -50,12 +50,9 @@ fish_add_path node_modules/.bin
 fish_add_path ~/.bin
 fish_add_path ~/.local/bin
 
+set -gx GHQ_ROOT "$HOME/ghq"
 # DOTFILES, PRIVATE_CONFIGSなどを.wbconfigから読み込み
-yq '.environment | to_entries | .[] | [.key, .value] | .[]' ~/.wbconfig |
-    while read -l var
-        read -l val
-        set -gx $var $val
-    end
+set -gx DOTFILES "$GHQ_ROOT/wbelucky/dotfiles-with-docker"
 
 # for ssh-agent ref: https://zenn.dev/kaityo256/articles/ssh_agent_on_wsl
 if command -qv keychain
@@ -66,6 +63,24 @@ end
 if status is-interactive
     source $HOME/.config/fish/abbr.fish
 
+    # Fish git prompt
+    set -gx __fish_git_prompt_showdirtystate 'yes'
+    set -gx __fish_git_prompt_showstashstate 'yes'
+    set -gx __fish_git_prompt_showuntrackedfiles 'yes'
+    set -gx __fish_git_prompt_showupstream 'yes'
+
+    set -gx __fish_git_prompt_color_branch yellow
+    set -gx __fish_git_prompt_color_upstream_ahead green
+    set -gx __fish_git_prompt_color_upstream_behind red
+
+    # Status Chars
+    set -gx __fish_git_prompt_char_dirtystate '🚧'
+    set -gx __fish_git_prompt_char_stagedstate '🏁'
+    set -gx __fish_git_prompt_char_untrackedfiles '✨'
+    set -gx __fish_git_prompt_char_stashstate '📚'
+    set -gx __fish_git_prompt_char_upstream_ahead '⏩'
+    set -gx __fish_git_prompt_char_upstream_behind '⏪'
+
     set -gx TERM xterm-256color
     # ghにはデフォルトで保管の設定がなされている? https://github.com/fish-shell/fish-shell/blob/master/share/completions/gh.fish
     # echo "Loading gh completion $(date "+%S%N")"
@@ -74,6 +89,7 @@ if status is-interactive
     source ~/.asdf/asdf.fish
 end
 
-if set -q PRIVATE_CONFIGS
-    source "$PRIVATE_CONFIGS/config-private.fish"
+set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
+if test -f $LOCAL_CONFIG
+  source $LOCAL_CONFIG
 end
