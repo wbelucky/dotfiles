@@ -1,6 +1,6 @@
 set fish_greeting ""
 
-set -gx async_prompt_function fish_prompt
+set -gx async_prompt_functions fish_right_prompt
 
 
 # https://github.com/jorgebucaran/fisher/issues/640#issuecomment-1172984768
@@ -16,23 +16,35 @@ end
 
 
 set -gx EDITOR nvim
+
 set -gx GOPATH $HOME/go
+fish_add_path $GOPATH/bin
+
+# set -gx GOROOT $HOME/.go
+# fish_add_path $GOROOT/bin
 
 set -gx DENO_INSTALL $HOME/.deno
+fish_add_path $DENO_INSTALL/bin
+
 set -gx RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 
-set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
-set -q XDG_CONFIG_HOME || set -gx XDG_CONFIG_HOME $HOME/.config
+set -gx XDG_DATA_HOME $HOME/.local/share
+set -gx XDG_CONFIG_HOME $HOME/.config
 
-set -q AQUA_ROOT_DIR || set -gx AQUA_ROOT_DIR $XDG_DATA_HOME/aquaproj-aqua
-set -q AQUA_GLOBAL_CONFIG || set -gx AQUA_GLOBAL_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua.yaml
+set -gx AQUA_ROOT_DIR $XDG_DATA_HOME/aquaproj-aqua
+fish_add_path $AQUA_ROOT_DIR/bin
+
+set -gx AQUA_GLOBAL_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua.yaml
+if uname -m | not grep -q aarch
+    set -gx AQUA_GLOBAL_CONFIG "$XDG_CONFIG_HOME/aquaproj-aqua/amd64.yaml:$AQUA_GLOBAL_CONFIG"
+end
+
+set -gx AQUA_POLICY_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua-policy.yaml
 
 # for gopls
 set -gx AQUA_EXPERIMENTAL_X_SYS_EXEC true
 
-fish_add_path $AQUA_ROOT_DIR/bin
-fish_add_path $GOPATH/bin
-fish_add_path $DENO_INSTALL/bin
+fish_add_path $HOME/.cargo/bin
 fish_add_path bin
 fish_add_path node_modules/.bin
 fish_add_path ~/.bin

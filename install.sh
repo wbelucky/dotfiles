@@ -2,14 +2,16 @@
 
 
 # FIXME aqua.sh is called before link.sh which needs yq
+
+. ./scripts/cargo.sh
 . ./scripts/aqua.sh
 
 . ./scripts/link.sh
 
-. ./scripts/vim-plug.sh
+. ./scripts/deno.sh
+. ./scripts/packer.sh
 . ./scripts/asdf.sh
 . ./scripts/fisher.sh
 
-. ./scripts/env.sh
 ln -snfv ${DOTFILES}/.gitconfig ${HOME}/.gitconfig
 

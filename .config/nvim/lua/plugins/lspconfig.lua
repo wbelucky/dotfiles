@@ -9,13 +9,18 @@ M.config = function()
   vim.keymap.set("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", global_opts)
 
   require("mason").setup {}
+
+  local servers = require "wbelucky.lsp_servers"
   local mason_lspconfig = require "mason-lspconfig"
   mason_lspconfig.setup {
+    ensure_installed = vim.tbl_filter(function(v)
+      -- exclude them
+      return not vim.tbl_contains({ "clangd", "denols" }, v)
+    end, vim.tbl_keys(servers)),
     automatic_installation = true,
   }
 
   local base = require "wbelucky.lsp_base"
-  local servers = require "wbelucky.lsp_servers"
   local default = {
     capabilities = base.capabilities,
     on_attach = base.on_attach,
@@ -52,33 +57,33 @@ M.config = function()
   }
 
   --protocol.SymbolKind = { }
-  require("vim.lsp.protocol").CompletionItemKind = {
-    "", -- Text
-    "", -- Method
-    "", -- Function
-    "", -- Constructor
-    "", -- Field
-    "", -- Variable
-    "", -- Class
-    "ﰮ", -- Interface
-    "", -- Module
-    "", -- Property
-    "", -- Unit
-    "", -- Value
-    "", -- Enum
-    "", -- Keyword
-    "﬌", -- Snippet
-    "", -- Color
-    "", -- File
-    "", -- Reference
-    "", -- Folder
-    "", -- EnumMember
-    "", -- Constant
-    "", -- Struct
-    "", -- Event
-    "ﬦ", -- Operator
-    "", -- TypeParameter
-  }
+  -- require("vim.lsp.protocol").CompletionItemKind = {
+  --   "󰉿", -- Text
+  --   "󰆧", -- Method
+  --   "󰊕", -- Function
+  --   "", -- Constructor
+  --   "󰜢", -- Field
+  --   "󰀫", -- Variable
+  --   "󰠱", -- Class
+  --   "", -- Interface
+  --   "", -- Module
+  --   "󰜢", -- Property
+  --   "󰑭", -- Unit
+  --   "󰎠", -- Value
+  --   "", -- Enum
+  --   "󰌋", -- Keyword
+  --   "", -- Snippet
+  --   "", -- Color
+  --   "", -- File
+  --   "󰈇", -- Reference
+  --   "", -- Folder
+  --   "", -- EnumMember
+  --   "󰏿", -- Constant
+  --   "󰙅", -- Struct
+  --   "", -- Event
+  --   "󰆕", -- Operator
+  --   "", -- TypeParameter
+  -- }
 
   -- icon
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {

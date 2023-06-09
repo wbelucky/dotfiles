@@ -77,7 +77,6 @@ local function init()
   -- }
   use { "vim-denops/denops.vim" }
 
-  -- packer
   use {
     "nvim-telescope/telescope-file-browser.nvim",
     requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
@@ -174,6 +173,22 @@ local function init()
   use "voldikss/vim-translator"
   use "kyazdani42/nvim-web-devicons"
   use "dstein64/vim-startuptime"
+  use {
+    "ojroques/nvim-osc52",
+    config = function()
+      require("osc52").setup {}
+      vim.keymap.set("n", "<leader>c", require("osc52").copy_operator, { expr = true })
+      vim.keymap.set("n", "<leader>cc", "<leader>c_", { remap = true })
+      vim.keymap.set("x", "<leader>c", require("osc52").copy_visual)
+      local function copy()
+        if vim.v.event.operator == "y" and vim.v.event.regname == "+" then
+          require("osc52").copy_register "+"
+        end
+      end
+
+      vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
+    end,
+  }
 end
 
 local plugins = setmetatable({}, {
