@@ -34,3 +34,4 @@ packages:
     version: eb842e18014303a575fde8e19508b3c7c13982c5
   - name: hashicorp/terraform@v1.4.6
   - name: twistedpair/google-cloud-sdk@434.0.0
+  - name: kubernetes/kubectl@v1.25.10

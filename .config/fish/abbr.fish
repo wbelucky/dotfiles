@@ -23,6 +23,9 @@ abbr -a 'gs' 'git status'
 abbr -a 'gsw' 'git switch'
 abbr -a 'gw' 'git_log_switch'
 
+abbr -a 'kc' 'kubectl'
+abbr -a 'tf' 'terraform'
+
 if test -e /etc/os-release
   abbr -a 'open' 'xdg-open'
 end

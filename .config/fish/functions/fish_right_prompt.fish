@@ -14,5 +14,5 @@ end
 
 function fish_right_prompt
     _prompt_user
-    echo (set_color normal)(__fish_git_prompt "(%s)")
+    echo (set_color green)(__fish_git_prompt " %s")
 end

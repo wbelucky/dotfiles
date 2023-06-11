@@ -72,7 +72,11 @@ local lsp_servers = {
     single_file_support = false,
     cmd = { "typescript-language-server", "--stdio" },
   },
-  terraformls = {},
+  terraformls = {
+    -- disable terraform-vars because of https://github.com/neovim/neovim/issues/23184
+    -- https://www.reddit.com/r/neovim/comments/125gctj/e5248_invalid_character_in_group_name_with/
+    filetypes = { "terraform" },
+  },
   tflint = {},
 }
 
