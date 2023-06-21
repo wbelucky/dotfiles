@@ -34,7 +34,7 @@ command -qv nvim && alias vim nvim
 command -qv nvim && alias v nvim
 
 if command -qv exa
-  abbr -a ls 'exa --icons --git'
+  # abbr -a ls 'exa --icons --git'
   abbr -a ll 'exa -l --icons --git'
   abbr -a lla 'll -a'
   abbr -a lt 'exa -T -L 3 -a -I "node_modules|.git|.cache" --icons'
