@@ -22,3 +22,8 @@ packages:
     crate: exa
     files:
       - name: exa
+  - type: cargo
+    name: crates.io/jless
+    crate: jless
+    files:
+      - name: jless

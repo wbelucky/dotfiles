@@ -35,3 +35,5 @@ packages:
   - name: hashicorp/terraform@v1.4.6
   - name: twistedpair/google-cloud-sdk@434.0.0
   - name: kubernetes/kubectl@v1.25.10
+  - name: crates.io/jless@0.8.0
+    registry: local
