@@ -1,6 +1,13 @@
 local lsp_servers = {
   pyright = {
     filetypes = { "python" },
+    -- https://www.reddit.com/r/neovim/comments/wls43h/pyright_lsp_configuration_for_python_poetry/
+    on_new_config = function(config, root_dir)
+      local env = vim.trim(vim.fn.system('cd "' .. root_dir .. '"; poetry env info -p 2>/dev/null'))
+      if string.len(env) > 0 then
+        config.settings.python.pythonPath = env .. "/bin/python"
+      end
+    end,
   },
   lua_ls = {
     -- on_attach = function(client, bufnr)
