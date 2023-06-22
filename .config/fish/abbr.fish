@@ -32,6 +32,7 @@ end
 
 command -qv nvim && alias vim nvim
 command -qv nvim && alias v nvim
+abbr -a vf 'nvim (rg --files | fzf)'
 
 if command -qv exa
   # abbr -a ls 'exa --icons --git'
