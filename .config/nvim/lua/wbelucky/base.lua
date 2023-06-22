@@ -91,6 +91,8 @@ if vim.fn.has [[wsl]] == 1 then
   }
 end
 
+vim.cmd [[au BufNewFile,BufRead *.pyflyby setl filetype=python]]
+
 -- vim.opt.spell = true
 -- vim.opt.spelllang = { "en", "cjk" }
 
