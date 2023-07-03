@@ -21,9 +21,11 @@ packages:
   # - name: BurntSushi/ripgrep@13.0.0
   - name: crates.io/ripgrep@13.0.0
     registry: local
+
   # - name: ogham/exa@v0.10.1
-  - name: crates.io/exa@0.10.1
-    registry: local
+  # - name: crates.io/exa@0.10.1
+  #   registry: local
+
   # - name: mikefarah/yq@v4.28.2
   - name: github.com/mikefarah/yq
     registry: local
