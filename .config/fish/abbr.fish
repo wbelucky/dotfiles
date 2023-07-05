@@ -1,6 +1,6 @@
 abbr -a 'clip' 'xclip -selection c'
 abbr -a 'd' 'docker'
-abbr -a 'dc' 'docker-compose'
+abbr -a 'dc' 'docker compose'
 abbr -a 'di' 'docker images'
 abbr -a 'dlmv' 'mv (ls -td $HOME/Downloads/* | head -n 1) .'
 abbr -a 'dps' 'docker ps'
