@@ -38,5 +38,5 @@ packages:
   - name: twistedpair/google-cloud-sdk@434.0.0
   - name: kubernetes/kubectl@v1.25.10
   - name: docker/compose@v2.19.1
-  - name: crates.io/jless@0.8.0
-    registry: local
+  # - name: crates.io/jless@0.8.0
+  #   registry: local
