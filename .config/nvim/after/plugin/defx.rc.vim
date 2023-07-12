@@ -13,7 +13,7 @@ function! s:defx_my_settings() abort
   \ defx#is_directory() ?
   \ defx#do_action('open_or_close_tree') :
   \ defx#do_action('drop')
-  nnoremap <silent><buffer><expr> yy
+  nnoremap <silent><buffer><expr> Y
   \ defx#do_action('copy')
   nnoremap <silent><buffer><expr> dd
   \ defx#do_action('move')
@@ -48,7 +48,7 @@ function! s:defx_my_settings() abort
   \ defx#do_action('execute_command')
   nnoremap <silent><buffer><expr> x
   \ defx#do_action('execute_system')
-  nnoremap <silent><buffer><expr> <C-l>
+  nnoremap <silent><buffer><expr> yy
   \ defx#do_action('yank_path')
   nnoremap <silent><buffer><expr> .
   \ defx#do_action('toggle_ignored_files')
@@ -70,8 +70,8 @@ function! s:defx_my_settings() abort
   \ line('.') == 1 ? 'G' : 'k'
   nnoremap <silent><buffer><expr> <C-r>
   \ defx#do_action('redraw')
-  nnoremap <silent><buffer><expr> <C-g>
-  \ defx#do_action('print')
+  " nnoremap <silent><buffer><expr> <C-g>
+  " \ defx#do_action('print')
   nnoremap <silent><buffer><expr> cd
   \ defx#do_action('change_vim_cwd')
 

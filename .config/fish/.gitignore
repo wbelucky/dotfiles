@@ -1,2 +1,4 @@
-fish_variables
-config-private.fish
+/fish_variables
+/config-private.fish
+/fisher/
+/config-local.fish
