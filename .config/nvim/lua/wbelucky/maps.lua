@@ -32,6 +32,7 @@ local function yank_url()
 end
 
 k("n", "<leader>l", yank_url, {})
+k("n", "<leader><leader>", "<c-w><c-w>", {})
 
 -- TODO:
 -- " :TermでTerminalが新しいwindowで開く
