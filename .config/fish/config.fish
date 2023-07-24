@@ -20,8 +20,8 @@ set -gx EDITOR nvim
 set -gx GOPATH $HOME/go
 fish_add_path $GOPATH/bin
 
-# set -gx GOROOT $HOME/.go
-# fish_add_path $GOROOT/bin
+set -gx GOROOT (dirname (dirname (aqua which go)))
+fish_add_path $GOROOT/bin
 
 set -gx DENO_INSTALL $HOME/.deno
 fish_add_path $DENO_INSTALL/bin
