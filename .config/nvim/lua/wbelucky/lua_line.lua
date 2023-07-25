@@ -17,7 +17,18 @@ M.config = function()
     sections = {
       lualine_a = { "mode" },
       lualine_b = { "branch", "diff", "diagnostics" },
-      lualine_c = { "filename" },
+      lualine_c = {
+        {
+          "filename",
+          path = 1, -- relative path
+          symbols = {
+            modified = "",
+            readonly = "󰷭",
+            unnamed = "󰡯",
+            newfile = "",
+          },
+        },
+      },
       lualine_x = { "encoding", "fileformat", "filetype" },
       lualine_y = { "progress" },
       lualine_z = { "location" },
