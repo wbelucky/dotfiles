@@ -25,10 +25,7 @@ local function init()
     end,
   }
 
-  use {
-    "nvim-lualine/lualine.nvim",
-    requires = { "nvim-tree/nvim-web-devicons", opt = true },
-  }
+  use(require "wbelucky.lua_line")
 
   use {
     "nvim-telescope/telescope.nvim",
