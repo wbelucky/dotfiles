@@ -94,6 +94,7 @@ local lsp_servers = {
     filetypes = { "terraform" },
   },
   tflint = {},
+  kotlin_language_server = {},
 }
 
 return lsp_servers
