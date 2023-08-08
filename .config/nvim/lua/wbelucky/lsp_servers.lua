@@ -94,7 +94,9 @@ local lsp_servers = {
     filetypes = { "terraform" },
   },
   tflint = {},
-  kotlin_language_server = {},
+  kotlin_language_server = {
+    settings = { kotlin = { compiler = { jvm = { target = "17" } } } },
+  },
 }
 
 return lsp_servers
