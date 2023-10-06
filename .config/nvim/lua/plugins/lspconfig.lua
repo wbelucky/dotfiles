@@ -6,7 +6,7 @@ M.config = function()
   vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", global_opts)
   vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", global_opts)
   -- also use telescope.diagnostics
-  vim.keymap.set("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", global_opts)
+  vim.keymap.set("n", "<leader>Q", "<cmd>lua vim.diagnostic.setloclist()<CR>", global_opts)
 
   require("mason").setup {}
 

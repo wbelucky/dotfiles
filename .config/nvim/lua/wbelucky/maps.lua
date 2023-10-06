@@ -1,9 +1,17 @@
 local k = vim.keymap.set
 
 k("i", "jj", "<ESC>")
+k("i", "<ESC>", "<Nop>")
 
 k("n", "k", "gk")
 k("n", "j", "gj")
+
+k("n", "<leader>x", ":x<CR>")
+k("n", "<leader>w", ":w<CR>")
+k("n", "<leader>q", ":q<CR>")
+
+k("n", "<leader>d", "<C-d>")
+k("n", "<leader>u", "<C-u>")
 
 k("n", "<C-w>H", ":vertical resize -5<CR>")
 k("n", "<C-w>J", ":resize -5<CR>")
@@ -12,12 +20,12 @@ k("n", "<C-w>L", ":vertical resize +5<CR>")
 
 -- greatest remap ever
 -- レジスタを保持したままreplace
-k("x", "<leader>p", [["_dP]])
+k("x", "<leader>P", [["_dP]])
 
 -- next greatest remap ever
-k({ "n", "v" }, "<leader>y", [["+y]])
-k("v", "<leader>Y", [["+Y]])
-k("v", "<leader>d", [["_d]])
+k({ "n", "v" }, "my", [["+y]])
+k("v", "mY", [["+Y]])
+k("v", "md", [["_d]])
 
 local function yank_url()
   local line_number = vim.api.nvim_win_get_cursor(0)[1]

@@ -4,7 +4,7 @@ local M = {}
 local function builtin(name)
   return function(opt)
     return function()
-      local ivy = require('telescope.themes').get_ivy
+      local ivy = require("telescope.themes").get_ivy
       return require("telescope.builtin")[name](ivy(opt or {}))
     end
   end
@@ -16,69 +16,66 @@ local function extensions(name, prop)
     return function()
       local telescope = require "telescope"
       telescope.load_extension(name)
-      local ivy = require('telescope.themes').get_ivy
+      local ivy = require("telescope.themes").get_ivy
       return telescope.extensions[name][prop](ivy(opt or {}))
     end
   end
 end
 
 M.setup = function()
-
-  vim.keymap.set('n', '<C-p>', builtin "find_files" {})
-  vim.keymap.set('n', '<C-g>', builtin "live_grep" {})
-  vim.keymap.set('n', '<leader>b', builtin "buffers" {})
-  vim.keymap.set('n', '<leader>o', builtin "oldfiles" {})
-  vim.keymap.set('n', '<leader>d', builtin "diagnostics" {})
-  vim.keymap.set('n', '<leader>th', builtin "help_tags" {})
-  vim.keymap.set('n', 'gs', builtin "git_status" {})
-  vim.keymap.set('n', '<leader>ggst', builtin "git_stash" {})
-  vim.keymap.set('n', '<leader>gc', builtin "git_commits" {})
-  vim.keymap.set('n', '<leader>gb', builtin "git_branches" {})
-  vim.keymap.set('n', '<leader>tb', builtin "builtin" {})
-  vim.keymap.set('n', 'gq', extensions("ghq", "list") {})
+  vim.keymap.set("n", "<leader>p", builtin "find_files" {})
+  vim.keymap.set("n", "<leader>g", builtin "live_grep" {})
+  vim.keymap.set("n", "<leader>b", builtin "buffers" {})
+  vim.keymap.set("n", "<leader>o", builtin "oldfiles" {})
+  vim.keymap.set("n", "<leader>D", builtin "diagnostics" {})
+  vim.keymap.set("n", "<leader>th", builtin "help_tags" {})
+  vim.keymap.set("n", "gs", builtin "git_status" {})
+  vim.keymap.set("n", "<leader>Ggst", builtin "git_stash" {})
+  vim.keymap.set("n", "<leader>Gc", builtin "git_commits" {})
+  vim.keymap.set("n", "<leader>Gb", builtin "git_branches" {})
+  vim.keymap.set("n", "<leader>tb", builtin "builtin" {})
+  vim.keymap.set("n", "gq", extensions("ghq", "list") {})
 
   local open_fb = function()
     extensions("file_browser", "file_browser") {
       path = "%:p:h",
-      cwd = vim.fn.expand('%:p:h'),
+      cwd = vim.fn.expand "%:p:h",
       -- previewer = false,
       -- layout_config = { height = 40 }
-    } ()
+    }()
   end
   vim.keymap.set("n", "<leader>tt", open_fb)
   vim.keymap.set("n", "\\t", open_fb)
 
   vim.keymap.set("n", "<leader><C-p>", function()
-    builtin "find_files" { cwd = vim.fn.expand('%:p:h') } ()
+    builtin "find_files" { cwd = vim.fn.expand "%:p:h" }()
   end)
   vim.keymap.set("n", "<leader><C-g>", function()
-    builtin "live_grep" { cwd = vim.fn.expand('%:p:h') } ()
+    builtin "live_grep" { cwd = vim.fn.expand "%:p:h" }()
   end)
 end
 
 M.config = function()
   -- local builtin = require("telescope.builtin")
-  local ivy = require('telescope.themes').get_ivy
+  local ivy = require("telescope.themes").get_ivy
   local telescope = require "telescope"
-  local actions = require('telescope.actions')
-  local wb_actions = require('wbelucky.telescope_actions')
-  local fb_actions = require("telescope._extensions.file_browser.actions")
-
+  local actions = require "telescope.actions"
+  local wb_actions = require "wbelucky.telescope_actions"
+  local fb_actions = require "telescope._extensions.file_browser.actions"
 
   local git_icons = {
-    added = '🏁',
-    changed = '🚧',
-    copied = '💫',
-    deleted = '🔥',
-    renamed = '🚚',
-    unmerged = '🔀',
-    untracked = '✨',
+    added = "🏁",
+    changed = "🚧",
+    copied = "💫",
+    deleted = "🔥",
+    renamed = "🚚",
+    unmerged = "🔀",
+    untracked = "✨",
   }
 
   telescope.setup {
     defaults = {
-      mappings = {
-      },
+      mappings = {},
     },
     pickers = {
       find_files = {
@@ -88,13 +85,12 @@ M.config = function()
         -- args of ripgrep. ref: .ripgreprc in $RIPGREP_CONFIT_PATH
         additional_args = function(_)
           return { "--hidden" }
-        end
+        end,
       },
-      git_files = ivy {
-      },
+      git_files = ivy {},
       git_status = {
         git_icons = git_icons,
-        initial_mode = 'normal',
+        initial_mode = "normal",
       },
     },
     extensions = {
@@ -107,8 +103,7 @@ M.config = function()
         --   }
         -- }
       },
-      ["ui-select"] = ivy {
-      },
+      ["ui-select"] = ivy {},
       file_browser = ivy {
         grouped = true,
         hidden = true,
@@ -142,7 +137,7 @@ M.config = function()
             ["g"] = function(prompt_bufnr)
               local dir = wb_actions.get_target_dir(prompt_bufnr)
               actions.close(prompt_bufnr)
-              builtin "live_grep" { cwd = dir } ()
+              builtin "live_grep" { cwd = dir }()
             end,
             -- ["e"] = fb_actions.goto_home_dir,
             ["e"] = fb_actions.goto_home_dir,
@@ -161,21 +156,20 @@ M.config = function()
             ["p"] = function(prompt_bufnr)
               local dir = wb_actions.get_target_dir(prompt_bufnr)
               actions.close(prompt_bufnr)
-              builtin "find_files" { cwd = dir } ()
+              builtin "find_files" { cwd = dir }()
             end,
             ["/"] = function()
-              vim.cmd('startinsert')
+              vim.cmd "startinsert"
             end,
           },
           i = {
             ["<CR>"] = wb_actions.select_default,
-          }
+          },
         },
-      }
-    }
+      },
+    },
   }
-  require("telescope").load_extension("ui-select")
+  require("telescope").load_extension "ui-select"
 end
-
 
 return M
