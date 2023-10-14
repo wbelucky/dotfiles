@@ -10,7 +10,7 @@ ts.setup {
   },
   indent = {
     enable = true,
-    disable = {},
+    disable = { "dart" },
   },
   incremental_selection = {
     enable = true,

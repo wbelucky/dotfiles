@@ -49,6 +49,7 @@ fish_add_path bin
 fish_add_path node_modules/.bin
 fish_add_path ~/.bin
 fish_add_path ~/.local/bin
+fish_add_path $HOME/.pub-cache/bin
 
 set -gx GHQ_ROOT "$HOME/ghq"
 # DOTFILES, PRIVATE_CONFIGSなどを.wbconfigから読み込み
