@@ -1,7 +1,12 @@
 local k = vim.keymap.set
 
 k("i", "jj", "<ESC>")
+k("c", "jj", "<C-c>")
+
+-- for 🗡Training🗡
 k("i", "<ESC>", "<Nop>")
+k("c", "<ESC>", "<Nop>")
+k("v", "i", "<Nop>")
 
 k("n", "k", "gk")
 k("n", "j", "gj")
@@ -20,11 +25,9 @@ k("n", "<C-w>L", ":vertical resize +5<CR>")
 
 -- greatest remap ever
 -- レジスタを保持したままreplace
-k("x", "<leader>P", [["_dP]])
+k("x", "mp", [["_dP]])
 
 -- next greatest remap ever
-k({ "n", "v" }, "my", [["+y]])
-k("v", "mY", [["+Y]])
 k("v", "md", [["_d]])
 
 local function yank_url()
