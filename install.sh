@@ -9,7 +9,6 @@
 . ./scripts/link.sh
 
 . ./scripts/deno.sh
-. ./scripts/packer.sh
 . ./scripts/asdf.sh
 . ./scripts/fisher.sh
 
