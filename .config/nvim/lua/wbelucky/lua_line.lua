@@ -16,7 +16,14 @@ M.config = function()
     },
     sections = {
       lualine_a = { "mode" },
-      lualine_b = { "branch", "diff", "diagnostics" },
+      lualine_b = {
+        "branch",
+        {
+          "diagnostiics",
+          sources = { "nvim_diagnostic", "nvim_lsp", "nvim_workspace_diagnostic" },
+        },
+        "diff",
+      },
       lualine_c = {
         {
           "filename",
@@ -29,9 +36,10 @@ M.config = function()
           },
         },
       },
-      lualine_x = { "encoding", "fileformat", "filetype" },
-      lualine_y = { "progress" },
-      lualine_z = { "location" },
+      lualine_x = {},
+      lualine_y = { "encoding", "fileformat", "filetype" },
+      lualine_z = { "progress" },
+      -- lualine_z = { "location" },
     },
     inactive_sections = {
       lualine_a = {},
