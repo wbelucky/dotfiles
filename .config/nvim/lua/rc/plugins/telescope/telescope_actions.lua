@@ -1,5 +1,5 @@
 local transform_mod = require("telescope.actions.mt").transform_mod
-local action_state = require('telescope.actions.state')
+local action_state = require "telescope.actions.state"
 local action_set = require "telescope.actions.set"
 local fb_utils = require "telescope._extensions.file_browser.utils"
 local Path = require "plenary.path"
@@ -20,15 +20,15 @@ local wb_actions = {}
 wb_actions.select_default = {
   pre = function(prompt_bufnr)
     action_state
-        .get_current_history()
-        :append(action_state.get_current_line(), action_state.get_current_picker(prompt_bufnr), true)
+      .get_current_history()
+      :append(action_state.get_current_line(), action_state.get_current_picker(prompt_bufnr), true)
   end,
   action = function(prompt_bufnr)
     return action_set.select(prompt_bufnr, "default")
   end,
   post = function(_)
-    vim.cmd('stopinsert')
-  end
+    vim.cmd "stopinsert"
+  end,
 }
 
 -- from pr: selection_callback after going to parent dir https://github.com/nvim-telescope/telescope-file-browser.nvim/pull/193
@@ -57,7 +57,6 @@ wb_actions.goto_parent_dir_with_select_cb = function(prompt_bufnr, bypass)
 end
 
 wb_actions = transform_mod(wb_actions)
-
 
 wb_actions.get_target_dir = function(prompt_bufnr)
   local finder = action_state.get_current_picker(prompt_bufnr).finder
