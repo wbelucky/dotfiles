@@ -2,11 +2,33 @@
 local spec = {
   {
     "ojroques/nvim-osc52",
+    event = "TextYankPost",
+    keys = {
+      {
+        "<leader>c",
+        function()
+          require("osc52").copy_operator()
+        end,
+        mode = "n",
+        { expr = true },
+      },
+
+      {
+        "<leader>cc",
+        "<leader>c_",
+        mode = "n",
+        { remap = true },
+      },
+      {
+        "<leader>c",
+        function()
+          require("osc52").copy_visual()
+        end,
+        mode = "x",
+      },
+    },
     config = function()
       require("osc52").setup {}
-      vim.keymap.set("n", "<leader>c", require("osc52").copy_operator, { expr = true })
-      vim.keymap.set("n", "<leader>cc", "<leader>c_", { remap = true })
-      vim.keymap.set("x", "<leader>c", require("osc52").copy_visual)
       local function copy()
         if vim.v.event.operator == "y" and vim.v.event.regname == "+" then
           require("osc52").copy_register "+"
@@ -18,6 +40,7 @@ local spec = {
   },
   {
     "windwp/nvim-ts-autotag",
+    event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   {
@@ -27,10 +50,10 @@ local spec = {
       require("gitlinker").setup()
     end,
   },
-  { "tpope/vim-surround" },
-  { "vim-denops/denops.vim" },
+  { "tpope/vim-surround", event = "VeryLazy" },
+  { "vim-denops/denops.vim", event = "VeryLazy" },
   { "buoto/gotests-vim", ft = "go" },
-  { "dstein64/vim-startuptime" },
+  { "dstein64/vim-startuptime", event = "VeryLazy" },
 }
 
 return spec
