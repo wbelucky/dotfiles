@@ -25,9 +25,9 @@ local spec = {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     { "nvim-lua/plenary.nvim" },
-    { "nvim-telescope/telescope-file-browser.nvim", lazy = true },
-    { "nvim-telescope/telescope-ghq.nvim", lazy = true },
-    { "nvim-telescope/telescope-ui-select.nvim", lazy = true },
+    { "nvim-telescope/telescope-file-browser.nvim" },
+    { "nvim-telescope/telescope-ghq.nvim" },
+    { "nvim-telescope/telescope-ui-select.nvim" },
   },
   init = function()
     vim.keymap.set("n", "<leader>p", builtin "find_files" {})
