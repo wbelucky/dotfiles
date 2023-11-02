@@ -20,7 +20,7 @@ local function extensions(name, prop)
   end
 end
 
---@type LazySpec
+---@type LazySpec
 local spec = {
   "nvim-telescope/telescope.nvim",
   event = "VeryLazy",

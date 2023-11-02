@@ -1,4 +1,4 @@
---@type LazySpec
+---@type LazySpec
 local spec = {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
