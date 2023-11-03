@@ -26,7 +26,7 @@ local spec = {
         lualine_c = {
           {
             "filename",
-            path = 1, -- relative path
+            path = 2,
             symbols = {
               modified = "",
               readonly = "󰷭",

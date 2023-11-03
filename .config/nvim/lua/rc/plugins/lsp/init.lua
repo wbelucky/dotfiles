@@ -21,7 +21,10 @@ local spec = {
     mason_lspconfig.setup {
       ensure_installed = vim.tbl_filter(function(v)
         -- exclude them
-        return not vim.tbl_contains({ "clangd", "denols" }, v)
+        return not vim.tbl_contains({
+          "clangd",
+          -- "denols"
+        }, v)
       end, vim.tbl_keys(servers)),
       automatic_installation = true,
     }
@@ -34,18 +37,19 @@ local spec = {
 
     mason_lspconfig.setup_handlers {
       function(server)
-        require("lspconfig")[server].setup(vim.tbl_extend("force", default, servers[server] or {}))
+        local conf = vim.tbl_extend("force", default, servers[server] or {})
+        require("lspconfig")[server].setup(conf)
       end,
-      ["tsserver"] = function(_)
-        require("typescript").setup {
-          disable_commands = false, -- prevent the plugin from creating Vim commands
-          debug = false, -- enable debug logging for commands
-          go_to_source_definition = {
-            fallback = true, -- fall back to standard LSP definition on failure
-          },
-          server = vim.tbl_extend("force", default, servers["tsserver"] or {}),
-        }
-      end,
+      --- ["tsserver"] = function(_)
+      ---   require("typescript").setup {
+      ---     disable_commands = false, -- prevent the plugin from creating Vim commands
+      ---     debug = false, -- enable debug logging for commands
+      ---     go_to_source_definition = {
+      ---       fallback = true, -- fall back to standard LSP definition on failure
+      ---     },
+      ---     server = vim.tbl_extend("force", default, servers["tsserver"] or {}),
+      ---   }
+      --- end,
     }
 
     -- ref: https://github.com/delphinus/dotfiles/blob/2c87826171d4397767e935e8db681aac4a6cff01/.config/nvim/lua/modules/lsp/config.lua#L47-L54

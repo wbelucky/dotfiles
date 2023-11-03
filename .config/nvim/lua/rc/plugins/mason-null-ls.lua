@@ -5,7 +5,7 @@ local spec = {
   dependencies = {
     "williamboman/mason.nvim",
     "jose-elias-alvarez/null-ls.nvim",
-    "jose-elias-alvarez/typescript.nvim",
+    -- "jose-elias-alvarez/typescript.nvim",
   },
   config = function()
     local null_ls = require "null-ls"
@@ -63,7 +63,7 @@ local spec = {
         -- null_ls.builtins.formatting.fish_indent,
         -- null_ls.builtins.diagnostics.golangci_lint,
         -- null_ls.builtins.formatting.stylua,
-        require "typescript.extensions.null-ls.code-actions",
+        -- require "typescript.extensions.null-ls.code-actions",
       },
       on_attach = function(client, bufnr)
         if client.supports_method "textDocument/formatting" then
