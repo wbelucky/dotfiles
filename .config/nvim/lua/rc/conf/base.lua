@@ -47,6 +47,8 @@ vim.opt.listchars = {
 vim.opt.smarttab = true --insert indent with tab key at the begining of line
 vim.opt.shiftwidth = 0 --自動インデントでずれる値 0 means same as tabstop
 vim.opt.autoindent = true --indent following previous line
+vim.opt.smartindent = true
+vim.opt.breakindent = true
 
 -- search
 vim.opt.ignorecase = true --大文字や小文字の区別なく検索

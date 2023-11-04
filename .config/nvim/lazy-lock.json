@@ -17,6 +17,7 @@
   "mason-null-ls.nvim": { "branch": "main", "commit": "ae0c5fa57468ac65617f1bf821ba0c3a1e251f0c" },
   "mason.nvim": { "branch": "main", "commit": "eabf6d347fdb75be360d4c0ced1145670a171453" },
   "null-ls.nvim": { "branch": "main", "commit": "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7" },
+  "nvim-autopairs": { "branch": "master", "commit": "0f04d78619cce9a5af4f355968040f7d675854a1" },
   "nvim-cmp": { "branch": "main", "commit": "51260c02a8ffded8e16162dcf41a23ec90cfba62" },
   "nvim-dap": { "branch": "master", "commit": "4048f37bc8b1a36fe1f5fde0df7d84aef71380e4" },
   "nvim-lspconfig": { "branch": "master", "commit": "d0467b9574b48429debf83f8248d8cee79562586" },
@@ -31,7 +32,6 @@
   "telescope-ui-select.nvim": { "branch": "master", "commit": "b0015e6e4b46a64192c64b68dec9a9ac5a4e5690" },
   "telescope.nvim": { "branch": "master", "commit": "4522d7e3ea75ffddabdc39957168a8a7060b5df0" },
   "tokyonight.nvim": { "branch": "main", "commit": "f247ee700b569ed43f39320413a13ba9b0aef0db" },
-  "typescript.nvim": { "branch": "main", "commit": "4de85ef699d7e6010528dcfbddc2ed4c2c421467" },
   "vim-startuptime": { "branch": "master", "commit": "454b3de856b7bd298700de33d79774ca9b9e3875" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vim-vsnip": { "branch": "master", "commit": "be277461265f1e5c7db470aa479f30956597ea9e" }
