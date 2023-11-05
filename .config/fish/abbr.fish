@@ -4,7 +4,6 @@ abbr -a 'dc' 'docker compose'
 abbr -a 'di' 'docker images'
 abbr -a 'dlmv' 'mv (ls -td $HOME/Downloads/* | head -n 1) .'
 abbr -a 'dps' 'docker ps'
-abbr -a 'g' 'git'
 abbr -a 'ga' 'git add'
 abbr -a 'gap' 'git add -p'
 abbr -a 'gc' 'git commit'
@@ -34,6 +33,7 @@ command -qv nvim && alias vim nvim
 command -qv nvim && alias v nvim
 abbr -a vf 'nvim (rg --files | fzf)'
 abbr -a 'vg' 'ghq_change_directory && nvim .'
+abbr -a 'g' 'ghq_change_directory && nvim .'
 
 if command -qv exa
   # abbr -a ls 'exa --icons --git'

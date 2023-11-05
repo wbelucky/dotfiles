@@ -4,8 +4,8 @@ k("i", "jj", "<ESC>")
 k("c", "jj", "<C-c>")
 
 -- for 🗡Training🗡
-k("i", "<ESC>", "<Nop>")
-k("c", "<ESC>", "<Nop>")
+-- k("i", "<ESC>", "<Nop>")
+-- k("c", "<ESC>", "<Nop>")
 k("v", "i", "<Nop>")
 
 k("n", "k", "gk")
