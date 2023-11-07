@@ -21,8 +21,14 @@ local spec = {
       },
       automatic_installation = false,
       handlers = {
-        prettierd = function(source_name, method)
+        prettierd = function()
           null_ls.register(null_ls.builtins.formatting.prettierd.with {
+            disabled_filetypes = { "markdown" },
+          })
+        end,
+        deno_fmt = function()
+          -- TODO: nodeのときはオフにしたい.
+          null_ls.register(null_ls.builtins.formatting.deno_fmt.with {
             disabled_filetypes = { "markdown" },
           })
         end,
