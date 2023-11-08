@@ -34,8 +34,8 @@ packages:
   - name: github.com/ankitpokhrel/jira-cli/cmd/jira
     registry: local
     version: eb842e18014303a575fde8e19508b3c7c13982c5
-  - name: hashicorp/terraform@v1.5.0
-  - name: twistedpair/google-cloud-sdk@434.0.0
+  - name: hashicorp/terraform@v1.6.3
+  - name: twistedpair/google-cloud-sdk@453.0.0
   - name: kubernetes/kubectl@v1.25.10
   - name: docker/compose@v2.19.1
   - name: evilmartians/lefthook@v1.5.2

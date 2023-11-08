@@ -23,7 +23,7 @@ end
 ---@type LazySpec
 local spec = {
   "nvim-telescope/telescope.nvim",
-  event = "VeryLazy",
+  cmd = { "Telescope" },
   dependencies = {
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-file-browser.nvim" },
