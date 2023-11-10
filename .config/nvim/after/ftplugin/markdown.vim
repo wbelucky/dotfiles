@@ -37,7 +37,7 @@ function! s:date_format() abort
 endfunction
 
 
-command! Link :call s:put_markdown_link()
+" command! Link :call s:put_markdown_link()
 command! Pl :call s:on_paste_url_to_md()
 command! -nargs=1 PasteSS :call s:paste_recent_screenshot(<f-args>)
 command! -nargs=1 PasteDL :call s:paste_recent_download(<f-args>)
