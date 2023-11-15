@@ -6,9 +6,14 @@ local spec = {
     lsp_lines.setup()
     vim.diagnostic.config {
       virtual_text = false,
+      signs = false,
     }
     vim.api.nvim_create_user_command("LspLinesToggle", function()
-      lsp_lines.toggle()
+      local state = lsp_lines.toggle()
+      vim.diagnostic.config {
+        virtual_text = not state,
+        signs = not state,
+      }
     end, { nargs = 0 })
   end,
 }
