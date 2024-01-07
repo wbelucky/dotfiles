@@ -72,7 +72,9 @@ local spec = {
     cmp.setup {
       snippet = {
         expand = function(args)
-          vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+          if vim.g.vsnip_snippet_dir then
+            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+          end
           -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
           -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
           -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
@@ -89,9 +91,9 @@ local spec = {
         },
       },
       sources = cmp.config.sources({
-        {
+        vim.g.vsnip_snippet_dir and {
           name = "vsnip",
-        },
+        } or nil,
         {
           name = "nvim_lsp",
           keyword_length = 3,
