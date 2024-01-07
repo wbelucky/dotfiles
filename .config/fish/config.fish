@@ -61,6 +61,8 @@ if command -qv keychain
     source $HOME/.keychain/$hostname-fish
 end
 
+source "$HOME/.config/fish/jira.fish"
+
 if status is-interactive
     # accept fish gray suggestion with C-j
     # ref: https://github.com/fish-shell/fish-shell/issues/8619
