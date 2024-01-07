@@ -18,7 +18,7 @@ abbr -a 'gl' 'git log'
 abbr -a 'gp' 'git push origin (git rev-parse --abbrev-ref HEAD)'
 abbr -a 'gpl' 'git pull origin (git rev-parse --abbrev-ref HEAD)'
 abbr -a 'grs' 'git reset'
-abbr -a 'gs' 'git status'
+abbr -a 'gs' 'git status -s'
 abbr -a 'gsw' 'git switch'
 abbr -a 'gw' 'git_log_switch'
 
@@ -41,3 +41,13 @@ if command -qv exa
   abbr -a lt 'exa -T -L 3 -a -I "node_modules|.git|.cache" --icons'
   abbr -a ltl 'exa -T -L 3 -a -I "node_modules|.git|.cache" -l --icons'
 end
+
+# ref: https://fishshell.com/docs/current/cmds/abbr.html#:~:text=feature%20of%20bash.-,function,-vim_edit%0A%20%20%20%20echo%20vim
+
+function vim_edit
+    echo nvim $argv
+end
+abbr -a vim_edit_texts \
+  --position command \
+  --function vim_edit \
+  --regex "^(?!\s*\./).+\..+|Dockerfile|Makefile"

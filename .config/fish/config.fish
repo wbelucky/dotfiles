@@ -64,9 +64,6 @@ end
 source "$HOME/.config/fish/jira.fish"
 
 if status is-interactive
-    # accept fish gray suggestion with C-j
-    # ref: https://github.com/fish-shell/fish-shell/issues/8619
-    bind -M insert \cj accept-autosuggestion
 
     source $HOME/.config/fish/abbr.fish
 

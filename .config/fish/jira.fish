@@ -24,7 +24,7 @@ set -l jls_str 'jira sprint list --current -a(jira me) \
 abbr -a jls $jls_str
 abbr -a jlss "$jls_str$jsel_str"
 abbr -a je "jira issue edit ($jls_str$jsel_str)"
-abbr -a jip "$jls_str -s'In Progress'"
+abbr -a jp "$jls_str -s'In Progress'"
 abbr -a jtodo "$jls_str -s'To Do'"
 
 # ref: https://github.com/ankitpokhrel/jira-cli/discussions/227
@@ -32,8 +32,6 @@ set -l jb_str 'jira issue list -s~Done -q "sprint is empty and issuetype not in 
 abbr -a jb $jb_str
 abbr -a jbs "$jb_str$jsel_str"
 abbr -a jbe "jira issue edit ($jb_str$jsel_str)"
-
-# abbr -a j2b 
 
 function jira_v1_post
       curl -sSf "$(yq .server < $HOME/.config/.jira/.config.yml)/rest/agile/1.0$argv[1]" \

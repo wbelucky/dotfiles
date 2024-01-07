@@ -97,6 +97,7 @@ local lsp_servers = {
   kotlin_language_server = {
     settings = { kotlin = { compiler = { jvm = { target = "17" } } } },
   },
+  marksman = {},
 }
 
 return lsp_servers
