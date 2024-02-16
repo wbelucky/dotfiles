@@ -53,7 +53,6 @@ lsp_base.enable_format_on_save = function(_, bufnr)
   vim.api.nvim_create_user_command("DisableLspFormatting", function()
     vim.api.nvim_clear_autocmds { group = augroup_format, buffer = 0 }
   end, { nargs = 0 })
-  -- end
 end
 
 return lsp_base
