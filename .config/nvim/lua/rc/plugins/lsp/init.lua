@@ -46,7 +46,7 @@ local spec = {
 
     mason_lspconfig.setup_handlers {
       function(server)
-        local conf = vim.tbl_extend("force", default, servers[server] or {})
+        local conf = vim.tbl_deep_extend("force", default, servers[server] or {})
         require("lspconfig")[server].setup(conf)
       end,
       --- ["tsserver"] = function(_)
