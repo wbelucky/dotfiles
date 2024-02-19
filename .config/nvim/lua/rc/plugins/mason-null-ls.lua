@@ -1,7 +1,7 @@
 ---@type LazySpec
 local spec = {
   "jay-babu/mason-null-ls.nvim",
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     "williamboman/mason.nvim",
     "jose-elias-alvarez/null-ls.nvim",
