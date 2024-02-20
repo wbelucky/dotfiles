@@ -1,7 +1,7 @@
 --@type LazySpec
 local spec = {
   "nvim-treesitter/nvim-treesitter",
-  event = "VeryLazy",
+  event = { "LazyFile", "VeryLazy" },
   build = ":TSUpdate",
   config = function()
     require("nvim-treesitter.configs").setup {

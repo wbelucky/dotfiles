@@ -1,7 +1,7 @@
 ---@type LazySpec
 local spec = {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPost", "BufNewFile" },
+  event = { "LazyFile" },
   cmd = { "LspInfo", "LspStart", "LspInstall", "LspUninstall" },
   dependencies = {
     "williamboman/mason.nvim",

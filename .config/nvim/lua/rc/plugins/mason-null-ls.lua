@@ -1,10 +1,10 @@
 ---@type LazySpec
 local spec = {
   "jay-babu/mason-null-ls.nvim",
-  event = { "BufReadPost", "BufNewFile" },
+  event = { "LazyFile" },
   dependencies = {
     "williamboman/mason.nvim",
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     -- "jose-elias-alvarez/typescript.nvim",
   },
   config = function()
