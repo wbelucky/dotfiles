@@ -3,11 +3,12 @@ local spec = {
   "nvim-treesitter/nvim-treesitter",
   event = { "LazyFile", "VeryLazy" },
   build = ":TSUpdate",
+  version = false,
+
   config = function()
     require("nvim-treesitter.configs").setup {
       highlight = {
         enable = true,
-        disable = {},
       },
       indent = {
         enable = true,
