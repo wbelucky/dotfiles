@@ -85,6 +85,7 @@ local lsp_servers = {
   },
   tsserver = {
     root_dir = require("lspconfig.util").root_pattern "package.json",
+    single_file_support = false,
   },
   terraformls = {
     -- disable terraform-vars because of https://github.com/neovim/neovim/issues/23184
