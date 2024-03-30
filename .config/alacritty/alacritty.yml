@@ -1,0 +1,44 @@
+window:
+  decorations: none
+  startup_mode: Maximized
+font:
+  normal:
+    # Font family
+    #
+    # Default:
+    #   - (macOS) Menlo
+    #   - (Linux) monospace
+    #   - (Windows) Consolas
+    # family: monospace
+    family: HackGen Console NF
+
+    # The `style` can be specified to pick a specific face.
+    style: Regular
+
+  # Bold font face
+  bold:
+    # Font family
+    #
+    # If the bold family is not specified, it will fall back to the
+    # value specified for the normal font.
+    # family: monospace
+    family: HackGen Console NF
+
+    # The `style` can be specified to pick a specific face.
+    style: Bold
+
+  # Italic font face
+  italic:
+    # Font family
+    #
+    # If the italic family is not specified, it will fall back to the
+    # value specified for the normal font.
+    # family: monospace
+    family: HackGen Console NF
+
+    # The `style` can be specified to pick a specific face.
+    # TODO:
+    style: Regular
+
+  # Point size
+  size: 11.0

@@ -20,6 +20,7 @@ ln -snfv ${DOTFILES}/.config/pypoetry ${HOME}/.config/pypoetry
 ln -snfv ${DOTFILES}/.tmux.conf ${HOME}/.tmux.conf
 ln -snfv ${DOTFILES}/.myconf.bashrc ${HOME}/.myconf.bashrc
 ln -snfv ${DOTFILES}/.ripgreprc ${HOME}/.ripgreprc
+ln -snfv ${DOTFILES}/.config/alacritty ${HOME}/.config/alacritty
 
 # bashrcにmyconfをロードするスクリプトが読み込まれていなければ追加.
 
