@@ -26,12 +26,6 @@ local spec = {
             disabled_filetypes = { "markdown" },
           })
         end,
-        deno_fmt = function()
-          -- TODO: nodeのときはオフにしたい.
-          null_ls.register(null_ls.builtins.formatting.deno_fmt.with {
-            disabled_filetypes = { "markdown" },
-          })
-        end,
       },
     }
     local augroup = vim.api.nvim_create_augroup("FormatOnSave", {})

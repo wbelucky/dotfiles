@@ -32,6 +32,7 @@ local spec = {
       ensure_installed = vim.tbl_filter(function(v)
         -- exclude them
         return not vim.tbl_contains({
+          "ruff",
           "clangd",
           -- "denols"
         }, v)
