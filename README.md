@@ -1,7 +1,7 @@
 # wbelucky-dotfiles with docker
 
-My personal settings.
-This may contain unaligned comments, unused scripts, or suboptimal settings
+My personal settings. This may contain unaligned comments, unused scripts, or
+suboptimal settings
 
 ## usage
 

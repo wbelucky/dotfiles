@@ -94,15 +94,3 @@ if vim.fn.has [[wsl]] == 1 then
 end
 
 vim.cmd [[au BufNewFile,BufRead *.pyflyby setl filetype=python]]
-
--- vim.opt.spell = true
--- vim.opt.spelllang = { "en", "cjk" }
-
--- filetypes
--- TODO: au BufNewFile,BufRead *.fish setl filetype=fish
--- TODO: au BufNewFile,BufRead *.tsx setl filetype=typescriptreact
--- TODO: au BufNewFile,BufRead *.md setl filetype=markdown
--- TODO: au BufNewFile,BufRead *.mdx setl filetype=markdown
-
--- TODO: runtime ./maps.vim
--- TODO: runtime ./plug.vim
