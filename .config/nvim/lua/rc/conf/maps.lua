@@ -24,7 +24,6 @@ k("n", "<C-w>K", ":resize +5<CR>")
 k("n", "<C-w>L", ":vertical resize +5<CR>")
 
 -- greatest remap ever
--- レジスタを保持したままreplace
 k("x", "mp", [["_dP]])
 
 -- next greatest remap ever

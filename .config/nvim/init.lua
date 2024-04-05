@@ -1,7 +1,2 @@
-require "rc.conf.core"
-require "rc.conf.lazy"
-
-local status, private_init = pcall(require, "private.init")
-if status then
-  private_init.setup()
-end
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require "config.lazy"

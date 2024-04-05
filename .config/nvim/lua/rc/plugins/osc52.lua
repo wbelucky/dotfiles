@@ -3,28 +3,28 @@ local spec = {
   "ojroques/nvim-osc52",
   event = "TextYankPost",
   keys = {
-    {
-      "<leader>c",
-      function()
-        require("osc52").copy_operator()
-      end,
-      mode = "n",
-      { expr = true },
-    },
+    -- {
+    --   "<leader>c",
+    --   function()
+    --     require("osc52").copy_operator()
+    --   end,
+    --   mode = "n",
+    --   { expr = true },
+    -- },
 
-    {
-      "<leader>cc",
-      "<leader>c_",
-      mode = "n",
-      { remap = true },
-    },
-    {
-      "<leader>c",
-      function()
-        require("osc52").copy_visual()
-      end,
-      mode = "x",
-    },
+    -- {
+    --   "<leader>cc",
+    --   "<leader>c_",
+    --   mode = "n",
+    --   { remap = true },
+    -- },
+    -- {
+    --   "<leader>c",
+    --   function()
+    --     require("osc52").copy_visual()
+    --   end,
+    --   mode = "x",
+    -- },
   },
   config = function()
     require("osc52").setup {}
