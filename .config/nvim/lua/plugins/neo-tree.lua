@@ -1,4 +1,4 @@
----@LazySpec
+---@type LazySpec
 local spec = {
   "nvim-neo-tree/neo-tree.nvim",
   keys = {
@@ -9,6 +9,7 @@ local spec = {
       end,
       desc = "NeoTree Around File",
     },
+    { "<leader>e", false }, -- Explorer Neo-tree (Root Dir)
   },
   opts = {
     window = {

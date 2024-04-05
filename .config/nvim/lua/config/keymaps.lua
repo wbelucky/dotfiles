@@ -18,3 +18,6 @@ k("x", "mp", [["_dP]])
 
 -- next greatest remap ever
 k({ "n", "v" }, "md", [["_d]])
+
+-- diagnostics
+k("n", "<leader>e", vim.diagnostic.open_float, { desc = "Line Diagnostics ([e]rror)" })
