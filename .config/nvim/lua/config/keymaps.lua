@@ -6,6 +6,10 @@ local k = vim.keymap.set
 
 k("n", "<leader><leader>", "<c-w><c-w>", { desc = "Other Window" })
 k("n", "<leader>w", ":w<CR>", { desc = "Save" })
+vim.keymap.del("n", "<leader>w-")
+vim.keymap.del("n", "<leader>w|")
+vim.keymap.del("n", "<leader>wd")
+vim.keymap.del("n", "<leader>ww")
 
 k("i", "jj", "<ESC>")
 k("c", "jj", "<C-c>")

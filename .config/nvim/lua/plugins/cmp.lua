@@ -20,6 +20,7 @@ local spec = {
         fallback()
       end,
     }
+    table.insert(opts.sources, { name = "emoji" })
     return opts
   end,
 }

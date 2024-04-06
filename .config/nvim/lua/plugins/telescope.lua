@@ -6,8 +6,8 @@ local spec = {
   keys = {
       -- add a keymap to browse plugin files
       -- stylua: ignore
-    { "<leader>p", require("telescope.builtin").find_files, desc = "Find Files" },
-    { "<leader><leader>", false },
+    { "<leader>p", LazyVim.telescope("files"), desc = "Find Files" },
+    { "<leader><space>", false },
     {
       "<leader><C-p>",
       function()
@@ -34,9 +34,18 @@ local spec = {
       function()
         local telescope = require "telescope"
         telescope.load_extension "ghq"
-        telescope.extensions["ghq"]["list"]()
+        telescope.extensions.ghq.list()
       end,
       desc = "List Git Repositories under GH[Q]",
+    },
+    {
+      "<leader>xn",
+      function()
+        local telescope = require "telescope"
+        telescope.load_extension "notify"
+        telescope.extensions.notify.notify()
+      end,
+      desc = "Telescope notify",
     },
   },
   -- change some options
