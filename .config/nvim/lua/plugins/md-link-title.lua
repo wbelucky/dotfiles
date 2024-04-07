@@ -2,9 +2,12 @@
 local spec = {
   "wbelucky/md-link-title.vim",
   lazy = false,
+  dev = true,
   ft = "markdown",
-  init = function()
-    -- vim.opt.runtimepath:append "~/ghq/github.com/wbelucky/md-link-title.vim"
+  init = function(spec)
+    if spec.dev then
+      vim.g["denops#debug"] = 1
+    end
 
     -- vim.cmd [[command! -nargs=0 -range Link <line1>,<line2>call md_link_title#replace()]]
     vim.api.nvim_create_user_command("Link", [[<line1>,<line2>MdLinkTitle]], { nargs = 0, range = true })

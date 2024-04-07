@@ -7,7 +7,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-require("lazy").setup({
+---@type LazyConfig
+local lazyConfig = {
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
@@ -44,8 +45,9 @@ require("lazy").setup({
       },
     },
   },
-}, {
   dev = {
     path = "~/ghq/github.com/wbelucky",
   },
-})
+}
+
+require("lazy").setup(lazyConfig)

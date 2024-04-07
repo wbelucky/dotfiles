@@ -1,9 +1,23 @@
----@type LazySpec
 local spec = {
+  ---@type LazySpec
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
   dependencies = { { "nvim-telescope/telescope-ghq.nvim" } },
   keys = {
+    {
+      "<leader>gs",
+      function()
+        require("telescope.builtin").git_status { cwd = vim.fn.expand "%:p:h" }
+      end,
+      desc = "Status",
+    },
+    {
+      "<leader>gc",
+      function()
+        require("telescope.builtin").git_commits { cwd = vim.fn.expand "%:p:h" }
+      end,
+      desc = "Commits",
+    },
       -- add a keymap to browse plugin files
       -- stylua: ignore
     { "<leader>p", LazyVim.telescope("files"), desc = "Find Files" },
@@ -57,6 +71,19 @@ local spec = {
         --- other `default` options go here
       }
     ),
+    pickers = {
+      git_status = {
+        git_icons = {
+          added = "🏁",
+          changed = "🚧",
+          copied = "💫",
+          deleted = "🔥",
+          renamed = "🚚",
+          unmerged = "🔀",
+          untracked = "✨",
+        },
+      },
+    },
     extensions = {
       ghq = {
         -- TODO: こうしたい

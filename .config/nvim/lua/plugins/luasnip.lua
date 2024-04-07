@@ -5,7 +5,6 @@ local spec = {
     require("luasnip.loaders.from_vscode").lazy_load {
       paths = { vim.env.VSNIP_DIR },
     }
-    print "vsnip loaded"
   end,
 }
 

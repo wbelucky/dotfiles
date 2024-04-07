@@ -5,11 +5,12 @@
 local k = vim.keymap.set
 
 k("n", "<leader><leader>", "<c-w><c-w>", { desc = "Other Window" })
-k("n", "<leader>w", ":w<CR>", { desc = "Save" })
-vim.keymap.del("n", "<leader>w-")
-vim.keymap.del("n", "<leader>w|")
-vim.keymap.del("n", "<leader>wd")
-vim.keymap.del("n", "<leader>ww")
+k("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
+
+k("n", "<leader>w-", "<Nop>")
+k("n", "<leader>w|", "<Nop>")
+k("n", "<leader>wd", "<Nop>")
+k("n", "<leader>ww", "<Nop>")
 
 k("i", "jj", "<ESC>")
 k("c", "jj", "<C-c>")
@@ -21,7 +22,10 @@ k("v", "i", "<Nop>")
 k("x", "mp", [["_dP]])
 
 -- next greatest remap ever
-k({ "n", "v" }, "md", [["_d]])
+k({ "n", "v" }, "md", [["_d]], { desc = '"_d' })
+
+k("n", "mx", [[<cmd>.s/\[\s\]/[x]<cr>]], { desc = "Mark as Done" })
+k("n", "m[", [[<cmd>.s/\(\s*\)-\?\s*/\1- [ ] /| nohl<cr>]], { desc = "Add - [ ]" })
 
 -- diagnostics
 k("n", "<leader>e", vim.diagnostic.open_float, { desc = "Line Diagnostics ([e]rror)" })
