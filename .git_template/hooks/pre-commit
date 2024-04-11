@@ -1,0 +1,14 @@
+#!/bin/bash
+
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
+# current_branch="main"
+
+branches=("main" "dev" "master")
+
+# Check if the current branch is in the list of branches
+if [[ "${branches[@]}" =~ "${current_branch}" ]]; then
+	echo "Current branch is $current_branch, exiting..."
+	exit 1
+else
+	echo "Current branch is $current_branch"
+fi

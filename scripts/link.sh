@@ -1,16 +1,15 @@
 #!/bin/bash -eu
 pushd $(dirname ${BASH_SOURCE:-$0})
 
-
 . ./env.sh
 
 mkdir -p ${HOME}/.config
 
 fish_config_dir="${HOME}/.config/fish"
 if [[ -d fish_config_dir ]]; then
-  fish_default="$HOME/.config/fish_default/"
-  echo "mv $fish_config_dir $fish_default"
-  mv $fish_config_dir $fish_default
+	fish_default="$HOME/.config/fish_default/"
+	echo "mv $fish_config_dir $fish_default"
+	mv $fish_config_dir $fish_default
 fi
 
 ln -snfv ${DOTFILES}/.config/fish ${HOME}/.config/fish
@@ -21,6 +20,7 @@ ln -snfv ${DOTFILES}/.tmux.conf ${HOME}/.tmux.conf
 ln -snfv ${DOTFILES}/.myconf.bashrc ${HOME}/.myconf.bashrc
 ln -snfv ${DOTFILES}/.ripgreprc ${HOME}/.ripgreprc
 ln -snfv ${DOTFILES}/.config/alacritty ${HOME}/.config/alacritty
+ln -snfv ${DOTFILES}/.git_template ${HOME}/.git_template
 
 # bashrcにmyconfをロードするスクリプトが読み込まれていなければ追加.
 
@@ -29,8 +29,8 @@ touch "$WBCONFIG"
 yq -i ".environment.DOTFILES=\"$DOTFILES\"" "$WBCONFIG"
 
 if [[ ! -v "WB_MYCONF_LOADED" ]]; then
-  echo "fix ~/.bashrc to load ~/.myconf.bashrc"
-  cat << HERE >> ~/.bashrc
+	echo "fix ~/.bashrc to load ~/.myconf.bashrc"
+	cat <<HERE >>~/.bashrc
 . "\$HOME/.myconf.bashrc"
 HERE
 
