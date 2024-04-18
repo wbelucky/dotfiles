@@ -66,7 +66,7 @@ local spec = {
   opts = {
     defaults = vim.tbl_extend(
       "force",
-      require("telescope.themes").get_dropdown(), -- or get_cursor, get_ivy
+      require("telescope.themes").get_ivy(), -- or get_cursor, get_ivy
       {
         --- other `default` options go here
       }
