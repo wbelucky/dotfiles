@@ -18,6 +18,7 @@ dir = "$WB_DIARY"
 
 # Template used to generate a note's filename, without extension.
 #filename = "{{id}}"
+filename = "{{id}}-{{slug title}}"
 
 # The file extension used for the notes.
 #extension = "md"
@@ -86,8 +87,16 @@ template = "daily.md"
 
 [group.posts]
 [group.posts.note]
+filename = "{{id}}-{{slug title}}"
 extension = "md"
 template = "post.md"
+
+[group.private]
+[group.private.note]
+filename = "{{id}}-{{slug title}}"
+extension = "md"
+template = "post.md"
+
 
 # MARKDOWN SETTINGS
 [format.markdown]
