@@ -1,11 +1,17 @@
 ---@type LazySpec
 local spec = {
-  "zk-org/zk-nvim",
+  "wbelucky/zk-nvim",
+  dev = true,
   event = "LazyFile",
   keys = {
     {
       "<leader>md",
-      [[<cmd>ZkNew { group = "journal", dir = "journal" }<cr>]],
+      function()
+        require("zk.commands").get "ZkNew" {
+          group = "journal",
+          dir = "journal",
+        }
+      end,
       desc = "Open Diary",
     },
     {
@@ -17,7 +23,6 @@ local spec = {
           title = vim.fn.input "Title: ",
         }
       end,
-      -- [[<cmd>'<,'>ZkNewFromContentSelection { group = "posts", dir = "posts", title= }<cr>]],
       desc = "Yank and create a new zk post",
       mode = "v",
     },
@@ -30,13 +35,14 @@ local spec = {
           title = vim.fn.input "Title: ",
         }
       end,
-      -- [[<cmd>'<,'>ZkNewFromContentSelection { group = "posts", dir = "posts", title= }<cr>]],
       desc = "Yank and create a [P]rivate zk post",
       mode = "v",
     },
     {
       "<leader>mt",
-      "<cmd>ZkTags<cr>",
+      function()
+        require("zk.commands").get "ZkTags" {}
+      end,
       desc = "ZkTags",
       mode = "n",
     },
@@ -44,7 +50,7 @@ local spec = {
   config = function()
     require("zk").setup {
       picker = "telescope",
-      -- See Setup section below
+      cd_on_edit = true,
     }
   end,
 }
