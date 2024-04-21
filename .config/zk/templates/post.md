@@ -1,6 +1,6 @@
 ---
 tags:
-  - post
+    - post
 draft: true
 date: {{format-date now '%Y-%m-%d %H:%M:%S'}}
 ---
@@ -8,4 +8,3 @@ date: {{format-date now '%Y-%m-%d %H:%M:%S'}}
 # {{title}}
 
 {{content}}
-

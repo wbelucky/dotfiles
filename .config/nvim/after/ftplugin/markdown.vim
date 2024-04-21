@@ -3,6 +3,7 @@ setlocal foldmethod=marker
 setlocal foldmarker=<details>,</details>
 " TODO: fold-foldtext
 setlocal foldtext=v:folddashes.substitute(getline(v:foldstart+1),'<summary>\\\|</summary>','','g')
+setlocal shiftwidth=4
 
 function! s:put_markdown_link() abort
   let line = getline(".")

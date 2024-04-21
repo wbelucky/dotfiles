@@ -17,7 +17,6 @@ local lazyConfig = {
     -- { import = "lazyvim.plugins.extras.lang.json" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- import/override with your plugins
-    { import = "extras.markdown" },
     { import = "plugins" },
   },
   defaults = {
