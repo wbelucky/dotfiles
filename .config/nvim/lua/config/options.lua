@@ -12,6 +12,8 @@ vim.opt.swapfile = false
 vim.opt.shell = "fish"
 vim.opt.clipboard = "unnamedplus"
 
+vim.opt.confirm = false
+
 local status, private_init = pcall(require, "private.init")
 if status then
   private_init.setup()
