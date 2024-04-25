@@ -29,3 +29,34 @@ k("n", "m[", [[<cmd>.s/\(\s*\)-\?\s*/\1- [ ] /| nohl<cr>]], { desc = "Add - [ ]"
 
 -- diagnostics
 k("n", "<leader>e", vim.diagnostic.open_float, { desc = "Line Diagnostics ([e]rror)" })
+
+--- https://github.com/hrsh7th/vim-vsnip/blob/master/plugin/vsnip.vim#L65C1-L74C12
+
+vim.api.nvim_create_user_command("VsnipYank", function(args)
+  local function add_command(start_line, end_line, name)
+    local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+    local formatted_lines = {}
+    for _, val in ipairs(lines) do
+      table.insert(formatted_lines, vim.fn.json_encode(val:gsub("%$", "\\$")))
+    end
+    local format = [[  "%s": {
+    "prefix": ["%s"],
+    "body": [
+      %s
+    ]
+  }]]
+    local command_name = name ~= "" and name or "new"
+
+    local reg = vim.o.clipboard == "unnamed" and "*" or '"'
+    reg = vim.o.clipboard == "unnamedplus" and "+" or reg
+    local content = string.format(format, command_name, command_name, table.concat(formatted_lines, ",\n      "))
+    vim.fn.setreg(reg, content, { "l" })
+  end
+
+  local line1, line2 = unpack(args)
+  local q_args = args[3]
+  add_command(line1, line2, q_args)
+end, {
+  range = true,
+  nargs = "?",
+})
