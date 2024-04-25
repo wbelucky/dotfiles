@@ -62,6 +62,7 @@ local spec = {
     {
       "<leader>my",
       function()
+        vim.cmd "normal :"
         require("zk.commands").get "ZkNewFromContentSelection" {
           group = "posts",
           dir = "posts",
@@ -74,6 +75,7 @@ local spec = {
     {
       "<leader>mp",
       function()
+        vim.cmd "normal :"
         require("zk.commands").get "ZkNewFromContentSelection" {
           group = "private",
           dir = "private",
