@@ -4,8 +4,8 @@ local spec = {
   opts = {
     incremental_selection = {
       keymaps = {
-        init_selection = "<tab>",
-        node_incremental = "<tab>",
+        init_selection = "<C-l>",
+        node_incremental = "<C-l>",
         node_decremental = "<bs>",
       },
     },
