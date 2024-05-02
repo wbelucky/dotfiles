@@ -18,7 +18,10 @@ dir = "$WB_DIARY"
 
 # Template used to generate a note's filename, without extension.
 #filename = "{{id}}"
-filename = "{{id}}-{{slug title}}"
+filename = "{{id}}"
+# id-charset = "hex"
+# id-length = 8
+# id-case = "lower"
 
 # The file extension used for the notes.
 #extension = "md"
@@ -87,16 +90,9 @@ template = "daily.md"
 
 [group.posts]
 [group.posts.note]
-filename = "{{id}}-{{slug title}}"
+filename = "{{id}}"
 extension = "md"
 template = "post.md"
-
-[group.private]
-[group.private.note]
-filename = "{{id}}-{{slug title}}"
-extension = "md"
-template = "post.md"
-
 
 # MARKDOWN SETTINGS
 [format.markdown]
@@ -188,6 +184,7 @@ dead-link = "error"
 #
 [alias]
 j = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal"'
+recent = "zk edit --sort modified- --created-after 'last one week' --interactive"
 # Here are a few aliases to get you started.
 
 # Shortcut to a command.

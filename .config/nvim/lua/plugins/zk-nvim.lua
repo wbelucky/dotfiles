@@ -43,6 +43,90 @@ local function editTodoOrInProgress(options, picker_options)
   end)
 end
 
+local function get_lines_in_range(range)
+  local A = range["start"]
+  local B = range["end"]
+
+  local lines = vim.api.nvim_buf_get_lines(0, A.line, B.line + 1, true)
+  if vim.tbl_isempty(lines) then
+    return nil
+  end
+  local MAX_STRING_SUB_INDEX = 2 ^ 31 - 1 -- LuaJIT only supports 32bit integers for `string.sub` (in block selection B.character is 2^31)
+  lines[#lines] = string.sub(lines[#lines], 1, math.min(B.character, MAX_STRING_SUB_INDEX))
+  lines[1] = string.sub(lines[1], math.min(A.character + 1, MAX_STRING_SUB_INDEX))
+  return lines
+end
+
+---@param lines string[]
+---@return string|nil title
+---@return string[] body_lines
+local function reduce_headings(lines)
+  local h1_title = nil
+  local reduce_count = 0
+  local first_content_line_num = nil
+
+  ---@param i integer
+  local function processLines(i)
+    local line = lines[i]
+
+    local hashes, title = string.match(line, "^(#+) (%S.*)")
+
+    -- TODO: なぜかtitleのときにこれが表示されない.
+    -- print(vim.inspect { hashes, title })
+
+    if first_content_line_num == nil and string.match(line, "%S") ~= nil then
+      first_content_line_num = i
+
+      if hashes ~= nil then
+        h1_title = title
+        reduce_count = string.len(hashes) - 1
+      else
+        h1_title = line
+      end
+
+      lines[i] = ""
+      return
+    end
+
+    if hashes ~= nil and h1_title ~= nil then
+      local hash_num = math.max(string.len(hashes) - reduce_count, 2)
+      hashes = string.rep("#", hash_num)
+      lines[i] = hashes .. " " .. title
+      return
+    end
+  end
+
+  for i, _ in ipairs(lines) do
+    processLines(i)
+  end
+
+  return h1_title, vim.list_slice(lines, first_content_line_num + 1)
+end
+
+local function zk_new_partial_md(options)
+  local util = require "zk.util"
+
+  local location = util.get_lsp_location_from_selection()
+  local selected_text = get_lines_in_range(location.range)
+  assert(selected_text ~= nil, "No selected text")
+
+  local title, body = reduce_headings(selected_text)
+
+  options = options or {}
+  options.title = title or "title"
+  options.content = table.concat(body, "\n")
+
+  if options.inline == true then
+    options.inline = nil
+    options.dryRun = true
+    options.insertContentAtLocation = location
+  else
+    options.insertLinkAtLocation = location
+  end
+
+  require("zk").new(options)
+end
+
 ---@type LazySpec
 local spec = {
   "wbelucky/zk-nvim",
@@ -59,30 +143,33 @@ local spec = {
       end,
       desc = "Open Diary",
     },
+    -- {
+    --   "<leader>my",
+    --   function()
+    --     vim.cmd "normal :"
+    --     require("zk.commands").get "ZkNewFromContentSelection" {
+    --       group = "posts",
+    --       dir = "posts",
+    --       title = vim.fn.input "Title: ",
+    --     }
+    --   end,
+    --   desc = "Yank and create a new zk post",
+    --   mode = "v",
+    -- },
     {
       "<leader>my",
       function()
         vim.cmd "normal :"
-        require("zk.commands").get "ZkNewFromContentSelection" {
+        zk_new_partial_md {
           group = "posts",
           dir = "posts",
-          title = vim.fn.input "Title: ",
+          extra = {
+            -- tags = "tag1\ntag2",
+            tags = "backlog",
+          },
         }
       end,
-      desc = "Yank and create a new zk post",
-      mode = "v",
-    },
-    {
-      "<leader>mp",
-      function()
-        vim.cmd "normal :"
-        require("zk.commands").get "ZkNewFromContentSelection" {
-          group = "private",
-          dir = "private",
-          title = vim.fn.input "Title: ",
-        }
-      end,
-      desc = "Yank and create a [P]rivate zk post",
+      desc = "Yank partial md and create a new zk post",
       mode = "v",
     },
     {
@@ -96,9 +183,22 @@ local spec = {
     {
       "<leader>ms",
       function()
+        -- this is ok, but i want to sort by tag
+        -- require("zk.commands").get "ZkNotes" {
+        --   tags = ["todo OR in-progress"]
+        -- }
+
         editTodoOrInProgress({}, { title = "Zk on Sprint" })
       end,
       desc = "Pick notes on [S]print",
+      mode = "n",
+    },
+    {
+      "<leader>mb",
+      function()
+        require("zk.commands").get "ZkBacklinks" {}
+      end,
+      desc = "ZkBacklinks",
       mode = "n",
     },
   },
