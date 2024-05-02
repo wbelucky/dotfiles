@@ -71,10 +71,10 @@ if status is-interactive
     source $HOME/.config/fish/abbr.fish
 
     # Fish git prompt
-    set -gx __fish_git_prompt_showdirtystate 'yes'
-    set -gx __fish_git_prompt_showstashstate 'yes'
-    set -gx __fish_git_prompt_showuntrackedfiles 'yes'
-    set -gx __fish_git_prompt_showupstream 'yes'
+    set -gx __fish_git_prompt_showdirtystate yes
+    set -gx __fish_git_prompt_showstashstate yes
+    set -gx __fish_git_prompt_showuntrackedfiles yes
+    set -gx __fish_git_prompt_showupstream yes
 
     set -gx __fish_git_prompt_color_branch yellow
     set -gx __fish_git_prompt_color_upstream_ahead green
@@ -98,5 +98,5 @@ end
 
 set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
 if test -f $LOCAL_CONFIG
-  source $LOCAL_CONFIG
+    source $LOCAL_CONFIG
 end
