@@ -184,7 +184,7 @@ dead-link = "error"
 #
 [alias]
 j = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal"'
-recent = "zk edit --sort modified- --created-after 'last one week' --interactive"
+recent = "zk edit --sort modified- --modified-after 'last one week' --interactive"
 # Here are a few aliases to get you started.
 
 # Shortcut to a command.

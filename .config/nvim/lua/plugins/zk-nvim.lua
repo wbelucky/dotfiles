@@ -141,21 +141,8 @@ local spec = {
           dir = "journal",
         }
       end,
-      desc = "Open Diary",
+      desc = "Diary",
     },
-    -- {
-    --   "<leader>my",
-    --   function()
-    --     vim.cmd "normal :"
-    --     require("zk.commands").get "ZkNewFromContentSelection" {
-    --       group = "posts",
-    --       dir = "posts",
-    --       title = vim.fn.input "Title: ",
-    --     }
-    --   end,
-    --   desc = "Yank and create a new zk post",
-    --   mode = "v",
-    -- },
     {
       "<leader>my",
       function()
@@ -169,7 +156,7 @@ local spec = {
           },
         }
       end,
-      desc = "Yank partial md and create a new zk post",
+      desc = "Zk yank from partial md",
       mode = "v",
     },
     {
@@ -177,7 +164,7 @@ local spec = {
       function()
         require("zk.commands").get "ZkTags" {}
       end,
-      desc = "ZkTags",
+      desc = "Zk Tags",
       mode = "n",
     },
     {
@@ -190,7 +177,7 @@ local spec = {
 
         editTodoOrInProgress({}, { title = "Zk on Sprint" })
       end,
-      desc = "Pick notes on [S]print",
+      desc = "Zk Sprint",
       mode = "n",
     },
     {
@@ -198,7 +185,18 @@ local spec = {
       function()
         require("zk.commands").get "ZkBacklinks" {}
       end,
-      desc = "ZkBacklinks",
+      desc = "Zk Backlinks",
+      mode = "n",
+    },
+    {
+      "<leader>mr",
+      function()
+        require("zk.commands").get "ZkNotes" {
+          sort = { "modified-" },
+          modifiedAfter = "last one week",
+        }
+      end,
+      desc = "Zk Recent",
       mode = "n",
     },
   },
