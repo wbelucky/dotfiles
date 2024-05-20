@@ -23,6 +23,7 @@ k("x", "mp", [["_dP]])
 
 -- next greatest remap ever
 k({ "n", "v" }, "md", [["_d]], { desc = '"_d' })
+k({ "n", "v" }, "mc", [["_c]], { desc = '"_c' })
 
 k("n", "mx", [[<cmd>.s/\[\s\]/[x]<cr>]], { desc = "Mark as Done" })
 k("n", "m[", [[<cmd>.s/\(\s*\)-\?\s*/\1- [ ] /| nohl<cr>]], { desc = "Add - [ ]" })
