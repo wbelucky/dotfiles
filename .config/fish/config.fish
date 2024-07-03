@@ -1,8 +1,5 @@
 set fish_greeting ""
 
-set -gx async_prompt_functions fish_right_prompt
-
-
 # use ./fisher/ https://github.com/jorgebucaran/fisher/issues/640#issuecomment-1172984768
 set fisher_path ~/.config/fish/fisher
 ! set --query fisher_path[1] || test "$fisher_path" = $__fish_config_dir && exit

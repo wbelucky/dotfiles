@@ -27,6 +27,11 @@ local spec = {
     -- add a keymap
     --keys[#keys + 1] = { "H", "<cmd>echo 'hello'<cr>" }
   end,
+  opts = function(_, opts)
+    opts.servers.denols = { root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc") }
+    opts.servers.tsserver =
+      { root_dir = require("lspconfig.util").root_pattern "package.json", single_file_support = false }
+    return opts
+  end,
 }
-
 return spec
