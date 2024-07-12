@@ -50,7 +50,8 @@ fish_add_path $HOME/.pub-cache/bin
 
 set -gx GHQ_ROOT "$HOME/ghq"
 # DOTFILES, PRIVATE_CONFIGSなどを.wbconfigから読み込み
-set -gx DOTFILES "$GHQ_ROOT/wbelucky/dotfiles-with-docker"
+# TODO: できればこの2つ上のディレクトリをDOTFILESにするっていう設定にしたい
+set -gx DOTFILES "$GHQ_ROOT/wbelucky/dotfiles"
 
 # for ssh-agent ref: https://zenn.dev/kaityo256/articles/ssh_agent_on_wsl
 if command -qv keychain

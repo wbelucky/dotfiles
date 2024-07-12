@@ -19,7 +19,7 @@ packages:
     registry: local
     version: 7163e61e2309a039241ad40b4a25bea35671ea6f
   # - name: BurntSushi/ripgrep@13.0.0
-  - name: crates.io/ripgrep@13.0.0
+  - name: crates.io/ripgrep@14.1.0
     registry: local
 
   # - name: ogham/exa@v0.10.1
@@ -27,9 +27,9 @@ packages:
   #   registry: local
 
   # - name: mikefarah/yq@v4.28.2
-  - name: github.com/mikefarah/yq
-    registry: local
-    version: 5ef537f3fd1a9437aa3ee44c32c6459a126efdc4
+  # - name: github.com/mikefarah/yq
+  #  registry: local
+  #  version: 5ef537f3fd1a9437aa3ee44c32c6459a126efdc4
 
   - name: github.com/ankitpokhrel/jira-cli/cmd/jira
     registry: local

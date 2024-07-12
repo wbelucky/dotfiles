@@ -25,10 +25,6 @@ ln -snfv ${DOTFILES}/.config/zk ${HOME}/.config/zk
 
 # bashrcにmyconfをロードするスクリプトが読み込まれていなければ追加.
 
-WBCONFIG="$HOME/.wbconfig"
-touch "$WBCONFIG"
-yq -i ".environment.DOTFILES=\"$DOTFILES\"" "$WBCONFIG"
-
 if [[ ! -v "WB_MYCONF_LOADED" ]]; then
 	echo "fix ~/.bashrc to load ~/.myconf.bashrc"
 	cat <<HERE >>~/.bashrc
