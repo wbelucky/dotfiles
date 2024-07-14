@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo e"this pre-commit script executed by $(readlink -f "$0")"
+
 current_branch="$(git rev-parse --abbrev-ref HEAD)"
 # current_branch="main"
 
