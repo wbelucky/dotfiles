@@ -21,6 +21,7 @@ packages:
   # - name: BurntSushi/ripgrep@13.0.0
   - name: crates.io/ripgrep@14.1.0
     registry: local
+  - name: sharkdp/fd@v10.2.0
 
   # - name: ogham/exa@v0.10.1
   # - name: crates.io/exa@0.10.1
