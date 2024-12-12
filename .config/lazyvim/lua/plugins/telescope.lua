@@ -50,7 +50,7 @@ local spec = {
         telescope.load_extension "ghq"
         telescope.extensions.ghq.list()
       end,
-      desc = "List Git Repositories under GH[Q]",
+      desc = "List Git Repositories under [G]H[Q]",
     },
     {
       "<leader>xn",
